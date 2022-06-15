@@ -5,14 +5,28 @@ import {
 } from 'react';
 import SlpSelector from './components/SlpSelector';
 
+interface Result {
+  metadata: any; //TODO
+}
+
 const slippi_worker = new Worker(new URL('./workers/worker.js', import.meta.url));
 
 const App = () => {
   const [slp_files, setSlpFiles] = useState<Array<File>>([]);
+  const [ results, setResults ]  = useState<Array<Result>>([]);
+
+  console.log('Results is:', results);
 
   useEffect(() => {
-    if (slp_files[0]) {
-      slippi_worker.postMessage({ file: slp_files[0] });
+    slippi_worker.addEventListener('message', ({ data }) => {
+      const { metadata } = data;
+      setResults(results => results.concat(metadata));
+    });
+  }, []);
+
+  useEffect(() => {
+    if (slp_files.length) {
+      slp_files.forEach(file => slippi_worker.postMessage({ file }));
     }
   }, [slp_files]);
 
