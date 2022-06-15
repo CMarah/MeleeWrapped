@@ -5,13 +5,15 @@ import {
 } from 'react';
 import SlpSelector from './components/SlpSelector';
 
+const slippi_worker = new Worker(new URL('./workers/worker.js', import.meta.url));
 
 const App = () => {
   const [slp_files, setSlpFiles] = useState<Array<File>>([]);
 
   useEffect(() => {
-    console.log('NEW SLP FILES', slp_files, slp_files.length, typeof slp_files.length);
-    // TODO process with slippi-js
+    if (slp_files[0]) {
+      slippi_worker.postMessage({ file: slp_files[0] });
+    }
   }, [slp_files]);
 
   return (<div className="App">
