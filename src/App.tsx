@@ -1,39 +1,22 @@
 import './App.css';
 import {
   useState,
-  useEffect,
-} from 'react';
-import SlpSelector from './components/SlpSelector';
+}                  from 'react';
+import SlpFilesProcessor from './components/SlpFilesProcessor';
 
 interface Result {
   metadata: any; //TODO
 }
 
-const slippi_worker = new Worker(new URL('./workers/worker.js', import.meta.url));
-
 const App = () => {
-  const [slp_files, setSlpFiles] = useState<Array<File>>([]);
   const [ results, setResults ]  = useState<Array<Result>>([]);
-
+  const [ done_processing, setDoneProcessing ] = useState(false);
   console.log('Results is:', results);
-
-  useEffect(() => {
-    slippi_worker.addEventListener('message', ({ data }) => {
-      const { metadata } = data;
-      setResults(results => results.concat(metadata));
-    });
-  }, []);
-
-  useEffect(() => {
-    if (slp_files.length) {
-      slp_files.forEach(file => slippi_worker.postMessage({ file }));
-    }
-  }, [slp_files]);
 
   return (<div className="App">
     <header className="App-header">
-      <p style={{fontSize: '2em', margin: '1.5em 0 0.5em 0'}}>Melee Wrapped</p>
-      <p style={{fontSize: '1.2em', margin: '0 0 1em 0'}}>Your Melee year in review</p>
+      <p className="header-title">Melee Wrapped</p>
+      <p className="header-subtitle">Your Melee year in review</p>
     </header>
     <div className="content">
       <div style={{marginTop: '3em'}}>
@@ -41,16 +24,14 @@ const App = () => {
           Explore your Melee 2022 <br/>#MeleeWrapped
         </span>
       </div>
-      {!slp_files.length && (<div style={{marginTop: '2em'}}>
-        <SlpSelector
-          setSlpFiles={setSlpFiles}
+      {!done_processing && (<div style={{marginTop: '2em'}}>
+        <SlpFilesProcessor
+          results={results}
+          setResults={setResults}
+          setDoneProcessing={setDoneProcessing}
         />
-      </div>)}
-      {slp_files.length !== 0 && (<div>
-        Loading
       </div>)}
     </div>
   </div>);
 };
-
 export default App;

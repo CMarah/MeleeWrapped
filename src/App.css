@@ -13,19 +13,30 @@
   font-family: 'Maven Pro', sans-serif;
   display: 'flex';
   flex-direction: 'column';
-  background-color: #44A963;
+  background-color: #222222;
 }
 
 .App-header {
+  height: 9em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: rgb(49, 0, 87);
+  background-color: #44A963;
   font-weight: 700;
   margin: 0;
+  background: rgb(34,121,60);
+  background: linear-gradient(0deg, rgba(34,121,60,1) 0%, rgba(34,107,57,1) 60%, rgba(32,92,50,1) 100%);
+}
+
+.header-title {
+  font-size: 3.5em;
+}
+.header-subtitle {
+  font-size: 1.2em;
+  margin: 0 0 1em 0;
 }
 
 .App-link {
