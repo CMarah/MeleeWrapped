@@ -1,17 +1,26 @@
 import './App.css';
 import {
+    useEffect,
   useState,
 }                  from 'react';
 import SlpFilesProcessor from './components/SlpFilesProcessor';
-
-interface Result {
-  metadata: any; //TODO
-}
+import {
+  Result,
+  CleanData,
+  cleanDataFromResults,
+}                        from './lib/results';
 
 const App = () => {
-  const [ results, setResults ]  = useState<Array<Result>>([]);
-  const [ done_processing, setDoneProcessing ] = useState(false);
-  console.log('Results is:', results);
+  const [ full_results, setFullResults ] = useState<Array<Result>>([]);
+  const [ clean_data,   setCleanData   ] = useState<CleanData>();
+  console.log('CLEAN DATA', clean_data);
+
+  useEffect(() => {
+    if (full_results.length !== 0) {
+      console.log('Results is:', full_results);
+      setCleanData(cleanDataFromResults(full_results));
+    }
+  }, [full_results]);
 
   return (<div className="App">
     <header className="App-header">
@@ -22,15 +31,13 @@ const App = () => {
       <span className="font-semibold text-white">
         Explore your Melee 2022 <br/>#MeleeWrapped
       </span>
-      {!done_processing && (<div style={{
+      {full_results.length === 0 && (<div style={{
         flexGrow: 1,
         display: 'flex',
         alignItems: 'center',
       }}>
         <SlpFilesProcessor
-          results={results}
-          setResults={setResults}
-          setDoneProcessing={setDoneProcessing}
+          setFullResults={setFullResults}
         />
       </div>)}
     </div>

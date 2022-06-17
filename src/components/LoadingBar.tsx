@@ -17,6 +17,7 @@ const phrases = [
   "Armada is the GOAT",
   "Mango is the GOAT",
   "Stop rolling from the corner",
+  "My dog ate the 3000$ controller",
 ];
 
 const LoadingBar: React.FC<LoadingBarProps> = ({

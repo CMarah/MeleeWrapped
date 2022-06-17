@@ -4,15 +4,10 @@ import React, {
 }                  from 'react';
 import SlpSelector from './SlpSelector';
 import LoadingBar  from './LoadingBar';
-
-interface Result {
-  metadata: any; //TODO
-}
+import { Result }  from '../lib/results';
 
 interface SlpFilesProcessorProps {
-  results: Array<Result>;
-  setResults: React.Dispatch<React.SetStateAction<Array<Result>>>;
-  setDoneProcessing: React.Dispatch<React.SetStateAction<boolean>>;
+  setFullResults: React.Dispatch<React.SetStateAction<Array<Result>>>;
 }
 
 declare module 'react' {
@@ -23,36 +18,45 @@ declare module 'react' {
   }
 }
 
-const slippi_worker = new Worker(new URL('../workers/worker.js', import.meta.url));
+const slippi_workers = [
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+  new Worker(new URL('../lib/worker.js', import.meta.url)),
+];
 
 const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
-  results,
-  setResults,
-  setDoneProcessing,
+  setFullResults,
 }) => {
   const [slp_files, setSlpFiles] = useState<Array<File>>([]);
+  const [results, setResults ]   = useState<Array<Result>>([]);
 
   // Send files to worker
   useEffect(() => {
     if (slp_files.length) {
-      slp_files.forEach(file => slippi_worker.postMessage({ file }));
+      slp_files.forEach((file, i) => slippi_workers[i%slippi_workers.length].postMessage({ file }));
     }
   }, [slp_files]);
 
   // Process results received from worker
   useEffect(() => {
-    slippi_worker.addEventListener('message', ({ data }) => {
-      const { metadata } = data;
-      setResults(results => results.concat(metadata));
+    slippi_workers.forEach(slippi_worker => {
+      slippi_worker.addEventListener('message', ({ data }) => {
+        setResults(results => results.concat(data));
+      });
     });
   }, [setResults]);
 
   // Mark as done
   useEffect(() => {
     if (slp_files.length && slp_files.length === results.length) {
-      setDoneProcessing(true);
+      setFullResults(results);
     }
-  }, [results, slp_files, setDoneProcessing]);
+  }, [results, slp_files, setFullResults]);
 
   return (<div>
     <div className="flex" style={{width: '25em', margin: 'auto'}}>
