@@ -18,13 +18,15 @@ const App = () => {
       <p className="header-title">Melee Wrapped</p>
       <p className="header-subtitle">Your Melee year in review</p>
     </header>
-    <div className="content">
-      <div style={{marginTop: '3em'}}>
-        <span className="font-semibold text-white">
-          Explore your Melee 2022 <br/>#MeleeWrapped
-        </span>
-      </div>
-      {!done_processing && (<div style={{marginTop: '2em'}}>
+    <div id="content">
+      <span className="font-semibold text-white">
+        Explore your Melee 2022 <br/>#MeleeWrapped
+      </span>
+      {!done_processing && (<div style={{
+        flexGrow: 1,
+        display: 'flex',
+        alignItems: 'center',
+      }}>
         <SlpFilesProcessor
           results={results}
           setResults={setResults}

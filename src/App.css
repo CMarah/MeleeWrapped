@@ -14,6 +14,7 @@
   display: 'flex';
   flex-direction: 'column';
   background-color: #222222;
+  color: white;
 }
 
 .App-header {
@@ -41,4 +42,17 @@
 
 .App-link {
   color: #61dafb;
+}
+
+#content {
+  padding: 3em;
+  border-radius: 1em;
+  border: 3px solid green;
+  width: 50em;
+  height: 60em;
+  margin: auto;
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
