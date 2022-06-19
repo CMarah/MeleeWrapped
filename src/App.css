@@ -28,7 +28,9 @@
 }
 
 .App-header {
-  height: 3.5em;
+  width: 100%;
+  height: 4em;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,18 +42,16 @@
 
   background: var(--accent-green);
 }
-.header-title {
-  font-size: 1.4em;
-}
-.subtitle {
-  font-size: 1.65em;
-  margin: 4em 0 2em 0;
-  font-weight: 700;
-  font-family: 'metrophobic', sans-serif;
+
+.App-body {
+ height: calc(100% - 4em - 4em);
 }
 
-.App-link {
-  color: #61dafb;
+.subtitle {
+  font-size: 1.65em;
+  margin-bottom: 2em;
+  font-weight: 700;
+  font-family: 'metrophobic', sans-serif;
 }
 
 .content {
@@ -80,16 +80,13 @@
 }
 
 .App-footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  height: 5em;
+  height: 4em;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 90%;
 
   color: var(--light-2);
   background: var(--dark-2);

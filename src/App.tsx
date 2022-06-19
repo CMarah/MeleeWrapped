@@ -28,22 +28,18 @@ const App = () => {
   }, [full_results]);
 
   return (<div className="App">
-    <header className="App-header">
-      <p className="header-title">Melee Wrapped</p>
-    </header>
-    <div className="subtitle">
-      Explore your Melee 2022
+    <div className="App-header">
+      <p className="text-2xl">Melee Wrapped</p>
     </div>
-    <div className={`content ${full_results.length === 0 ? 'content-empty' : 'content-full'}`}>
-      {full_results.length === 0 && (<div style={{
-        flexGrow: 1,
-        display: 'flex',
-        alignItems: 'center',
-      }}>
-        <SlpFilesProcessor
-          setFullResults={setFullResults}
-        />
-      </div>)}
+    <div className="App-body">
+      <div className="subtitle">Explore your Melee 2022</div>
+      <div className={`content ${full_results.length === 0 ? 'content-empty' : 'content-full'}`}>
+        {full_results.length === 0 && (<div className="flex flex-grow items-center">
+          <SlpFilesProcessor
+            setFullResults={setFullResults}
+          />
+        </div>)}
+      </div>
     </div>
     <div className="App-footer">
       <div>Find me at</div>

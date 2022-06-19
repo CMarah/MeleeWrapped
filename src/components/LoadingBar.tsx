@@ -26,7 +26,7 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
   num_files,
   num_results,
 }) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('This process may take a few minutes.');
 
   const progress = Math.floor(num_results/num_files*100);
 
