@@ -62,10 +62,10 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
   // TODO amarillines que desaparezcan despacio
   return (<div className="flex flex-grow relative" style={{width: '25em', height: '100%'}}>
     <div className='absolute' style={{ right: '-6em', top: '-2em'}}>
-      <img src={yellow_icons_1}/>
+      <img src={yellow_icons_1} alt=""/>
     </div>
     <div className='absolute' style={{ left: '-6em', bottom: '-3em'}}>
-      <img src={yellow_icons_1} style={{transform: 'rotate(180deg)'}}/>
+      <img src={yellow_icons_1} alt="" style={{transform: 'rotate(180deg)'}}/>
     </div>
     {slp_files.length === 0 ?
       (<SlpSelector setSlpFiles={setSlpFiles}/>) :
