@@ -18,6 +18,8 @@ const phrases = [
   "Mango is the GOAT",
   "Stop rolling from the corner",
   "My dog ate the 3000$ controller",
+  "Turnips are cheap today",
+  "-Kirby, what do you have there? +A KNIFE!",
 ];
 
 const LoadingBar: React.FC<LoadingBarProps> = ({
@@ -32,16 +34,21 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
     const message_interval = setInterval(() => {
       const random_index = Math.floor(Math.random()*phrases.length);
       setMessage(phrases[random_index]);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(message_interval);
   }, []);
 
   return (
-    <div className="w-full h-6 bg-gray-200 rounded-full" style={{marginTop: '6em'}}>
-      <div className="h-6 bg-gray-600 rounded-full" style={{width: progress + '%', color: 'white'}}>
+    <div className="w-full h-6 bg-gray-200 rounded-full" style={{marginTop: '4em'}}>
+      <div className="h-6 rounded-full" style={{
+        width: progress + '%',
+        color: 'var(--light-1)',
+        background: 'var(--accent-red)',
+        fontWeight: 700,
+      }}>
         {progress + '%'}
       </div>
-      <div style={{marginTop: '1.5em', fontSize: '1.5em'}}>
+      <div style={{marginTop: '1.5em', fontSize: '1em'}}>
         {message}
       </div>
     </div>
