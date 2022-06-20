@@ -45,6 +45,9 @@
 
 .App-body {
  height: calc(100% - 4em - 4em);
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
 }
 
 .subtitle {

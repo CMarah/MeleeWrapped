@@ -32,13 +32,15 @@ const App = () => {
       <p className="text-2xl">Melee Wrapped</p>
     </div>
     <div className="App-body">
-      <div className="subtitle">Explore your Melee 2022</div>
-      <div className={`content ${full_results.length === 0 ? 'content-empty' : 'content-full'}`}>
-        {full_results.length === 0 && (<div className="flex flex-grow items-center">
-          <SlpFilesProcessor
-            setFullResults={setFullResults}
-          />
-        </div>)}
+      <div>
+        <div className="subtitle">Explore your Melee 2022</div>
+        <div className={`content ${full_results.length === 0 ? 'content-empty' : 'content-full'}`}>
+          {full_results.length === 0 && (<div className="flex flex-grow items-center">
+            <SlpFilesProcessor
+              setFullResults={setFullResults}
+            />
+          </div>)}
+        </div>
       </div>
     </div>
     <div className="App-footer">
