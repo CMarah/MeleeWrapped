@@ -73,13 +73,8 @@
   border-right:  8px solid var(--accent-green);
   border-left:   1px solid var(--accent-green);
   border-bottom: 13px solid var(--accent-green);
-}
-.content-empty {
-  height: 12em;
-}
-.content-full {
-  height: calc(32em * 16 / 9);
-  transition: height 1s ease-in;
+
+  transition: height 0.8s ease-in;
 }
 
 .App-footer {
@@ -93,4 +88,10 @@
 
   color: var(--light-2);
   background: var(--dark-2);
+}
+
+.code-btn {
+  @apply text-white font-bold py-2 px-2 mt-10 cursor-pointer rounded;
+  /* border: 2px solid var(--accent-yellow); */
+  background-color: var(--dark-2);
 }

@@ -8,21 +8,14 @@ export interface CleanData {
   winrate: number;
 }
 
-const getAllCodes = (results: Array<Result>) => results.reduce((codes, { metadata }) => {
-  const code_1 = metadata.players[0].names.code;
-  const code_2 = metadata.players[1].names.code;
-  codes[code_1] = (codes[code_1] || 0) + 1;
-  codes[code_2] = (codes[code_2] || 0) + 1;
-  return codes;
-}, {} as any);
-
-const getOurCode = (codes: any) => Object.entries(codes).reduce((our_code, possible_code) => {
-  if (possible_code[1] as number > our_code.instances) return {
-    code: possible_code[0],
-    instances: possible_code[1],
-  };
-  return our_code;
-}, { code: '', instances: 0 } as any).code;
+export const filterResults = (full_results: Array<Result>) => {
+  // TODO const valid_results = ... quitar los que no sean 1v1, menos de X, etc.
+  // Que hacer si no gameComplete??????
+  const valid_results = full_results.filter(
+    (result: Result) => result.stats.stocks.filter((stock: any) => stock.endFrame !== null).length === (result.stats.stocks.length - 1)
+  );
+  return valid_results;
+};
 
 const getWinner = (result: Result, player_index: number) => {
   const player_0_deaths = result.stats.stocks.filter(
@@ -47,22 +40,12 @@ const getMatchInfo = (codes: Array<string>) => (result: Result) => {
   };
 };
 
-export const cleanDataFromResults = (full_results: Array<Result>) => {
-  // TODO const valid_results = ... quitar los que no sean 1v1, menos de X, etc.
-  // Si no tiene length, devolver error / algo
-  // Que hacer si no gameComplete??????
+export const cleanDataFromResults = (valid_results: Array<Result>, codes: Array<string>) => {
+  if (valid_results.length === 0) return {
+    error: "There aren't enough results",
+  };
 
-  const valid_results = full_results.filter(
-    (result: Result) => result.stats.stocks.filter((stock: any) => stock.endFrame !== null).length === (result.stats.stocks.length - 1)
-  );
-  console.log('F', valid_results.length, full_results.length);
-  const codes = getAllCodes(valid_results);
-  // TODO input if had multiple codes?
-  //const our_codes = [getOurCode(codes)];
-  const our_codes = ['MARAH#0', 'MARA#838'];
-  console.log('C', codes, our_codes);
-
-  const individual_results = valid_results.map(getMatchInfo(our_codes));
+  const individual_results = valid_results.map(getMatchInfo(codes));
 
   const wins = individual_results.reduce(
     (wins, { is_win }) => wins + (is_win ? 1 : 0)

@@ -1,61 +1,39 @@
 import './App.css';
-import {
-  useEffect,
-  useState,
-}                          from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-  faTwitter,
-}                          from '@fortawesome/free-brands-svg-icons'
+import { useState }        from 'react';
 import SlpFilesProcessor   from './components/SlpFilesProcessor';
-import {
-  Result,
-  CleanData,
-  cleanDataFromResults,
-}                          from './lib/results';
+import CodeInput           from './components/CodeInput';
+import ResultsDisplay      from './components/ResultsDisplay';
+import Footer              from './components/Footer';
+import { Result }          from './lib/results';
 
 const App = () => {
-  const [ full_results, setFullResults ] = useState<Array<Result>>([]);
-  const [ clean_data,   setCleanData   ] = useState<CleanData>();
-  console.log('CLEAN DATA', clean_data);
-
-  useEffect(() => {
-    if (full_results.length !== 0) {
-      console.log('Results is:', full_results);
-      setCleanData(cleanDataFromResults(full_results));
-    }
-  }, [full_results]);
+  const [ results, setResults ] = useState<Array<Result>>([]);
+  const [ codes, setCodes     ] = useState<Array<string>>([]);
 
   return (<div className="App">
     <div className="App-header">
       <p className="text-2xl">Melee Wrapped</p>
     </div>
-    <div className="App-body">
-      <div>
-        <div className="subtitle">Explore your Melee 2022</div>
-        <div className={`content ${full_results.length === 0 ? 'content-empty' : 'content-full'}`}>
-          {full_results.length === 0 && (<div className="flex flex-grow items-center">
-            <SlpFilesProcessor
-              setFullResults={setFullResults}
-            />
-          </div>)}
-        </div>
+    <div className="App-body"><div>
+      <div className="subtitle">Explore your Melee 2022</div>
+      <div
+        className={`content ${codes.length === 0 ? 'content-empty' : 'content-full'}`}
+        style={{
+          height: !results.length ? '12em' :
+            !codes.length ? '18em' : 'calc(32em * 16 / 9)',
+          overflow: !results.length ? '' : 'hidden',
+        }}
+      >
+        <div className="flex flex-grow items-center" style={{width: '90%'}}>{
+          results.length === 0 ?
+            (<SlpFilesProcessor setFullResults={setResults}/>) :
+          codes.length === 0 ?
+            (<CodeInput results={results} setCodes={setCodes}/>) :
+            (<ResultsDisplay results={results} codes={codes}/>)
+        }</div>
       </div>
-    </div>
-    <div className="App-footer">
-      <div>Find me at</div>
-      <div style={{gap: '1em', fontSize: '1.4em'}}>
-        <FontAwesomeIcon
-          icon={faGithub} style={{marginRight: '0.5em', cursor: 'pointer'}}
-          onClick={()=> window.open("https://github.com/CMarah/MeleeWrapped", "_blank")}
-        />
-        <FontAwesomeIcon
-          icon={faTwitter} style={{marginLeft: '0.5em', cursor: 'pointer'}}
-          onClick={()=> window.open("https://twitter.com/CarlosMarah", "_blank")}
-        />
-      </div>
-    </div>
+    </div></div>
+    <Footer/>
   </div>);
 };
 export default App;

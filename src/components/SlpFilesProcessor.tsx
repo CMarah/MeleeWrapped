@@ -4,7 +4,10 @@ import React, {
 }                     from 'react';
 import SlpSelector    from './SlpSelector';
 import LoadingBar     from './LoadingBar';
-import { Result }     from '../lib/results';
+import {
+  Result,
+  filterResults,
+}                     from '../lib/results';
 import yellow_icons_1 from '../images/yellow-icons-1.svg';
 
 interface SlpFilesProcessorProps {
@@ -55,7 +58,7 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
   // Mark as done
   useEffect(() => {
     if (slp_files.length && slp_files.length === results.length) {
-      setFullResults(results);
+      setFullResults(filterResults(results));
     }
   }, [results, slp_files, setFullResults]);
 
