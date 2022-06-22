@@ -25,11 +25,9 @@ const App = () => {
         }}
       >
         <div className="flex flex-grow items-center" style={{width: '90%'}}>{
-          results.length === 0 ?
-            (<SlpFilesProcessor setFullResults={setResults}/>) :
-          codes.length === 0 ?
-            (<CodeInput results={results} setCodes={setCodes}/>) :
-            (<ResultsDisplay results={results} codes={codes}/>)
+          results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
+          codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes}/>) :
+                                 (<ResultsDisplay results={results} codes={codes}/>)
         }</div>
       </div>
     </div></div>

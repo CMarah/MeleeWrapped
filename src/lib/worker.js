@@ -9,6 +9,8 @@ const processGame = file => {
   const result = reader.readAsArrayBuffer(file);
   const game = new SlippiGame(new Uint8Array(result));
   const metadata = game.getMetadata();
+  // TODO filter here number of players / number of frames
+  // gamemode === 8?? en settings
   const stats = game.getStats();
   return {
     metadata,
