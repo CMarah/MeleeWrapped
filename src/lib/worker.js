@@ -11,6 +11,8 @@ const processGame = file => {
   const metadata = game.getMetadata();
   // TODO filter here number of players / number of frames
   // gamemode === 8?? en settings
+  // Stage id valido en settings
+  // que esté TODA la info que usamos, revisar metadata y stats
   const stats = game.getStats();
   return {
     metadata,

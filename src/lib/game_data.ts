@@ -1,6 +1,6 @@
 export const STAGE_DATA = [
-  null,
-  null,
+  '',
+  '',
   'FOUNTAIN_OF_DREAMS',
   'POKEMON_STADIUM',
   'PEACHS_CASTLE',
@@ -20,7 +20,7 @@ export const STAGE_DATA = [
   'FOURSIDE',
   'MUSHROOM_KINGDOM',
   'MUSHROOM_KINGDOM_2',
-  null,
+  '',
   'VENOM',
   'POKE_FLOATS',
   'BIG_BLUE',

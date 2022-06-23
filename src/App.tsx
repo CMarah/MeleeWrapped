@@ -24,7 +24,7 @@ const App = () => {
           overflow: !results.length ? '' : 'hidden',
         }}
       >
-        <div className="flex flex-grow items-center" style={{width: '90%'}}>{
+        <div className="flex flex-grow items-center" style={{width: '100%'}}>{
           results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
           codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes}/>) :
                                  (<ResultsDisplay results={results} codes={codes}/>)

@@ -45,6 +45,7 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
         color: 'var(--light-1)',
         background: 'var(--accent-red)',
         fontWeight: 700,
+        transition: 'width 0.1s',
       }}>
         {progress + '%'}
       </div>
