@@ -4,10 +4,7 @@ import React, {
 }                     from 'react';
 import SlpSelector    from './SlpSelector';
 import LoadingBar     from './LoadingBar';
-import {
-  Result,
-  filterResults,
-}                     from '../lib/results';
+import { Result }     from '../lib/results';
 import yellow_icons_1 from '../images/yellow-icons-1.svg';
 
 interface SlpFilesProcessorProps {
@@ -50,7 +47,9 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
   useEffect(() => {
     slippi_workers.forEach(slippi_worker => {
       slippi_worker.addEventListener('message', ({ data }) => {
-        setResults(results => results.concat(data));
+        if (data) {
+          setResults(results => results.concat(data));
+        }
       });
     });
   }, [setResults]);
@@ -58,7 +57,7 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
   // Mark as done
   useEffect(() => {
     if (slp_files.length && slp_files.length === results.length) {
-      setFullResults(filterResults(results));
+      setFullResults(results);
     }
   }, [results, slp_files, setFullResults]);
 

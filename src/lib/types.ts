@@ -50,6 +50,18 @@ export interface Settings {
   gameMode: GameMode | null;
 }
 
+export interface Input {
+  playerIndex: number;
+  opponentIndex: number;
+  inputCount: number;
+  joystickInputCount: number;
+  cstickInputCount: number;
+  buttonInputCount: number;
+  triggerInputCount: number;
+  pressing_start?: boolean;
+  airborne?: boolean;
+}
+
 export interface Stats {
   gameComplete: boolean;
   lastFrame: number;
@@ -60,6 +72,10 @@ export interface Stats {
   actionCounts: ActionCountsType[];
   overall: OverallType[];
   settings: Settings;
+  inputs: {
+    [0]: Input;
+    [1]: Input;
+  };
 }
 
 interface RatioType {
