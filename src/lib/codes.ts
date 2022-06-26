@@ -1,4 +1,4 @@
-import { Result } from './results';
+import { Result } from './types';
 
 export const getAllCodes = (results: Array<Result>) => results.reduce((codes, { metadata }) => {
   const code_1 = metadata.players[0].names.code;

@@ -4,7 +4,7 @@ import SlpFilesProcessor   from './components/SlpFilesProcessor';
 import CodeInput           from './components/CodeInput';
 import ResultsDisplay      from './components/ResultsDisplay';
 import Footer              from './components/Footer';
-import { Result }          from './lib/results';
+import { Result }          from './lib/types';
 
 const App = () => {
   const [ results, setResults ] = useState<Array<Result>>([]);

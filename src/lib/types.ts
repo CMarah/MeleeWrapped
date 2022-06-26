@@ -184,3 +184,55 @@ interface OverallType {
   counterHitRatio: RatioType;
   beneficialTradeRatio: RatioType;
 }
+
+export interface Result {
+  metadata: Metadata;
+  stats: Stats;
+}
+
+export interface PlayerNames {
+  code: string;
+  netplay: string;
+}
+
+export interface MatchInfo {
+  playtime: number;
+  is_win: boolean;
+  opponent_name: PlayerNames;
+  stage: string;
+  char_me: string;
+  char_op: string;
+}
+
+export interface Nemesis {
+  code: string;
+  names: Array<string>;
+  wins: number,
+  games: number,
+  winrate?: number,
+}
+export interface Feature {
+  name: string;
+  wins: number;
+  games: number;
+  winrate?: number;
+}
+
+export interface Data {
+  playtime: number;
+  wins: number;
+  nemesis: { [id: string]: Nemesis };
+  stages: { [id: string]: Feature };
+  my_chars: { [id: string]: Feature };
+  op_chars: { [id: string]: Feature };
+}
+
+export type CleanData = {
+  playtime: number;
+  games: number;
+  winrate?: number;
+  nemesis: Array<Nemesis>;
+  stages: Array<Feature>;
+  my_chars: Array<Feature>;
+  op_chars: Array<Feature>;
+} | { error: string };

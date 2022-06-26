@@ -2,7 +2,8 @@ import React, {
   useMemo,
   useState,
 }                          from 'react';
-import { Result, getData } from '../lib/results';
+import { Result }          from '../lib/types';
+import { getData }         from '../lib/results';
 import StepDisplay         from './StepDisplay';
 import { PlayTimeDisplay } from './displays/index';
 

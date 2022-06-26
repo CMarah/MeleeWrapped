@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useMemo,
 }                 from 'react';
-import { Result } from '../lib/results';
+import { Result } from '../lib/types';
 import {
   getAllCodes,
 }                 from '../lib/codes';

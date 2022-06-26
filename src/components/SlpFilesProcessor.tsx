@@ -4,7 +4,7 @@ import React, {
 }                     from 'react';
 import SlpSelector    from './SlpSelector';
 import LoadingBar     from './LoadingBar';
-import { Result }     from '../lib/results';
+import { Result }     from '../lib/types';
 import yellow_icons_1 from '../images/yellow-icons-1.svg';
 
 interface SlpFilesProcessorProps {
