@@ -39,7 +39,11 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
   }, []);
 
   return (
-    <div className="w-full h-6 bg-gray-200 rounded-full" style={{marginTop: '4em'}}>
+    <div className="w-full h-6 bg-gray-200 rounded-full" style={{
+      marginTop: '4em',
+      marginLeft: '1em',
+      marginRight: '1em',
+    }}>
       <div className="h-6 rounded-full" style={{
         width: progress + '%',
         color: 'var(--light-1)',
