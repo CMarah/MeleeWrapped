@@ -5,6 +5,7 @@ import CodeInput           from './components/CodeInput';
 import ResultsDisplay      from './components/ResultsDisplay';
 import Footer              from './components/Footer';
 import { Result }          from './lib/types';
+import slippilogo          from './images/slippilogo.svg';
 
 const App = () => {
   const [ results, setResults ] = useState<Array<Result>>([]);
@@ -12,7 +13,10 @@ const App = () => {
 
   return (<div className="App">
     <div className="App-header">
-      <p className="text-2xl">Melee Wrapped</p>
+      <div className="text-2xl flex" style={{gap: "0.5em"}}>
+        <img src={slippilogo} alt="" style={{width: "1.5em"}}/>
+        Melee Wrapped
+      </div>
     </div>
     <div className="App-body"><div>
       <div className="subtitle">Explore your Melee 2022</div>
