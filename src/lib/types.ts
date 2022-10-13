@@ -235,4 +235,4 @@ export type CleanData = {
   stages: Array<Feature>;
   my_chars: Array<Feature>;
   op_chars: Array<Feature>;
-} | { error: string };
+};

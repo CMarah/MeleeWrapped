@@ -123,10 +123,8 @@ const getRelevantData = (data: any) => (feature: string) => {
     .slice(0, slice_at);
 };
 
-export const getData = (valid_results: Array<Result>, codes: Array<string>): CleanData => {
-  if (valid_results.length === 0) return {
-    error: "There aren't enough results",
-  };
+export const getData = (valid_results: Array<Result>, codes: Array<string>): (CleanData | null) => {
+  if (valid_results.length === 0) return null;
 
   const match_info = valid_results.map(getMatchInfo(codes));
   console.log('IR', valid_results, match_info);

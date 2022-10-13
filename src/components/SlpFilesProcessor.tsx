@@ -47,9 +47,7 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
   useEffect(() => {
     slippi_workers.forEach(slippi_worker => {
       slippi_worker.addEventListener('message', ({ data }) => {
-        if (data) {
-          setResults(results => results.concat(data));
-        }
+        setResults(results => results.concat(data));
       });
     });
   }, [setResults]);
@@ -57,7 +55,7 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
   // Mark as done
   useEffect(() => {
     if (slp_files.length && slp_files.length === results.length) {
-      setFullResults(results);
+      setFullResults(results.filter(r => r));
     }
   }, [results, slp_files, setFullResults]);
 
