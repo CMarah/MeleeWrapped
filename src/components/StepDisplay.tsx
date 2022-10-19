@@ -12,9 +12,10 @@ const NUMBER_STEPS = 6;
 const StepDisplay: React.FC<Props> = ({ setMainProgress }) => {
   const [ progress, setProgress ] = useState<number>(0);
 
-  useInterval(() => {
-    setProgress(progress + PROGRESS_JUMP);
-  }, STEP_LENGTH_SECONDS * 1000 / 100 * PROGRESS_JUMP);
+  useInterval(
+    () => setProgress(progress + PROGRESS_JUMP),
+    STEP_LENGTH_SECONDS * 1000 / 100 * PROGRESS_JUMP,
+  );
 
   useEffect(() => {
     if (progress%10 === 0) {

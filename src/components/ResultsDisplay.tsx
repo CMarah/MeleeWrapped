@@ -6,6 +6,7 @@ import { Result }          from '../lib/types';
 import { getData }         from '../lib/results';
 import StepDisplay         from './StepDisplay';
 import { PlayTimeDisplay } from './displays/index';
+import sadcat              from '../images/sad.jpg';
 
 interface ResultsDisplayProps {
   results: Array<Result>;
@@ -24,7 +25,11 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   , [results, codes]);
 
   if (!data_to_display) return (
-    <div>ERROR</div> //TODO
+    <div style={{textAlign: 'center'}}>
+      There was an error processing your data :(<br/>
+      <img src={sadcat} alt="sad cat" style={{width: '10em', margin: '1em auto'}}/>
+      Could you send your replays to carlos@marah.dev?
+    </div>
   );
   return (<div className="flex flex-grow relative" style={{
     width: '100%',
