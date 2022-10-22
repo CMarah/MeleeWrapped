@@ -1,0 +1,5 @@
+.bar-group .value-label {
+  fill: var(--accent-yellow);
+  font-weight: 600;
+  padding-top: 2px;
+}

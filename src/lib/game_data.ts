@@ -37,8 +37,8 @@ export const STAGE_DATA = [
 export const CHAR_DATA = [
   'Mario',
   'Fox',
-  'Captain Falcon',
-  'Donkey Kong',
+  'Cpt. Falcon',
+  'DK',
   'Kirby',
   'Bowser',
   'Link',
@@ -59,7 +59,7 @@ export const CHAR_DATA = [
   'Dr. Mario',
   'Falco',
   'Pichu',
-  'Mr. Game & Watch',
+  'Mr. G&W',
   'Ganondorf',
   'Roy',
 ];

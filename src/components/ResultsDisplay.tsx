@@ -5,7 +5,12 @@ import React, {
 import { Result }          from '../lib/types';
 import { getData }         from '../lib/results';
 import StepDisplay         from './StepDisplay';
-import { PlayTimeDisplay } from './displays/index';
+import {
+  // PlayTimeDisplay,
+  CharsDisplay,
+  // StagesDisplay,
+  // NemesisDisplay,
+}                          from './displays/index';
 import sadcat              from '../images/sad.jpg';
 
 interface ResultsDisplayProps {
@@ -39,10 +44,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   }}>
     <StepDisplay setMainProgress={setMainProgress}/>
     {
-      (step === 0 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
-      (step === 1 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
-      (step === 2 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
-      (step >= 3 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
+      (step >= 0 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
       (<div>Done</div>)
     }
   </div>);

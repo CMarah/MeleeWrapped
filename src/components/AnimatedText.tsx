@@ -15,11 +15,9 @@ const AnimatedText: React.FC<Props> = ({
     classNames="textanimation"
     unmountOnExit
   >
-    <span 
-      style={{
-        fontSize: '1.3em',
-      }}
-    >{content}</span>
+    <span style={{ fontSize: '1.3em' }}>
+      {content}
+    </span>
   </CSSTransition>);
 };
 export default AnimatedText;
