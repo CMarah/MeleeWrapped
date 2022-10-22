@@ -24,6 +24,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     () => getData(results, codes)
   , [results, codes]);
 
+  // If no data, display error
   if (!data_to_display) return (
     <div style={{textAlign: 'center'}}>
       There was an error processing your data :(<br/>
@@ -31,6 +32,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       Could you send your replays to carlos@marah.dev?
     </div>
   );
+
   return (<div className="flex flex-grow relative" style={{
     width: '100%',
     height: '100%',
@@ -40,7 +42,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       (step === 0 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
       (step === 1 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
       (step === 2 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
-      (step === 3 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
+      (step >= 3 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
       (<div>Done</div>)
     }
   </div>);

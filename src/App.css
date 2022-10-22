@@ -96,3 +96,22 @@
   /* border: 2px solid var(--accent-yellow); */
   background-color: var(--dark-2);
 }
+
+/* ANIMATIONS */
+.textanimation-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.textanimation-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 700ms, transform 700ms;
+}
+.textanimation-exit {
+  opacity: 1;
+}
+.textanimation-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 700ms, transform 700ms;
+}

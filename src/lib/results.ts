@@ -78,6 +78,7 @@ const processNemesis = (
       names: name_set,
       games: (nemesis_data[op_code]?.games || 0) + 1,
       wins:  (nemesis_data[op_code]?.wins  || 0) + (is_win ? 1 : 0),
+      winrate: 0,
     },
   };
 };
@@ -92,10 +93,18 @@ const processFeature = (
     name: feature,
     games: (features[feature]?.games || 0) + 1,
     wins:  (features[feature]?.wins  || 0) + (is_win ? 1 : 0),
+    winrate: 0,
   },
 });
 
-const empty_data = { playtime: 0, wins: 0, nemesis: {}, stages: {}, my_chars: {}, op_chars: {} };
+const empty_data = {
+  playtime: 0,
+  wins: 0,
+  nemesis: {},
+  stages: {},
+  my_chars: {},
+  op_chars: {},
+};
 const synthetizeData = (match_info: Array<MatchInfo>) => match_info.reduce((
   data: Data,
   { playtime, is_win, opponent_name, stage, char_me, char_op },
@@ -114,6 +123,8 @@ const getRelevantData = (data: any) => (feature: string) => {
   const feature_info = data[feature];
   const slice_at = feature === 'nemesis' ? 5 : 30;
   const sort_method = feature === 'stages' ? 'winrate' : 'games';
+
+  // Add winrate to data, sort by relavant value, slice top X
   return Object.values(feature_info)
     .map((info: any) => ({
       ...info,
@@ -130,9 +141,7 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
   console.log('IR', valid_results, match_info);
   const data = synthetizeData(match_info);
 
-  const [ nemesis, stages, my_chars, op_chars, ] = [
-    'nemesis', 'stages', 'my_chars', 'op_chars',
-  ].map(getRelevantData(data));
+  const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars'].map(getRelevantData(data));
   const winrate = data.wins/valid_results.length;
 
   return {

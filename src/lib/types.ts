@@ -209,13 +209,13 @@ export interface Nemesis {
   names: Array<string>;
   wins: number,
   games: number,
-  winrate?: number,
+  winrate: number,
 }
 export interface Feature {
   name: string;
   wins: number;
   games: number;
-  winrate?: number;
+  winrate: number;
 }
 
 export interface Data {
@@ -230,7 +230,7 @@ export interface Data {
 export type CleanData = {
   playtime: number;
   games: number;
-  winrate?: number;
+  winrate: number;
   nemesis: Array<Nemesis>;
   stages: Array<Feature>;
   my_chars: Array<Feature>;
