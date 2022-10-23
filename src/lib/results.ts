@@ -69,13 +69,17 @@ const processNemesis = (
   is_win: boolean,
 ) => {
   const op_code = opponent_name.code;
-  const name_set = (nemesis_data[op_code]?.names || []).includes(opponent_name.netplay) ?
-    nemesis_data[op_code].names : [...(nemesis_data[op_code]?.names || []), opponent_name.netplay];
+  const name = opponent_name.netplay;
+  const prev_names = nemesis_data[op_code]?.names || {};
+  const next_names = {
+    ...prev_names,
+    [name]: (prev_names[name] || 0) + 1,
+  };
   return {
     ...nemesis_data,
     [op_code]: {
       code: op_code,
-      names: name_set,
+      names: next_names,
       games: (nemesis_data[op_code]?.games || 0) + 1,
       wins:  (nemesis_data[op_code]?.wins  || 0) + (is_win ? 1 : 0),
       winrate: 0,

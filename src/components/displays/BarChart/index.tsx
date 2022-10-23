@@ -58,13 +58,15 @@ const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
   const width2 = winrate * 100;
 
   const full_height = 2 * (BAR_HEIGHT + BAR_PADDING);
+  const bar_text = TRANSLATIONS[bar_data?.name] || bar_data.name; 
+  const text_size =
+    bar_text.length > 14 ? "0.6em" :
+    bar_text.length > 10 ? "0.8em" :
+    bar_text.length > 8  ? "0.9em" : "1.2em";
 
   return (<div className="flex" style={{height: full_height + 'px', marginBottom: '2em'}}>
-    <div className="flex flex-col justify-center" style={{
-      width: '6em',
-      fontSize: '1.2em',
-    }}>
-      {TRANSLATIONS[bar_data?.name] || bar_data.name}
+    <div className="flex flex-col justify-center" style={{width: '6em'}}>
+      <span style={{fontSize: text_size}}>{bar_text}</span>
     </div>
     <div className="flex flex-col">
       <SingleBar width={width1} text={Math.ceil(games) + " games"} />

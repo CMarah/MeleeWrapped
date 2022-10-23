@@ -1,17 +1,19 @@
 import React, {
   useMemo,
   useState,
-}                          from 'react';
-import { Result }          from '../lib/types';
-import { getData }         from '../lib/results';
-import StepDisplay         from './StepDisplay';
+  useRef,
+}                  from 'react';
+import { toPng }   from 'html-to-image';
+import { Result }  from '../lib/types';
+import { getData } from '../lib/results';
+import StepDisplay from './StepDisplay';
 import {
   // PlayTimeDisplay,
   // CharsDisplay,
-  StagesDisplay,
-  // NemesisDisplay,
-}                          from './displays/index';
-import sadcat              from '../images/sad.jpg';
+  // StagesDisplay,
+  NemesisDisplay,
+}                  from './displays/index';
+import sadcat      from '../images/sad.jpg';
 
 interface ResultsDisplayProps {
   results: Array<Result>;
@@ -22,6 +24,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   results,
   codes,
 }) => {
+  const main_ref = useRef<HTMLDivElement>(null)
   const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
 
@@ -38,13 +41,14 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     </div>
   );
 
-  return (<div className="flex flex-grow relative" style={{
-    width: '100%',
-    height: '100%',
-  }}>
+  return (<div
+    ref={main_ref}
+    className="flex flex-grow relative"
+    style={{ width: '100%', height: '100%' }}
+  >
     <StepDisplay setMainProgress={setMainProgress}/>
     {
-      (step >= 0 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
+      (step >= 0 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
       (<div>Done</div>)
     }
   </div>);

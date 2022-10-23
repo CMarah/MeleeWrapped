@@ -204,9 +204,12 @@ export interface MatchInfo {
   char_op: string;
 }
 
+interface Map {
+  [key: string]: number,
+}
 export interface Nemesis {
   code: string;
-  names: Array<string>;
+  names: Map;
   wins: number,
   games: number,
   winrate: number,
