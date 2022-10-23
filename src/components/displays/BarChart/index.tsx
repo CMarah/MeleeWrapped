@@ -2,6 +2,18 @@ import NodeGroup   from "react-move/NodeGroup";
 import { Feature } from "../../../lib/types";
 import './index.css';
 
+interface Map {
+  [key: string]: string | undefined
+}
+const TRANSLATIONS: Map = {
+  "DREAMLAND": "Dreamland",
+  "YOSHIS_STORY": "Yoshi's Story",
+  "FOUNTAIN_OF_DREAMS": "Fountain of Dreams",
+  "POKEMON_STADIUM": "Pokemon Stadium",
+  "BATTLEFIELD": "Battlefield",
+  "FINAL_DESTINATION": "Final Destination",
+};
+
 const BAR_HEIGHT = 25;
 const BAR_PADDING = 2;
 const BAR_COLOUR = "var(--accent-green)";
@@ -52,7 +64,7 @@ const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
       width: '6em',
       fontSize: '1.2em',
     }}>
-      {bar_data.name}
+      {TRANSLATIONS[bar_data?.name] || bar_data.name}
     </div>
     <div className="flex flex-col">
       <SingleBar width={width1} text={Math.ceil(games) + " games"} />
@@ -63,7 +75,7 @@ const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
 
 const BarChart: React.FC<Props> = ({ data }) => {
 
-  const max_games = data[0].games;
+  const max_games = data.reduce((acc, cur) => acc > cur.games ? acc : cur.games, 0);
 
   const startTransition = () => {
     return { games: 0, winrate: 0, opacity: 0 };

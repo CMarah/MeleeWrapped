@@ -24,7 +24,12 @@ import pichu      from '../../images/characters/pichu.png';
 import pikachu    from '../../images/characters/pikachu.png';
 import samus      from '../../images/characters/samus.png';
 import yoshi      from '../../images/characters/yoshi.png';
-
+import fd         from '../../images/stages/fd.png';
+import fod        from '../../images/stages/fod.png';
+import dreamland  from '../../images/stages/dreamland.png';
+import yoshis     from '../../images/stages/yoshis.jpeg';
+import bf         from '../../images/stages/bf.png';
+import pokemon    from '../../images/stages/pokemon.png';
 
 interface Props {
   char_name: string;
@@ -57,6 +62,13 @@ export const CornerIcon: React.FC<Props> = ({ char_name }) => {
     "Pikachu": pikachu,
     "Samus": samus,
     "Yoshi": yoshi,
+    "DREAMLAND": dreamland,
+    "FINAL_DESTINATION": fd,
+    "FOUNTAIN_OF_DREAMS": fod,
+    // TODO CLEAN YOSHIS! It's a jpeg!
+    "YOSHIS_STORY": yoshis,
+    "BATTLEFIELD": bf,
+    "POKEMON_STADIUM": pokemon,
   }[char_name] || slippilogo;
   return (
     <img src={source_to_use} alt="" style={{ width: "20em", opacity: "0.5", position: "absolute", bottom: "-5em", right: "-3em" }}/>

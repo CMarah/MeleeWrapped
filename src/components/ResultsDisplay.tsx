@@ -7,8 +7,8 @@ import { getData }         from '../lib/results';
 import StepDisplay         from './StepDisplay';
 import {
   // PlayTimeDisplay,
-  CharsDisplay,
-  // StagesDisplay,
+  // CharsDisplay,
+  StagesDisplay,
   // NemesisDisplay,
 }                          from './displays/index';
 import sadcat              from '../images/sad.jpg';
@@ -44,7 +44,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   }}>
     <StepDisplay setMainProgress={setMainProgress}/>
     {
-      (step >= 0 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
+      (step >= 0 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
       (<div>Done</div>)
     }
   </div>);
