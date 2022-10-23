@@ -6,6 +6,11 @@ const BAR_HEIGHT = 25;
 const BAR_PADDING = 2;
 const BAR_COLOUR = "var(--accent-green)";
 
+interface SingleBarProps {
+  width: number;
+  text: string;
+}
+
 interface BarProps {
   bar_data: Feature;
   max_games: number;
@@ -19,10 +24,26 @@ interface Props {
   data: Array<Feature>;
 };
 
+const SingleBar: React.FC<SingleBarProps> = ({ width, text }) => (
+  <div className="flex flex-row" style={{height: "2em"}}>
+    <svg width={width*0.65 + "%"}>
+      <rect
+        width="100%"
+        y={BAR_PADDING}
+        height={BAR_HEIGHT - BAR_PADDING}
+        style={{ fill: BAR_COLOUR, opacity: 1 }}
+      />
+    </svg>
+    <div className="value-label" style={{ marginLeft: "0.5em" }}>
+      {text}
+    </div>
+  </div>
+);
+
 const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
   const { games, winrate } = state;
-  const width1 = max_games !== 0 ? ((games / max_games) * 100).toFixed(2) + "%" : "0%";
-  const width2 = (winrate * 100).toFixed(1) + "%";
+  const width1 = max_games !== 0 ? ((games / max_games) * 100) : 0;
+  const width2 = winrate * 100;
 
   const full_height = 2 * (BAR_HEIGHT + BAR_PADDING);
 
@@ -34,38 +55,8 @@ const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
       {bar_data.name}
     </div>
     <div className="flex flex-col">
-      <svg>
-        <rect
-          y={BAR_PADDING}
-          width={width1}
-          height={BAR_HEIGHT - BAR_PADDING}
-          style={{ fill: BAR_COLOUR, opacity: 1 }}
-        />
-        <text
-          className="value-label"
-          alignmentBaseline="middle"
-          x={6}
-          y={2 + (BAR_HEIGHT * 0.5)}
-        >
-          {games} games
-        </text>
-      </svg>
-      <svg>
-        <rect
-          y={BAR_PADDING}
-          width={width2}
-          height={BAR_HEIGHT - BAR_PADDING}
-          style={{ fill: BAR_COLOUR, opacity: 1 }}
-        />
-        <text
-          className="value-label"
-          alignmentBaseline="middle"
-          x={6}
-          y={2 + (BAR_HEIGHT * 0.5)}
-        >
-          {width2} winrate
-        </text>
-      </svg>
+      <SingleBar width={width1} text={Math.ceil(games) + " games"} />
+      <SingleBar width={width2} text={width2.toFixed(1) + "% winrate"} />
     </div>
   </div>);
 };
@@ -77,15 +68,12 @@ const BarChart: React.FC<Props> = ({ data }) => {
   const startTransition = () => {
     return { games: 0, winrate: 0, opacity: 0 };
   };
-
   const enterTransition = (d: Feature) => {
     return { games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000 } };
   };
-
   const updateTransition = (d: Feature) => {
     return { games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000 } };
   };
-
   const leaveTransition = () => {
     return { opacity: [0], timing: { duration: 1000 } };
   };

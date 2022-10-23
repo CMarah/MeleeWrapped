@@ -144,7 +144,7 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
   const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars'].map(getRelevantData(data));
   const winrate = data.wins/valid_results.length;
 
-  return {
+  const res = {
     playtime: data.playtime,
     games: valid_results.length,
     winrate,
@@ -153,4 +153,6 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
     my_chars,
     op_chars,
   };
+  console.log('RES', res);
+  return res;
 };
