@@ -74,7 +74,7 @@
   border-left:   1px solid var(--accent-green);
   border-bottom: 13px solid var(--accent-green);
 
-  transition: height 0.8s ease-in;
+  transition: height 0.8s ease-in, width 0.8s ease-in;
 }
 
 .App-footer {

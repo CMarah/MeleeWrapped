@@ -12,6 +12,7 @@ const App = () => {
   const [ results, setResults ] = useState<Array<Result>>([]);
   const [ codes, setCodes     ] = useState<Array<string>>([]);
   const [ started, setStarted ] = useState(false);
+  const [ done, setDone       ] = useState(false);
 
   return (<div className="App">
     <div className="App-header">
@@ -23,11 +24,12 @@ const App = () => {
     <div className="App-body"><div>
       <div className="subtitle">Explore your Melee 2022</div>
       <div
-        className={`content ${codes.length === 0 ? 'content-empty' : 'content-full'}`}
+        className="content"
         style={{
           height: !results.length ? '12em' :
-                  !started ?        '18em' :
-                                    'calc(32em * 16 / 9)',
+                  !started ? '18em' :
+                  !done ? 'calc(32em * 16 / 9)' : 'calc(64em * 9 / 16)',
+          width:  done ? '64em' : '32em',
           overflow: !results.length ? '' : 'hidden',
         }}
       >
@@ -35,7 +37,7 @@ const App = () => {
           results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
           codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes}/>) :
           !started ?             (<StartConfirmation setStarted={setStarted} />) :
-                                 (<ResultsDisplay results={results} codes={codes}/>)
+                                 (<ResultsDisplay results={results} codes={codes} setDone={setDone}/>)
         }</div>
       </div>
     </div></div>

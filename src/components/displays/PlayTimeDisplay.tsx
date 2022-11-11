@@ -1,7 +1,7 @@
 import { useMemo }   from 'react';
 import { CleanData } from '../../lib/types';
 import AnimatedText  from '../AnimatedText';
-import slippilogo    from '../../images/slippilogo.svg';
+import CornerIcon    from './CornerIcon';
 
 interface Props {
   data: CleanData;
@@ -65,6 +65,6 @@ export const PlayTimeDisplay: React.FC<Props> = ({ data, main_progress }) => {
     <AnimatedText content={texts[3]} inProp={partial_progress >= 50} />
     <div style={{marginBottom: '3.5em'}}></div>
     <AnimatedText content={texts[4]} inProp={partial_progress >= 70} />
-    <img src={slippilogo} alt="" style={{ width: "20em", opacity: "0.5", position: "absolute", bottom: "-5em", right: "-3em" }}/>
+    <CornerIcon char_name={''}/>
   </div>);
 };
