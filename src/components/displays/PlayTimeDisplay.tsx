@@ -54,7 +54,6 @@ const getTexts = (data: CleanData) => {
 export const PlayTimeDisplay: React.FC<Props> = ({ data, main_progress }) => {
   const partial_progress = main_progress % 100;
 
-  console.log('PP', partial_progress, data);
   const texts = useMemo(() => getTexts(data), [data]);
 
   return (<div className="flex flex-col relative w-full h-full">

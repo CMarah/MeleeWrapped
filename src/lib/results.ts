@@ -145,7 +145,8 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
   console.log('IR', valid_results, match_info);
   const data = synthetizeData(match_info);
 
-  const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars'].map(getRelevantData(data));
+  const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars']
+    .map(getRelevantData(data));
   const winrate = data.wins/valid_results.length;
 
   const res = {

@@ -13,7 +13,11 @@ const StepDisplay: React.FC<Props> = ({ setMainProgress }) => {
   const [ progress, setProgress ] = useState<number>(0);
 
   useInterval(
-    () => setProgress(progress + PROGRESS_JUMP),
+    () => {
+      if (progress < NUMBER_STEPS*100) {
+        setProgress(progress + PROGRESS_JUMP);
+      }
+    },
     STEP_LENGTH_SECONDS * 1000 / 100 * PROGRESS_JUMP,
   );
 

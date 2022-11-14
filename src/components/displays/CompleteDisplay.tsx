@@ -55,7 +55,6 @@ const CharLine: React.FC<CompleteDisplayProps> = ({ data }) => {
 const NemesisLine: React.FC<CompleteDisplayProps> = ({ data }) => {
   const { games, winrate, names } = data.nemesis[0];
   const nemesis_name = Object.keys(names)[0];
-  console.log(data);
   return (<div className="flex flex-grow flex-col relative justify-center">
     <span>
       Your nemesis was
