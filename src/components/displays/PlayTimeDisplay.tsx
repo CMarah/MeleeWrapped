@@ -46,6 +46,8 @@ const getTexts = (data: CleanData) => {
       Your global winrate was
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(winrate * 1000)/10}%</b></span>
       <br/>
+    </span>),
+    (<span>
       {WINRATE_MESSAGES[Math.floor(winrate * 10)]}
     </span>),
   ];
@@ -66,6 +68,7 @@ export const PlayTimeDisplay: React.FC<Props> = ({ data, main_progress }) => {
     <AnimatedText content={texts[4]} inProp={partial_progress >= 45} />
     <div style={{marginBottom: '3.5em'}}></div>
     <AnimatedText content={texts[5]} inProp={partial_progress >= 60} />
+    <AnimatedText content={texts[6]} inProp={partial_progress >= 65} />
     <CornerIcon char_name={''}/>
   </div>);
 };
