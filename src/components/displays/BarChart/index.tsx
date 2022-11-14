@@ -14,9 +14,9 @@ const TRANSLATIONS: Map = {
   "FINAL_DESTINATION": "Final Destination",
 };
 
-const BAR_HEIGHT = 25;
-const BAR_PADDING = 2;
-const BAR_COLOUR = "var(--accent-green)";
+const BAR_HEIGHT = 27;
+const BAR_PADDING = 0;
+const BAR_COLOUR = "var(--accent-red)";
 
 interface SingleBarProps {
   width: number;
@@ -38,7 +38,7 @@ interface Props {
 
 const SingleBar: React.FC<SingleBarProps> = ({ width, text }) => (
   <div className="flex flex-row" style={{height: "2em"}}>
-    <svg width={width*0.65 + "%"}>
+    <svg width={width*0.57 + "%"}>
       <rect
         width="100%"
         y={BAR_PADDING}
@@ -64,6 +64,8 @@ const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
     bar_text.length > 10 ? "0.8em" :
     bar_text.length > 8  ? "0.9em" : "1.2em";
 
+  if (!games) return (<div></div>);
+
   return (<div className="flex" style={{height: full_height + 'px', marginBottom: '2em'}}>
     <div className="flex flex-col justify-center" style={{width: '6em'}}>
       <span style={{fontSize: text_size}}>{bar_text}</span>
@@ -79,33 +81,28 @@ const BarChart: React.FC<Props> = ({ data }) => {
 
   const max_games = data.reduce((acc, cur) => acc > cur.games ? acc : cur.games, 0);
 
-  const startTransition = () => {
-    return { games: 0, winrate: 0, opacity: 0 };
-  };
-  const enterTransition = (d: Feature) => {
-    return { games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000 } };
-  };
-  const updateTransition = (d: Feature) => {
-    return { games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000 } };
-  };
-  const leaveTransition = () => {
-    return { opacity: [0], timing: { duration: 1000 } };
-  };
+  const startTransition = () => ({
+    games: 0, winrate: 0, opacity: 0,
+  });
+  const enterTransition = (d: Feature, i: number) => ({
+    games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000, delay: 1200*(i+3) },
+  });
+  const leaveTransition = () => ({
+    opacity: [0], timing: { duration: 1000 },
+  });
 
   return (<NodeGroup
-      data={data}
-      keyAccessor={(d: any) => d.name}
-      start={startTransition}
-      enter={enterTransition}
-      update={updateTransition}
-      leave={leaveTransition}
-    >
+    data={data}
+    keyAccessor={(d: any) => d.name}
+    start={startTransition}
+    enter={enterTransition}
+    leave={leaveTransition}
+  >
     {nodes => (<>
       {nodes.map(({ key, data, state }) => (
         <Bar key={key} bar_data={data} max_games={max_games} state={state}/>
       ))}
     </>)}
-    </NodeGroup>
-  );
+  </NodeGroup>);
 };
 export default BarChart;

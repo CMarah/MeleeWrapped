@@ -57,14 +57,16 @@ export const PlayTimeDisplay: React.FC<Props> = ({ data, main_progress }) => {
   console.log('PP', partial_progress, data);
   const texts = useMemo(() => getTexts(data), [data]);
 
-  return (<div className="flex flex-grow flex-col relative justify-center w-full h-full">
+  return (<div className="flex flex-col relative w-full h-full">
+    <div style={{marginBottom: '6.5em'}}></div>
     <AnimatedText content={texts[0]} inProp={partial_progress >= 10} />
     <AnimatedText content={texts[1]} inProp={partial_progress >= 20} />
-    <AnimatedText content={texts[2]} inProp={partial_progress >= 35} />
+    <AnimatedText content={texts[2]} inProp={partial_progress >= 30} />
     <div style={{marginBottom: '2.5em'}}></div>
-    <AnimatedText content={texts[3]} inProp={partial_progress >= 50} />
+    <AnimatedText content={texts[3]} inProp={partial_progress >= 40} />
+    <AnimatedText content={texts[4]} inProp={partial_progress >= 45} />
     <div style={{marginBottom: '3.5em'}}></div>
-    <AnimatedText content={texts[4]} inProp={partial_progress >= 70} />
+    <AnimatedText content={texts[5]} inProp={partial_progress >= 60} />
     <CornerIcon char_name={''}/>
   </div>);
 };

@@ -8,8 +8,8 @@ interface Props {
 const AnimatedText: React.FC<Props> = ({
   content,
   inProp,
-}) => {
-  return (<CSSTransition
+}) => (
+  <CSSTransition
     in={inProp}
     timeout={500}
     classNames="textanimation"
@@ -18,6 +18,6 @@ const AnimatedText: React.FC<Props> = ({
     <span style={{ fontSize: '1.3em' }}>
       {content}
     </span>
-  </CSSTransition>);
-};
+  </CSSTransition>
+);
 export default AnimatedText;

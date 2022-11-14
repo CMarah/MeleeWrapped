@@ -15,6 +15,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted }) => (
       style={{
         width: '5em',
         cursor: 'cursor',
+        color: 'var(--accent-yellow)',
       }}
     >Go!</div>
   </div>
