@@ -10,6 +10,7 @@ import { getData } from '../lib/results';
 import StepDisplay from './StepDisplay';
 import {
   PlayTimeDisplay,
+  DetailsDisplay,
   CharsDisplay,
   StagesDisplay,
   NemesisDisplay,
@@ -50,7 +51,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   }, [main_progress, main_ref]);
 
   useEffect(() => {
-    if (main_progress === 400) {
+    if (main_progress === 500) {
       setDone(true);
       console.log('wa', display_images);
       // navigator.clipboard.write(display_images.map(
@@ -88,9 +89,10 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     >
       {
         (step === 0 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
-        (step === 1 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
-        (step === 2 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
-        (step === 3 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 1 && <DetailsDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 2 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 3 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 4 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
                       (<CompleteDisplay data={data_to_display}/>)
       }
     </div>

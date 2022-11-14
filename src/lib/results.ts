@@ -36,7 +36,7 @@ const getWinner = (result: Result) => {
   if (player_0_pausing) return 1;
   if (player_1_pausing) return 0;
 
-  return stats.combos.slice(-1)[0].playerIndex === 0 ? 1 : 0;
+  return stats.last_combo.playerIndex === 0 ? 1 : 0;
 };
 
 const getChar = (metadata: Metadata, index: 0 | 1): number =>
@@ -60,6 +60,7 @@ const getMatchInfo = (codes: Array<string>) => (result: Result): MatchInfo => {
     stage,
     char_me,
     char_op,
+    details: stats.overall[player_index],
   };
 };
 
@@ -104,17 +105,27 @@ const processFeature = (
 const empty_data = {
   playtime: 0,
   wins: 0,
+  apm: 0,
+  damage_per_opening: 0,
+  openings_per_kill: 0,
+  kill_count: 0,
+  neutral_win_ratio: 0,
   nemesis: {},
   stages: {},
   my_chars: {},
   op_chars: {},
 };
-const synthetizeData = (match_info: Array<MatchInfo>) => match_info.reduce((
+const synthetizeData = (match_info: Array<MatchInfo>, n_games: number) => match_info.reduce((
   data: Data,
-  { playtime, is_win, opponent_name, stage, char_me, char_op },
+  { playtime, is_win, opponent_name, stage, char_me, char_op, details },
 ) => {
     data.playtime += playtime;
     data.wins += is_win ? 1 : 0;
+    data.apm                += (details.inputsPerMinute.ratio || 0)/n_games;
+    data.damage_per_opening += (details.damagePerOpening.ratio || 0)/n_games;
+    data.openings_per_kill  += (details.openingsPerKill.ratio || 0)/n_games;
+    data.neutral_win_ratio  += (details.neutralWinRatio.ratio || 0)/n_games;
+    data.kill_count         += details.killCount || 0;
     data.nemesis  = processNemesis(data.nemesis, opponent_name, is_win);
     data.stages   = processFeature(data.stages, stage, is_win);
     data.my_chars = processFeature(data.my_chars, char_me, is_win);
@@ -143,7 +154,7 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
 
   const match_info = valid_results.map(getMatchInfo(codes));
   console.log('IR', valid_results, match_info);
-  const data = synthetizeData(match_info);
+  const data = synthetizeData(match_info, valid_results.length);
 
   const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars']
     .map(getRelevantData(data));
@@ -152,6 +163,11 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
   const res = {
     playtime: data.playtime,
     games: valid_results.length,
+    apm: data.apm,
+    damage_per_opening: data.damage_per_opening,
+    openings_per_kill: data.openings_per_kill,
+    neutral_win_ratio: data.neutral_win_ratio,
+    kill_count: data.kill_count,
     winrate,
     nemesis,
     stages,

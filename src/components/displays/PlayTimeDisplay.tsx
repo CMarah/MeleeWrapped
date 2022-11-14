@@ -15,9 +15,9 @@ const WINRATE_MESSAGES = [
   "You're getting there!",
   "You're almost there!",
   "Nice! Keep it up 💪",
-  "Now that's some nice consistency 🤩",
-  "Now that's some nice consistency 🤩",
-  "That's insane, well played!",
+  "Pretty nice consistency 🤩",
+  "Pretty nice consistency 🤩",
+  "Insane! Well played.",
   "You're a god!",
   "You're a god!",
 ];
@@ -31,16 +31,12 @@ const getTexts = (data: CleanData) => {
     (<span>
       You played a total of
       <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>
-      games, for a whopping
-      <br/>
+      games, for a <br/> whopping
       <span style={{color: "var(--accent-yellow)"}}><b> {playtime.toLocaleString()} </b></span>
-      frames
-      <br/>
-    </span>),
-    (<span>
-      That's more than
+      frames. That's <br/> more than
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(playtime/60/60/60)} </b></span>
       hours of Melee!
+      <br/>
     </span>),
     (<span>
       Your global winrate was
@@ -59,16 +55,16 @@ export const PlayTimeDisplay: React.FC<Props> = ({ data, main_progress }) => {
   const texts = useMemo(() => getTexts(data), [data]);
 
   return (<div className="flex flex-col relative w-full h-full">
-    <div style={{marginBottom: '6.5em'}}></div>
+    <div style={{marginBottom: '8.5em'}}></div>
     <AnimatedText content={texts[0]} inProp={partial_progress >= 10} />
     <AnimatedText content={texts[1]} inProp={partial_progress >= 20} />
     <AnimatedText content={texts[2]} inProp={partial_progress >= 30} />
     <div style={{marginBottom: '2.5em'}}></div>
     <AnimatedText content={texts[3]} inProp={partial_progress >= 40} />
-    <AnimatedText content={texts[4]} inProp={partial_progress >= 45} />
     <div style={{marginBottom: '3.5em'}}></div>
-    <AnimatedText content={texts[5]} inProp={partial_progress >= 60} />
-    <AnimatedText content={texts[6]} inProp={partial_progress >= 65} />
+    <AnimatedText content={texts[4]} inProp={partial_progress >= 65} />
+    <AnimatedText content={texts[5]} inProp={partial_progress >= 75} />
+    <div style={{marginBottom: '2.5em'}}></div>
     <CornerIcon char_name={''}/>
   </div>);
 };

@@ -65,13 +65,10 @@ export interface Input {
 export interface Stats {
   gameComplete: boolean;
   lastFrame: number;
-  playableFrameCount: number;
   stocks: Stock[];
-  conversions: ConversionType[];
-  combos: ComboType[];
-  actionCounts: ActionCountsType[];
-  overall: OverallType[];
+  last_combo: ComboType;
   settings: Settings;
+  overall: OverallType[];
   inputs: {
     [0]: Input;
     [1]: Input;
@@ -82,11 +79,6 @@ interface RatioType {
   count: number;
   total: number;
   ratio: number | null;
-}
-
-interface PlayerIndexedType {
-  playerIndex: number;
-  opponentIndex: number;
 }
 
 interface DurationType {
@@ -202,6 +194,7 @@ export interface MatchInfo {
   stage: string;
   char_me: string;
   char_op: string;
+  details: OverallType;
 }
 
 interface Map {
@@ -224,6 +217,11 @@ export interface Feature {
 export interface Data {
   playtime: number;
   wins: number;
+  apm: number;
+  damage_per_opening: number;
+  openings_per_kill: number;
+  neutral_win_ratio: number;
+  kill_count: number;
   nemesis: { [id: string]: Nemesis };
   stages: { [id: string]: Feature };
   my_chars: { [id: string]: Feature };
@@ -234,6 +232,11 @@ export type CleanData = {
   playtime: number;
   games: number;
   winrate: number;
+  apm: number;
+  damage_per_opening: number;
+  openings_per_kill: number;
+  neutral_win_ratio: number;
+  kill_count: number;
   nemesis: Array<Nemesis>;
   stages: Array<Feature>;
   my_chars: Array<Feature>;
