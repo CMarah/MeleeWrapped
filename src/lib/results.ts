@@ -149,6 +149,13 @@ const getRelevantData = (data: any) => (feature: string) => {
     .slice(0, slice_at);
 };
 
+const sortNames = (nemesis: Nemesis[]) => nemesis.map((nem) => ({
+  ...nem,
+  names: Object.fromEntries(
+    Object.entries(nem.names).sort((a, b) => b[1] - a[1]),
+  ),
+}));
+
 export const getData = (valid_results: Array<Result>, codes: Array<string>): (CleanData | null) => {
   if (valid_results.length === 0) return null;
 
@@ -169,7 +176,7 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
     neutral_win_ratio: data.neutral_win_ratio,
     kill_count: data.kill_count,
     winrate,
-    nemesis,
+    nemesis: sortNames(nemesis),
     stages,
     my_chars,
     op_chars,
