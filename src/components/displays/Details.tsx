@@ -1,7 +1,8 @@
-import { useMemo }   from 'react';
-import { CleanData } from '../../lib/types';
-import AnimatedText  from '../AnimatedText';
-import CornerIcon    from './CornerIcon';
+import { useMemo }       from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { CleanData }     from '../../lib/types';
+import AnimatedText      from '../AnimatedText';
+import CornerIcon        from './CornerIcon';
 
 interface Props {
   data: CleanData;
@@ -69,19 +70,28 @@ export const DetailsDisplay: React.FC<Props> = ({ data, main_progress }) => {
 
   const texts = useMemo(() => getTexts(data), [data]);
 
-  return (<div className="flex flex-col relative w-full h-full">
-    <div style={{marginBottom: '8.5em'}}></div>
-    <AnimatedText content={texts[0]} inProp={partial_progress >= 5} />
-    <div style={{marginBottom: '2.5em'}}></div>
-    <AnimatedText content={texts[1]} inProp={partial_progress >= 15} />
-    <AnimatedText content={texts[2]} inProp={partial_progress >= 25} />
-    <div style={{marginBottom: '3.5em'}}></div>
-    <AnimatedText content={texts[3]} inProp={partial_progress >= 35} />
-    <AnimatedText content={texts[4]} inProp={partial_progress >= 45} />
-    <div style={{marginBottom: '2.5em'}}></div>
-    <AnimatedText content={texts[5]} inProp={partial_progress >= 55} />
-    <AnimatedText content={texts[6]} inProp={partial_progress >= 65} />
-    <div style={{marginBottom: '2.5em'}}></div>
+  return (<>
+    <CSSTransition
+      in={partial_progress <= 90}
+      timeout={500}
+      classNames="slideanimation"
+      unmountOnExit
+    >
+      <div className="flex flex-col relative w-full h-full">
+        <div style={{marginBottom: '8.5em'}}></div>
+        <AnimatedText content={texts[0]} inProp={partial_progress >= 5} />
+        <div style={{marginBottom: '2.5em'}}></div>
+        <AnimatedText content={texts[1]} inProp={partial_progress >= 15} />
+        <AnimatedText content={texts[2]} inProp={partial_progress >= 25} />
+        <div style={{marginBottom: '3.5em'}}></div>
+        <AnimatedText content={texts[3]} inProp={partial_progress >= 35} />
+        <AnimatedText content={texts[4]} inProp={partial_progress >= 45} />
+        <div style={{marginBottom: '2.5em'}}></div>
+        <AnimatedText content={texts[5]} inProp={partial_progress >= 55} />
+        <AnimatedText content={texts[6]} inProp={partial_progress >= 65} />
+        <div style={{marginBottom: '2.5em'}}></div>
+      </div>
+    </CSSTransition>
     <CornerIcon char_name={''}/>
-  </div>);
+  </>);
 };

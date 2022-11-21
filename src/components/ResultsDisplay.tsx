@@ -95,7 +95,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         (step === 2 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
         (step === 3 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
         (step === 4 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
-                      (<CompleteDisplay data={data_to_display}/>)
+                      (<CompleteDisplay name={name} data={data_to_display}/>)
       }
     </div>
   </div>);

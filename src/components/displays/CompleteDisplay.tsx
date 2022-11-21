@@ -1,20 +1,16 @@
 import { CleanData } from '../../lib/types';
 import CornerIcon    from './CornerIcon';
+import frog          from '../../images/minifrog.png';
 
-interface CompleteDisplayProps {
+interface CompleteDisplayLineProps {
   data: CleanData;
 };
+interface CompleteDisplayProps {
+  data: CleanData;
+  name: string,
+};
 
-const SummaryTitle = () => (
-  <div
-    className="flex flex-grow items-center justify-center"
-    style={{ fontSize: '1.7em' }}
-  >
-    YOUR 2022 MELEE WRAP
-  </div>
-);
-
-const PlayTimeLine: React.FC<CompleteDisplayProps> = ({ data }) => {
+const PlayTimeLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   const { games, playtime, winrate } = data;
 
   return (<div className="flex flex-grow flex-col relative justify-center">
@@ -34,7 +30,7 @@ const PlayTimeLine: React.FC<CompleteDisplayProps> = ({ data }) => {
   </div>);
 };
 
-const CharLine: React.FC<CompleteDisplayProps> = ({ data }) => {
+const CharLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   const main_game_count = data.my_chars[0].games;
   const main_game_winrate = data.my_chars[0].winrate;
   const main_char = data.my_chars[0].name;
@@ -52,7 +48,7 @@ const CharLine: React.FC<CompleteDisplayProps> = ({ data }) => {
   </div>);
 };
 
-const NemesisLine: React.FC<CompleteDisplayProps> = ({ data }) => {
+const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   const { games, winrate, names } = data.nemesis[0];
   const nemesis_name = Object.keys(names)[0];
   return (<div className="flex flex-grow flex-col relative justify-center">
@@ -68,12 +64,18 @@ const NemesisLine: React.FC<CompleteDisplayProps> = ({ data }) => {
   </div>);
 };
 
-export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) => {
+export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data, name }) => {
   return (<div
     className="flex flex-col items-center justify-center w-full h-full"
     style={{fontSize: '1.3em', marginBottom: '3em'}}
   >
-    <SummaryTitle />
+    <div
+      className="flex flex-grow items-center justify-center"
+      style={{ fontSize: '1.7em' }}
+    >
+      {name}'s 2022 Melee Wrap
+      <img src={frog} alt="" style={{width: "2em"}}/>
+    </div>
     <PlayTimeLine data={data} />
     <CharLine data={data} />
     <NemesisLine data={data} />
