@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import frog_gif from '../images/frolee_wrapped.gif';
 
 interface LoadingBarProps {
   num_files: number,
@@ -12,14 +13,12 @@ const phrases = [
   "You really need to work on those ledgedashes",
   "Stop quitting out on low tiers",
   "Fox vs. Marth is 40/60",
-  "That ain't Falco",
   "You can just SDI that",
   "Armada is the GOAT",
   "Mango is the GOAT",
   "Stop rolling from the corner",
   "My dog ate the 3000$ controller",
   "Turnips are cheap today",
-  "-Kirby, what do you have there? +A KNIFE!",
 ];
 
 const LoadingBar: React.FC<LoadingBarProps> = ({
@@ -38,9 +37,12 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
     return () => clearInterval(message_interval);
   }, []);
 
-  return (
+  return (<>
+    <div className="w-full flex justify-center" style={{position: "absolute"}}>
+      <img src={frog_gif} alt="" style={{width: "6em"}}/>
+    </div>
     <div className="w-full h-6 bg-gray-200 rounded-full" style={{
-      marginTop: '4em',
+      marginTop: '7em',
       marginLeft: '1em',
       marginRight: '1em',
     }}>
@@ -57,6 +59,6 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
         {message}
       </div>
     </div>
-  );
+  </>);
 };
 export default LoadingBar;

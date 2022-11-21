@@ -26,7 +26,7 @@ const App = () => {
       <div
         className="content"
         style={{
-          height: !results.length ? '12em' :
+          height: !results.length ? '16em' :
                   !started ? '18em' :
                   !done ? 'calc(32em * 16 / 9)' : 'calc(64em * 9 / 16)',
           width:  done ? '64em' : '32em',
