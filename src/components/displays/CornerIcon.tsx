@@ -27,7 +27,7 @@ import yoshi      from '../../images/characters/yoshi.png';
 import fd         from '../../images/stages/fd.png';
 import fod        from '../../images/stages/fod.png';
 import dreamland  from '../../images/stages/dreamland.png';
-import yoshis     from '../../images/stages/yoshis.jpeg';
+import yoshis     from '../../images/stages/yoshis.png';
 import bf         from '../../images/stages/bf.png';
 import pokemon    from '../../images/stages/pokemon.png';
 

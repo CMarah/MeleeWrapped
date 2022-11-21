@@ -59,7 +59,6 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
     }
   }, [results, slp_files, setFullResults]);
 
-  // TODO amarillines que desaparezcan despacio
   return (<div className="flex flex-grow relative" style={{width: '25em', height: '100%'}}>
     <div className='absolute' style={{ right: '-6em', top: '-2em'}}>
       <img src={yellow_icons_1} alt=""/>

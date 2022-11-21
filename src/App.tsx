@@ -11,6 +11,7 @@ import slippilogo          from './images/slippilogo.svg';
 const App = () => {
   const [ results, setResults ] = useState<Array<Result>>([]);
   const [ codes, setCodes     ] = useState<Array<string>>([]);
+  const [ name, setName       ] = useState<string>('');
   const [ started, setStarted ] = useState(false);
   const [ done, setDone       ] = useState(false);
 
@@ -35,9 +36,9 @@ const App = () => {
       >
         <div className="flex flex-grow items-center justify-center" style={{width: '100%'}}>{
           results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
-          codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes}/>) :
+          codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes} setName={setName}/>) :
           !started ?             (<StartConfirmation setStarted={setStarted} />) :
-                                 (<ResultsDisplay results={results} codes={codes} setDone={setDone}/>)
+                                 (<ResultsDisplay results={results} codes={codes} setDone={setDone} name={name}/>)
         }</div>
       </div>
     </div></div>

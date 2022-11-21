@@ -8,10 +8,13 @@ export const getAllCodes = (results: Array<Result>) => results.reduce((codes, { 
   return codes;
 }, {} as any);
 
-export const getOurCode = (codes: any) => Object.entries(codes).reduce((our_code, possible_code) => {
-  if (possible_code[1] as number > our_code.instances) return {
-    code: possible_code[0],
-    instances: possible_code[1],
-  };
-  return our_code;
-}, { code: '', instances: 0 } as any).code;
+export const getName = (results: Array<Result>, codes: Array<string>) => {
+  const all_names = results.reduce((names, { metadata }) => {
+    const our_info = Object.values(metadata.players).find(p => codes.includes(p.names.code));
+    const our_name = our_info?.names?.netplay || '';
+    names[our_name] = (names[our_name] || 0) + 1;
+    return names;
+  }, {} as any);
+  return Object.entries(all_names)
+    .sort((a: any, b: any) => b[1] - a[1])[0][0];
+};

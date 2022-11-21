@@ -6,16 +6,19 @@ import React, {
 import { Result } from '../lib/types';
 import {
   getAllCodes,
+  getName,
 }                 from '../lib/codes';
 
 interface CodeInputProps {
   results: Array<Result>;
   setCodes: React.Dispatch<React.SetStateAction<Array<string>>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CodeInput: React.FC<CodeInputProps> = ({
   results,
   setCodes,
+  setName,
 }) => {
   const [ selected_codes, setSelectedCodes ] = useState<Array<string>>([]);
 
@@ -30,9 +33,11 @@ const CodeInput: React.FC<CodeInputProps> = ({
     const best_code = sorted_codes[0];
     // Only one option, choose that one
     if (best_code[1] === results.length) {
+      const name = getName(results, [best_code[0]]);
       setCodes([best_code[0]]);
+      setName(name);
     }
-  }, [results, setCodes, sorted_codes]);
+  }, [results, setCodes, sorted_codes, setName]);
 
   const codeButtonOnClick = (code: string) => {
     if (selected_codes.includes(code)) {
@@ -40,6 +45,12 @@ const CodeInput: React.FC<CodeInputProps> = ({
     } else {
       setSelectedCodes(selected_codes.concat(code));
     }
+  };
+
+  const acceptSelection = () => {
+    const name = getName(results, selected_codes);
+    setCodes(selected_codes);
+    setName(name);
   };
   
   return (<div className="flex flex-grow flex-col relative items-center" style={{width: '25em', height: '100%'}}>
@@ -63,7 +74,7 @@ const CodeInput: React.FC<CodeInputProps> = ({
       >{code}</div>))}
     </div>
     <div className="code-btn"
-      onClick={() => setCodes(selected_codes)}
+      onClick={() => acceptSelection()}
       style={{
         width: '5em',
         cursor: selected_codes.length ? 'cursor' : '',
