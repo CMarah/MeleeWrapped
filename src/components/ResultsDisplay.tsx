@@ -1,10 +1,8 @@
 import React, {
   useMemo,
   useState,
-  useRef,
   useEffect,
 }                  from 'react';
-import { toBlob }  from 'html-to-image';
 import { Result }  from '../lib/types';
 import { getData } from '../lib/results';
 import StepDisplay from './StepDisplay';
@@ -23,6 +21,7 @@ interface ResultsDisplayProps {
   codes: Array<string>;
   name: string;
   setDone: (done: boolean) => void;
+  screenshot: Blob | undefined;
 }
 
 const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
@@ -30,41 +29,16 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   codes,
   name,
   setDone,
+  screenshot,
 }) => {
   const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
 
-  // Save images of each of the displays
-  const main_ref = useRef<HTMLDivElement>(null)
-  const [ display_images, setDisplayImages ] = useState<Array<Blob>>([]);
-  useEffect(() => {
-    // Save it at the end of each step
-    if (main_ref.current && [90, 190, 290, 390].includes(main_progress)) {
-      toBlob(main_ref.current)
-        .then(blob => {
-          if (blob) {
-            setDisplayImages((prev) => [...prev, blob]);
-          }
-        })
-        .catch((err) => {
-          console.log('Error rendering image:', err);
-        });
-    }
-  }, [main_progress, main_ref]);
-
   useEffect(() => {
     if (main_progress === 500) {
       setDone(true);
-      console.log('wa', display_images);
-      // navigator.clipboard.write(display_images.map(
-      //   blob => new ClipboardItem({ [blob.type]: blob })
-      // ));
-      const type = display_images[0].type;
-      navigator.clipboard.write([
-        new ClipboardItem({ [type]: display_images[0] })
-      ]);
     }
-  }, [display_images, main_progress, setDone]);
+  }, [main_progress, setDone]);
 
   const data_to_display = useMemo(
     () => getData(results, codes)
@@ -85,7 +59,6 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   >
     <StepDisplay setMainProgress={setMainProgress}/>
     <div
-      ref={main_ref}
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}
     >

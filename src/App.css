@@ -47,6 +47,13 @@
  display: flex;
  flex-direction: column;
  justify-content: center;
+ padding: 4em 0;
+}
+
+.screenshot-area {
+  padding-bottom: 4em;
+  padding-top: 2em;
+  background-color: var(--dark-1);
 }
 
 .subtitle {
@@ -132,4 +139,39 @@
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 700ms, transform 700ms;
+}
+
+.circle {
+  font-family: Verdana;
+  overflow: hidden;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.circle-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  color: black;
+}
+
+.circle-overlay {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  animation: circle-overlay-anim 4s forwards;
+  transform-origin: 0 0;
+}
+
+@keyframes circle-overlay-anim {
+  100% {
+    transform: scaleY(0);
+  }
 }
