@@ -2,7 +2,7 @@ import './App.css';
 import {
   useState,
   useRef,
-  useEffect,
+  useCallback,
 }                          from 'react';
 import { toBlob }          from 'html-to-image';
 import SlpFilesProcessor   from './components/SlpFilesProcessor';
@@ -24,28 +24,21 @@ const App = () => {
 
   // Share screenshot logic
   const main_ref = useRef<HTMLDivElement>(null);
-  const [ screenshot, setScreenshot ] = useState<Blob>();
-  useEffect(() => {
-      setTimeout(() => {
-    if (done && main_ref.current) {
-        toBlob(main_ref.current)
-          .then(blob => {
-            if (blob) {
-              console.log('copied')
-              setScreenshot(blob);
-
-              const type = blob.type;
-              navigator.clipboard.write([
-                new ClipboardItem({ [type]: blob })
-              ]);
-            }
-          })
-          .catch((err) => {
-            console.log('Error rendering image:', err);
-          });
-    }
-      }, 1000);
-  }, [done]);
+  const takeScreenshot = useCallback(() => {
+    if (!done || !main_ref.current) return;
+    toBlob(main_ref.current)
+      .then(blob => {
+        if (blob) {
+          const type = blob.type;
+          navigator.clipboard.write([
+            new ClipboardItem({ [type]: blob })
+          ]);
+        }
+      })
+      .catch((err) => {
+        console.log('Error rendering image:', err);
+      });
+  }, [done, main_ref]);
 
   return (<div className="App">
     <div className="App-header">
@@ -56,7 +49,7 @@ const App = () => {
     </div>
     <div className="App-body">
       <div className="screenshot-area" ref={main_ref}>
-        <div className="subtitle">Explore your Melee 2022</div>
+        {!done && (<div className="subtitle">Explore your Melee 2022</div>)}
         <div
           className="content"
           style={{
@@ -71,11 +64,11 @@ const App = () => {
             results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
             codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes} setName={setName}/>) :
             !started ?             (<StartConfirmation setStarted={setStarted} />) :
-                                   (<ResultsDisplay results={results} codes={codes} setDone={setDone} name={name} screenshot={screenshot}/>)
+                                   (<ResultsDisplay results={results} codes={codes} setDone={setDone} name={name}/>)
           }</div>
         </div>
       </div>
-      {done && (<Sharer screenshot={screenshot}/>)}
+      {done && (<Sharer takeScreenshot={takeScreenshot}/>)}
     </div>
     <Footer/>
   </div>);

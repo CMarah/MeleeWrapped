@@ -4,27 +4,20 @@ import React, {
 import twitterlogo from '../images/twitter.png';
 
 interface SharerProps {
-  screenshot: Blob | undefined;
+  takeScreenshot: any;
 }
 
 const twitterUrl = (text: string) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
 
 const Sharer: React.FC<SharerProps> = ({
-  screenshot,
+  takeScreenshot,
 }) => {
   const [ waiting, setWaiting ] = useState(false);
 
   const shareOnTwitter = () => {
-    // Get screenshot here?
+    takeScreenshot();
     // Start 4 secs timeout to open twitter, displaying message
     setWaiting(true);
-    if (screenshot) {
-      // Save to clipboard
-      const type = screenshot.type;
-      navigator.clipboard.write([
-        new ClipboardItem({ [type]: screenshot })
-      ]);
-    }
     setTimeout(() => {
       setWaiting(false);
       const text = 'Check out my Melee 2022!';

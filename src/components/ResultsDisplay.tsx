@@ -21,7 +21,6 @@ interface ResultsDisplayProps {
   codes: Array<string>;
   name: string;
   setDone: (done: boolean) => void;
-  screenshot: Blob | undefined;
 }
 
 const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
@@ -29,7 +28,6 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   codes,
   name,
   setDone,
-  screenshot,
 }) => {
   const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
