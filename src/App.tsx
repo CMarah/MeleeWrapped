@@ -28,12 +28,11 @@ const App = () => {
     if (!done || !main_ref.current) return;
     toBlob(main_ref.current)
       .then(blob => {
-        if (blob) {
-          const type = blob.type;
-          navigator.clipboard.write([
-            new ClipboardItem({ [type]: blob })
-          ]);
-        }
+        if (!blob) return;
+        const type = blob.type;
+        navigator.clipboard.write([
+          new ClipboardItem({ [type]: blob })
+        ]);
       })
       .catch((err) => {
         console.log('Error rendering image:', err);

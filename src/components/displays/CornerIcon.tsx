@@ -42,7 +42,7 @@ export const CornerIcon: React.FC<Props> = ({ char_name }) => {
     "Dr. Mario": doc,
     "Fox": fox,
     "Mr. G&W": gaw,
-    "ICs": ics,
+    "Ice Climbers": ics,
     "Roy": roy,
     "Link": link,
     "Falco": falco,

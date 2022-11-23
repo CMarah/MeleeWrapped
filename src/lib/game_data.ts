@@ -45,7 +45,7 @@ export const CHAR_DATA = [
   'Sheik',
   'Ness',
   'Peach',
-  'Popo',
+  'Ice Climbers',
   'Nana',
   'Pikachu',
   'Samus',

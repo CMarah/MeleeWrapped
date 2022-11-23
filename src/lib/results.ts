@@ -25,7 +25,6 @@ const getWinner = (result: Result) => {
   if (player_0_deaths <= 2) return 0;
   if (player_1_deaths <= 2) return 1;
 
-
   const player_0_airborne = stats.inputs[0].airborne;
   const player_1_airborne = stats.inputs[1].airborne;
   if (player_0_airborne && !player_1_airborne) return 0;

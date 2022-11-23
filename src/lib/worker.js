@@ -10,13 +10,12 @@ const invalidMetadata = metadata => {
   if (!metadata.players[0]?.names?.code)    return true;
   if (!metadata.players[1]?.names?.netplay) return true;
   if (!metadata.players[1]?.names?.code)    return true;
-  // TODO ICs, filter only 2022?
+  // TODO filter only 2022?
   return false;
 };
 
 const VALID_STAGE_IDs = [2, 3, 8, 28, 31, 32];
 const invalidStats = ({ settings, stocks, inputs }) => {
-  // TODO que esté TODA la info que usamos, revisar stats
   if (settings.is_teams) return true;
   if (!VALID_STAGE_IDs.includes(settings.stageId)) return true;
   if (![2, 8].includes(settings.gameMode)) return true;
@@ -34,15 +33,16 @@ const invalidStats = ({ settings, stocks, inputs }) => {
   return false;
 };
 
-
 const reader = new FileReaderSync();
 const processGame = file => {
   const result = reader.readAsArrayBuffer(file);
   const game = new SlippiGame(new Uint8Array(result));
 
   const metadata = game.getMetadata();
+  console.log(metadata);
   if (invalidMetadata(metadata)) return null;
   const stats = game.getStats();
+  console.log(stats);
   if (invalidStats(stats)) return null;
 
   return {
