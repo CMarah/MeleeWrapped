@@ -13,6 +13,7 @@ import StartConfirmation   from './components/StartConfirmation';
 import Sharer              from './components/Sharer';
 import { Result }          from './lib/types';
 import slippilogo          from './images/slippilogo.svg';
+import yellow_icons_1      from './images/yellow-icons-1.svg';
 
 const App = () => {
   // Basic data
@@ -48,18 +49,26 @@ const App = () => {
     </div>
     <div className="App-body">
       <div className="screenshot-area" ref={main_ref}>
-        {!done && (<div className="subtitle">Explore your Melee 2022</div>)}
+        {!started && (<div className="subtitle">Explore your Melee 2022</div>)}
         <div
-          className="content"
+          className="content relative"
           style={{
             height: !results.length ? '16em' :
                     !started ? '18em' :
                     !done ? 'calc(32em * 16 / 9)' : 'calc(64em * 9 / 16)',
             width:  done ? '64em' : '32em',
-            overflow: !results.length ? '' : 'hidden',
           }}
         >
-          <div className="flex flex-grow items-center justify-center" style={{width: '100%'}}>{
+          <div className='absolute' style={{ right: '-4em', top: '-2em'}}>
+            <img src={yellow_icons_1} alt=""/>
+          </div>
+          <div className='absolute' style={{ left: '-4em', bottom: '-3em'}}>
+            <img src={yellow_icons_1} alt="" style={{transform: 'rotate(180deg)'}}/>
+          </div>
+          <div className="flex flex-grow items-center justify-center" style={{
+            overflow: !results.length ? '' : 'hidden',
+            width: '100%',
+          }}>{
             results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
             codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes} setName={setName}/>) :
             !started ?             (<StartConfirmation setStarted={setStarted} />) :

@@ -20,12 +20,12 @@ const Sharer: React.FC<SharerProps> = ({
     setWaiting(true);
     setTimeout(() => {
       setWaiting(false);
-      const text = 'Check out my Melee 2022!';
+      const text = 'Check out my Melee 2022 recap! #MeleeWrapped \n https://melee-wrapped.marah.dev';
       window.open(twitterUrl(text), '_blank');
     }, 4000);
   };
 
-  return (<div className="share-area flex flex-col items-center" style={{height: '10em'}}>
+  return (<div className="flex flex-col items-center" style={{height: '10em', width: '72em'}}>
     {!waiting && (<div>
       Share your results!
     </div>)}

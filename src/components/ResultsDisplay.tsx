@@ -55,7 +55,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     className="flex flex-grow relative"
     style={{ width: '100%', height: '100%' }}
   >
-    <StepDisplay setMainProgress={setMainProgress}/>
+    {step <= 4 && (<StepDisplay setMainProgress={setMainProgress}/>)}
     <div
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}

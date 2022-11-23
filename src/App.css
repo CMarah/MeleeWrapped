@@ -43,17 +43,20 @@
 }
 
 .App-body {
- height: calc(100% - 4em - 4em);
- display: flex;
- flex-direction: column;
- justify-content: center;
- padding: 4em 0;
+  height: calc(100% - 4em - 4em);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4em 0;
+  padding-left: calc(50% - 36em);
 }
 
 .screenshot-area {
   padding-bottom: 4em;
   padding-top: 2em;
   background-color: var(--dark-1);
+
+  width: 72em;
 }
 
 .subtitle {
@@ -64,7 +67,6 @@
 }
 
 .content {
-  width: 32em;
   max-width: 100vw;
   max-height: 80vh;
 
@@ -76,10 +78,11 @@
   align-items: center;
   justify-content: center;
 
-  border-top:    2px solid var(--accent-green);
+  border-top:    4px solid var(--accent-green);
   border-right:  8px solid var(--accent-green);
-  border-left:   1px solid var(--accent-green);
+  border-left:   3px solid var(--accent-green);
   border-bottom: 13px solid var(--accent-green);
+  border-radius: 0.7em;
 
   transition: height 0.8s ease-in, width 0.8s ease-in;
 }
