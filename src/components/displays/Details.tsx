@@ -10,15 +10,17 @@ interface Props {
 };
 
 const APM_MESSAGES = [
-  "Slow and steady wins the race.",
-  "You're getting the hang of it!",
-  "Not bad at all!",
-  "That's pretty fast!",
-  "Now that's some Melee",
-  "Is that even possible?",
-  "Is that even possible?",
-  "Is that even possible?",
-  "Is that even possible?",
+  "Slow and steady wins the race 🐢",
+  "You're getting the hang of it! 🤖",
+  "Not bad at all! 🦈",
+  "That's pretty fast! 🐆",
+  "Now that's fast 🐉",
+  "Is that even possible? 🚀",
+  "Is that even possible? 🚀",
+  "Is that even possible? 🚀",
+  "Is that even possible? 🚀",
+  "Is that even possible? 🚀",
+  "Is that even possible? 🚀",
 ];
 
 const getTexts = (data: CleanData) => {

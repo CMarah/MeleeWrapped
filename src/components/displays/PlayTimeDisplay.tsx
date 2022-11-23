@@ -10,17 +10,17 @@ interface Props {
 };
 
 const WINRATE_MESSAGES = [
-  "You've gotta start somewhere, don't give up!",
-  "You've gotta start somewhere, don't give up!",
-  "You've gotta start somewhere, don't give up!",
-  "You're getting there!",
-  "You're almost there!",
+  "Don't give up! 🚀",
+  "Don't give up! 🚀",
+  "Don't give up! 🚀",
+  "You're getting there! 🔝",
+  "You're almost there! 🔥",
   "Nice! Keep it up 💪",
-  "Pretty nice consistency 🤩",
-  "Pretty nice consistency 🤩",
-  "Insane! Well played.",
-  "You're a god!",
-  "You're a god!",
+  "Nice consistency! 🤩",
+  "Great consistency! 🤩",
+  "Insane! Well played 🎉",
+  "You're a god! 👑",
+  "You're a god! 👑",
 ];
 
 const getTexts = (data: CleanData) => {
