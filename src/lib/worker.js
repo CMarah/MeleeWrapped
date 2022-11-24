@@ -39,10 +39,8 @@ const processGame = file => {
   const game = new SlippiGame(new Uint8Array(result));
 
   const metadata = game.getMetadata();
-  console.log(metadata);
   if (invalidMetadata(metadata)) return null;
   const stats = game.getStats();
-  console.log(stats);
   if (invalidStats(stats)) return null;
 
   return {

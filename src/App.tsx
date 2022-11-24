@@ -3,8 +3,8 @@ import {
   useState,
   useRef,
   useCallback,
+  useEffect,
 }                          from 'react';
-import { toBlob }          from 'html-to-image';
 import SlpFilesProcessor   from './components/SlpFilesProcessor';
 import CodeInput           from './components/CodeInput';
 import ResultsDisplay      from './components/ResultsDisplay';
@@ -14,6 +14,10 @@ import Sharer              from './components/Sharer';
 import { Result }          from './lib/types';
 import slippilogo          from './images/slippilogo.svg';
 import yellow_icons_1      from './images/yellow-icons-1.svg';
+import {
+  screenshotAndCopy,
+  toBase64,
+}                          from './lib/utils';
 
 const App = () => {
   // Basic data
@@ -23,22 +27,22 @@ const App = () => {
   const [ started, setStarted ] = useState(false);
   const [ done, setDone       ] = useState(false);
 
-  // Share screenshot logic
+  // Screenshot logic
   const main_ref = useRef<HTMLDivElement>(null);
+  const [ screenshot, setScreenshot ] = useState<string>('');
+  const [ screenshot_blob, setScreenshotBlob ] = useState<Blob>(new Blob());
   const takeScreenshot = useCallback(() => {
-    if (!done || !main_ref.current) return;
-    toBlob(main_ref.current)
-      .then(blob => {
-        if (!blob) return;
-        const type = blob.type;
-        navigator.clipboard.write([
-          new ClipboardItem({ [type]: blob })
-        ]);
-      })
-      .catch((err) => {
-        console.log('Error rendering image:', err);
-      });
-  }, [done, main_ref]);
+    if (!main_ref.current) return null;
+    return screenshotAndCopy(main_ref.current);
+  }, [main_ref]);
+  useEffect(() => {
+    // When done, set screenshot after 1 sec
+    if (done) setTimeout(async () => {
+      const blob = await takeScreenshot();
+      setScreenshotBlob(blob || new Blob());
+      toBase64(blob).then(setScreenshot);
+    }, 1000);
+  }, [done, setScreenshot, takeScreenshot]);
 
   return (<div className="App">
     <div className="App-header">
@@ -76,7 +80,7 @@ const App = () => {
           }</div>
         </div>
       </div>
-      {done && (<Sharer takeScreenshot={takeScreenshot}/>)}
+      {(<Sharer takeScreenshot={takeScreenshot} screenshot={screenshot} screenshot_blob={screenshot_blob}/>)}
     </div>
     <Footer/>
   </div>);

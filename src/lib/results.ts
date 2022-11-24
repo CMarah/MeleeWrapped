@@ -159,7 +159,6 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
   if (valid_results.length === 0) return null;
 
   const match_info = valid_results.map(getMatchInfo(codes));
-  console.log('IR', valid_results, match_info);
   const data = synthetizeData(match_info, valid_results.length);
 
   const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars']
@@ -180,6 +179,6 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
     my_chars,
     op_chars,
   };
-  console.log('RES', res);
+  console.log('data', res);
   return res;
 };
