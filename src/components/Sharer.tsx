@@ -42,4 +42,5 @@ const Sharer: React.FC<SharerProps> = ({
     </div>)}
   </div>);
 };
+// TODO add copy button
 export default Sharer;

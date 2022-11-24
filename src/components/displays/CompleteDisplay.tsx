@@ -76,9 +76,10 @@ export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data, name }) 
       {name}'s 2022 Melee Wrap
       <img src={frog} alt="" style={{width: "2em"}}/>
     </div>
+    <CornerIcon char_name={data.my_chars[0].name} is_turnip/>
     <PlayTimeLine data={data} />
     <CharLine data={data} />
     <NemesisLine data={data} />
-    <CornerIcon char_name={data.my_chars[0].name}/>
+    <CornerIcon char_name={data.my_chars[0].name} place_left/>
   </div>);
 };
