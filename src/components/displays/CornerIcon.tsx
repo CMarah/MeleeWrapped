@@ -122,7 +122,7 @@ export const CornerIcon: React.FC<Props> = ({ char_name, place_left, is_turnip }
     "Samus": samus_t,
     "Yoshi": yoshi_t,
   }[char_name]) || slippilogo;
-  const conditional_style = place_left ? { left: "-5em", bottom: "-5em" } :
+  const conditional_style = place_left ? { left: "-5em", bottom: "-4em", width: "16em" } :
     is_turnip ? { right: "0", top: "-1em" } :
     { right: "-3em", bottom: "-5em" };
   return (

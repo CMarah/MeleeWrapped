@@ -1,13 +1,11 @@
 import { CleanData } from '../../lib/types';
 import CornerIcon    from './CornerIcon';
-import frog          from '../../images/minifrog.png';
 
 interface CompleteDisplayLineProps {
   data: CleanData;
 };
 interface CompleteDisplayProps {
   data: CleanData;
-  name: string,
 };
 
 const PlayTimeLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
@@ -65,18 +63,11 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   </div>);
 };
 
-export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data, name }) => {
+export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) => {
   return (<div
     className="flex flex-col items-center justify-center w-full h-full"
-    style={{fontSize: '1.3em', marginBottom: '3em'}}
+    style={{fontSize: '1.4em', marginBottom: '2em', marginTop: '2em'}}
   >
-    <div
-      className="flex flex-grow items-center justify-center"
-      style={{ fontSize: '1.7em' }}
-    >
-      {name}'s 2022 Melee Wrap
-      <img src={frog} alt="" style={{width: "2em"}}/>
-    </div>
     <CornerIcon char_name={data.my_chars[0].name} is_turnip/>
     <PlayTimeLine data={data} />
     <CharLine data={data} />

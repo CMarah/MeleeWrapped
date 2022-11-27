@@ -19,14 +19,12 @@ import sadcat      from '../images/sad.jpg';
 interface ResultsDisplayProps {
   results: Array<Result>;
   codes: Array<string>;
-  name: string;
   setDone: (done: boolean) => void;
 }
 
 const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   results,
   codes,
-  name,
   setDone,
 }) => {
   const [ main_progress, setMainProgress ] = useState<number>(0);
@@ -66,7 +64,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         (step === 2 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
         (step === 3 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
         (step === 4 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
-                      (<CompleteDisplay name={name} data={data_to_display}/>)
+                      (<CompleteDisplay data={data_to_display}/>)
       }
     </div>
   </div>);

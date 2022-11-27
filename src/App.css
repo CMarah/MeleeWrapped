@@ -52,10 +52,7 @@
 }
 
 .screenshot-area {
-  padding-bottom: 4em;
-  padding-top: 2em;
   background-color: var(--dark-1);
-
   width: 72em;
 }
 
@@ -169,7 +166,7 @@
   height: 100%;
   width: 100%;
   background: white;
-  animation: circle-overlay-anim 4s forwards;
+  animation: circle-overlay-anim 5s forwards;
   transform-origin: 0 0;
 }
 
