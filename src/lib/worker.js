@@ -5,12 +5,12 @@ declare var self: any;
 
 const invalidMetadata = metadata => {
   if (metadata.lastFrame < 60*40) return true;
+  if (!metadata.startAt.startsWith('2022')) return true;
   if (Object.keys(metadata.players).length !== 2) return true;
   if (!metadata.players[0]?.names?.netplay) return true;
   if (!metadata.players[0]?.names?.code)    return true;
   if (!metadata.players[1]?.names?.netplay) return true;
   if (!metadata.players[1]?.names?.code)    return true;
-  // TODO filter only 2022?
   return false;
 };
 
