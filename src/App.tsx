@@ -11,9 +11,11 @@ import ResultsDisplay      from './components/ResultsDisplay';
 import Footer              from './components/Footer';
 import StartConfirmation   from './components/StartConfirmation';
 import Sharer              from './components/Sharer';
+import AboutModal          from './components/AboutModal';
 import { Result }          from './lib/types';
 import slippilogo          from './images/slippilogo.svg';
 import yellow_icons        from './images/yellow-icons-1.svg';
+import question_icon       from './images/question.svg';
 import frog                from './images/minifrog.png';
 import {
   screenshotAndCopy,
@@ -26,6 +28,8 @@ const App = () => {
   const [ name, setName       ] = useState<string>('');
   const [ started, setStarted ] = useState(false);
   const [ done, setDone       ] = useState(false);
+
+  const [ open_modal, setOpenModal ] = useState(false);
 
   // Screenshot logic
   const main_ref = useRef<HTMLDivElement>(null);
@@ -51,6 +55,9 @@ const App = () => {
       <div className="text-2xl flex" style={{gap: "0.5em"}}>
         <img src={slippilogo} alt="" style={{width: "1.5em"}}/>
         Melee Wrapped
+        <div style={{cursor: "pointer", position: 'absolute', right: '1em'}} onClick={() => setOpenModal(true)}>
+          <img src={question_icon} alt="" style={{width: "1.5em"}}/>
+        </div>
       </div>
     </div>
     <div className="App-body">
@@ -98,6 +105,7 @@ const App = () => {
       {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob}/>)}
     </div>
     <Footer/>
+    <AboutModal open={open_modal} setOpen={setOpenModal}/>
   </div>);
 };
 export default App;
