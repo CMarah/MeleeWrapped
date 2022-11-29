@@ -37,6 +37,6 @@ export const MusDisplay: React.FC<Props> = ({ data, main_progress }) => {
         </div>
       </div>
     </CSSTransition>
-    <CornerIcon char_name={data.my_chars[0].name}/>
+    <CornerIcon char_name={data.op_chars[0].name}/>
   </>);
 };
