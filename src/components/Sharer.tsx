@@ -12,6 +12,7 @@ const is_chrome = userAgent.match(/chrome|chromium|crios/i);
 interface SharerProps {
   screenshot_blob: Blob;
   takeScreenshot: any;
+  codes: Array<string>;
 }
 
 const twitterUrl = (text: string, url: string) =>
@@ -20,6 +21,7 @@ const twitterUrl = (text: string, url: string) =>
 const Sharer: React.FC<SharerProps> = ({
   screenshot_blob,
   takeScreenshot,
+  codes,
 }) => {
   const [ waiting, setWaiting ] = useState(false);
 
@@ -30,7 +32,7 @@ const Sharer: React.FC<SharerProps> = ({
     setTimeout(() => {
       setWaiting(false);
       const text = 'Check out my Melee 2022 recap! #MeleeWrapped \n';
-      const url = 'https://melee-wrapped.marah.dev';
+      const url = `https://melee-wrapped.marah.dev?id=${btoa(codes.toString())}`;
       window.open(twitterUrl(text, url), '_blank');
     }, 5000);
   };

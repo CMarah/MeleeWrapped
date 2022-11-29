@@ -1,4 +1,5 @@
-import { toBlob } from 'html-to-image';
+import { toBlob }    from 'html-to-image';
+import { CleanData } from './types';
 
 export const screenshotAndCopy = (current_ref: HTMLDivElement, is_chrome: boolean) =>
   toBlob(current_ref)
@@ -23,8 +24,17 @@ export const toBase64 = (blob: Blob | null) => {
   reader.readAsDataURL(blob);
   return new Promise<string>((resolve) => {
     reader.onloadend = () => {
-      console.log('HERE', blob, reader.result);
       return resolve((reader.result || '') as string);
     }
   });
 };
+
+export const sendToGcp = (data: CleanData | null, codes: Array<string>, name: string) => data &&
+  fetch('https://us-central1-meleewrapped.cloudfunctions.net/cloud-functions-firestore', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ results: data, codes, name }),
+  })
+    .then((res) => res.text());

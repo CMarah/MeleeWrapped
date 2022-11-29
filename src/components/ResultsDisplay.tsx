@@ -5,6 +5,9 @@ import React, {
 }                  from 'react';
 import { Result }  from '../lib/types';
 import { getData } from '../lib/results';
+import {
+  sendToGcp,
+}                  from '../lib/utils';
 import StepDisplay from './StepDisplay';
 import {
   PlayTimeDisplay,
@@ -21,6 +24,7 @@ interface ResultsDisplayProps {
   results: Array<Result>;
   codes: Array<string>;
   setDone: (done: boolean) => void;
+  name: string;
 }
 
 const NUMBER_STEPS = 6;
@@ -29,19 +33,22 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   results,
   codes,
   setDone,
+  name,
 }) => {
   const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
 
-  useEffect(() => {
-    if (main_progress === 100*NUMBER_STEPS) {
-      setDone(true);
-    }
-  }, [main_progress, setDone]);
-
   const data_to_display = useMemo(
     () => getData(results, codes)
   , [results, codes]);
+
+  // Mark ending & send to GCP
+  useEffect(() => {
+    if (main_progress === 100*NUMBER_STEPS) {
+      setDone(true);
+      sendToGcp(data_to_display, codes, name);
+    }
+  }, [main_progress, setDone, data_to_display, codes, name]);
 
   // If no data, display error
   if (!data_to_display) return (

@@ -100,12 +100,12 @@ const App = () => {
               results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
               codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes} setName={setName}/>) :
               !started ?             (<StartConfirmation setStarted={setStarted} />) :
-                                     (<ResultsDisplay results={results} codes={codes} setDone={setDone}/>)
+                                     (<ResultsDisplay results={results} codes={codes} setDone={setDone} name={name}/>)
             }</div>
           </div>
         </>)}
       </div>
-      {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob}/>)}
+      {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob} codes={codes}/>)}
       {done && (<Replayer setDone={setDone} setScreenshotUri={setScreenshotUri}/>)}
     </div>
     <Footer/>
