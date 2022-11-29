@@ -19,23 +19,23 @@ const getWinner = (result: Result) => {
   const player_1_deaths = stats.stocks.filter(
     (stock: Stock) => stock.endFrame !== null && stock.playerIndex === 1
   ).length;
-  if (stats.gameComplete) {
+  if (stats.gameComplete && (player_0_deaths === 4 || player_1_deaths === 4)) {
     return player_0_deaths === 4 ? 1 : 0;
   }
-  if (player_0_deaths <= 2) return 0;
+  if (player_0_deaths <= 2) return 0
   if (player_1_deaths <= 2) return 1;
 
   const player_0_airborne = stats.inputs[0].airborne;
   const player_1_airborne = stats.inputs[1].airborne;
-  if (player_0_airborne && !player_1_airborne) return 0;
-  if (player_1_airborne && !player_0_airborne) return 1;
+  if (player_0_airborne && !player_1_airborne) return 1;
+  if (player_1_airborne && !player_0_airborne) return 0;
 
   const player_0_pausing = stats.inputs[0].pressing_start;
   const player_1_pausing = stats.inputs[1].pressing_start;
   if (player_0_pausing) return 1;
   if (player_1_pausing) return 0;
 
-  return stats.last_combo.playerIndex === 0 ? 1 : 0;
+  return stats.last_combo.playerIndex === 0 ? 0 : 1;
 };
 
 const getChar = (metadata: Metadata, index: 0 | 1): number =>
