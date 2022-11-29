@@ -101,7 +101,7 @@ const processFeature = (
   },
 });
 
-const empty_data = {
+const emptyData = () => ({
   playtime: 0,
   wins: 0,
   apm: 0,
@@ -113,7 +113,7 @@ const empty_data = {
   stages: {},
   my_chars: {},
   op_chars: {},
-};
+});
 const synthetizeData = (match_info: Array<MatchInfo>, n_games: number) => match_info.reduce((
   data: Data,
   { playtime, is_win, opponent_name, stage, char_me, char_op, details },
@@ -131,7 +131,7 @@ const synthetizeData = (match_info: Array<MatchInfo>, n_games: number) => match_
     data.op_chars = processFeature(data.op_chars, char_op, is_win);
     return data;
   }
-, empty_data);
+, emptyData());
 
 const getRelevantData = (data: any) => (feature: string) => {
   const feature_info = data[feature];
