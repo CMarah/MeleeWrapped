@@ -35,7 +35,7 @@ const Sharer: React.FC<SharerProps> = ({
     }, 5000);
   };
 
-  return (<div className="flex flex-col items-center" style={{height: '10em', width: '72em'}}>
+  return (<div className="flex flex-col items-center" style={{width: '72em'}}>
     {!waiting && (<div className="flex flex-col items-center" style={{gap: '0.5em'}}>
       <div>Share your results!</div>
       <div className="flex items-center" style={{width: '12em'}}>

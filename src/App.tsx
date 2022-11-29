@@ -11,6 +11,7 @@ import ResultsDisplay      from './components/ResultsDisplay';
 import Footer              from './components/Footer';
 import StartConfirmation   from './components/StartConfirmation';
 import Sharer              from './components/Sharer';
+import Replayer            from './components/Replayer';
 import AboutModal          from './components/AboutModal';
 import { Result }          from './lib/types';
 import slippilogo          from './images/slippilogo.svg';
@@ -105,6 +106,7 @@ const App = () => {
         </>)}
       </div>
       {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob}/>)}
+      {done && (<Replayer setDone={setDone} setScreenshotUri={setScreenshotUri}/>)}
     </div>
     <Footer/>
     <AboutModal open={open_modal} setOpen={setOpenModal}/>
