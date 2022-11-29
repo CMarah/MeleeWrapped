@@ -7,7 +7,7 @@ interface Props {
 
 const STEP_LENGTH_SECONDS = 20;
 const PROGRESS_JUMP = 1;
-const NUMBER_STEPS = 5;
+const NUMBER_STEPS = 6;
 
 const StepDisplay: React.FC<Props> = ({ setMainProgress }) => {
   const [ progress, setProgress ] = useState<number>(0);

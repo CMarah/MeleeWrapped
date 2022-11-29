@@ -10,6 +10,7 @@ import {
   PlayTimeDisplay,
   DetailsDisplay,
   CharsDisplay,
+  MusDisplay,
   StagesDisplay,
   NemesisDisplay,
   CompleteDisplay,
@@ -62,8 +63,9 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         (step === 0 && <PlayTimeDisplay data={data_to_display} main_progress={main_progress}/>) ||
         (step === 1 && <DetailsDisplay data={data_to_display} main_progress={main_progress}/>) ||
         (step === 2 && <CharsDisplay data={data_to_display} main_progress={main_progress}/>) ||
-        (step === 3 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
-        (step === 4 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 3 && <MusDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 4 && <StagesDisplay data={data_to_display} main_progress={main_progress}/>) ||
+        (step === 5 && <NemesisDisplay data={data_to_display} main_progress={main_progress}/>) ||
                       (<CompleteDisplay data={data_to_display}/>)
       }
     </div>

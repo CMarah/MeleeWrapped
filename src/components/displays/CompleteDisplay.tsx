@@ -39,7 +39,7 @@ const CharLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
       <span style={{color: "var(--accent-yellow)"}}><b> {main_char},</b></span><br/>
       with whom you played
       <span style={{color: "var(--accent-yellow)"}}><b> {main_game_count} </b></span>
-      games and had 
+      games and had a
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(main_game_winrate * 1000)/10}% </b></span>
       winrate.
     </span>
