@@ -21,6 +21,8 @@ import {
   screenshotAndCopy,
 }                          from './lib/utils';
 
+const is_chrome = navigator.userAgent.match(/chrome|chromium|crios/i);
+
 const App = () => {
   // Basic data
   const [ results, setResults ] = useState<Array<Result>>([]);
@@ -37,7 +39,7 @@ const App = () => {
   const [ screenshot_uri, setScreenshotUri   ] = useState<string>('');
   const takeScreenshot = useCallback(() => {
     if (!main_ref.current) return null;
-    return screenshotAndCopy(main_ref.current);
+    return screenshotAndCopy(main_ref.current, !!is_chrome);
   }, [main_ref]);
   useEffect(() => {
     // When done, set screenshot after 1 sec

@@ -1,13 +1,15 @@
 import { toBlob }          from 'html-to-image';
 
-export const screenshotAndCopy = (current_ref: HTMLDivElement) =>
+export const screenshotAndCopy = (current_ref: HTMLDivElement, is_chrome: boolean) =>
   toBlob(current_ref)
     .then(blob => {
       if (!blob) return null;
       const type = blob.type;
-      navigator.clipboard.write([
-        new ClipboardItem({ [type]: blob })
-      ]);
+      if (is_chrome) {
+        navigator.clipboard.write([
+          new ClipboardItem({ [type]: blob })
+        ]);
+      }
       return blob;
     })
     .catch((err) => {
