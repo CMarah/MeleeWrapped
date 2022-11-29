@@ -27,7 +27,6 @@ export const MusDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <AnimatedText content={"And who did you fight?"} inProp={partial_progress >= 5} />
         <AnimatedText content={<span>
             Here are your 2022's
-            <span style={{color: "var(--accent-yellow)"}}><b> top {num_chars} </b></span>
             most common matchups:
           </span>}
           inProp={partial_progress >= 15}

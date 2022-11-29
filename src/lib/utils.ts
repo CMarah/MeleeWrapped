@@ -1,4 +1,4 @@
-import { toBlob }          from 'html-to-image';
+import { toBlob } from 'html-to-image';
 
 export const screenshotAndCopy = (current_ref: HTMLDivElement, is_chrome: boolean) =>
   toBlob(current_ref)

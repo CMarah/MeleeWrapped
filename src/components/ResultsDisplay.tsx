@@ -23,6 +23,8 @@ interface ResultsDisplayProps {
   setDone: (done: boolean) => void;
 }
 
+const NUMBER_STEPS = 6;
+
 const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   results,
   codes,
@@ -32,7 +34,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   const step = Math.floor(main_progress / 100);
 
   useEffect(() => {
-    if (main_progress === 500) {
+    if (main_progress === 100*NUMBER_STEPS) {
       setDone(true);
     }
   }, [main_progress, setDone]);
@@ -54,7 +56,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     className="flex flex-grow relative"
     style={{ width: '100%', height: '100%' }}
   >
-    {step <= 4 && (<StepDisplay setMainProgress={setMainProgress}/>)}
+    {step <= NUMBER_STEPS && (<StepDisplay setMainProgress={setMainProgress}/>)}
     <div
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}
