@@ -10,6 +10,7 @@ import omnomnado   from '../images/omnomnado.jpg';
 import slippilogo  from '../images/slippilogo.svg';
 import sandralogo  from '../images/sandra.jpg';
 import marahlogo   from '../images/marahlogo.jpg';
+import mpslogo     from '../images/mps.jpg';
 
 Modal.setAppElement('#root');
 
@@ -133,7 +134,7 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
           </div>
         </div>
         <div className="flex flex-row items-center" style={{marginBottom: '1em'}}>
-          <img style={profiles_style} src={sandralogo} alt="omnomnado"/>
+          <img style={profiles_style} src={sandralogo} alt="SandrewBkmn"/>
           <div>
             <div className='flex flex-row'>
               Sandrew Bkmn &nbsp;
@@ -142,6 +143,18 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
               </a>
             </div>
             <span style={{fontSize: '0.8em'}}>Character turnip icons.</span>
+          </div>
+        </div>
+        <div className="flex flex-row items-center" style={{marginBottom: '1em'}}>
+          <img style={profiles_style} src={mpslogo} alt="MPS"/>
+          <div>
+            <div className='flex flex-row'>
+              Spanish Melee Scene &nbsp;
+              <a href="https://twitter.com/MeleePMSpain" target="_blank" rel="noreferrer">
+                <img src={twitterlogo} style={{width: '1.5em'}} alt="mps twitter link"/>
+              </a>
+            </div>
+            <span style={{fontSize: '0.8em'}}>For being cool.</span>
           </div>
         </div>
       </div>
