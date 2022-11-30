@@ -51,7 +51,7 @@ const Content: React.FC<ContentProps> = ({
           <img src={yellow_icons} alt="" style={{transform: 'rotate(180deg)'}}/>
         </div>
         <div className="flex flex-grow items-center justify-center" style={{
-          overflow: 'hidden', // TODO may need to set to '' in some case
+          overflow: 'hidden',
           width: '100%',
         }}>{
           !data ?    (<DataObtainer setData={setData} codes={codes} setCodes={setCodes} setName={setName}/>) :

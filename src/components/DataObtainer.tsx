@@ -52,7 +52,6 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
         });
     }
   }, [id, setCodes, setData, setName]);
-  // TODO poner a loading si detecta ID
 
   // Codes found, prepare data
   useEffect(() => {
@@ -76,6 +75,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
     </div>);
   }
 
+  // TODO hacer primer calculo del codigo aqui, para evitar frame de espera
   return (<>{
     results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
       (<CodeInput results={results} setCodes={setCodes} setName={setName}/>)
