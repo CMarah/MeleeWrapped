@@ -4,34 +4,21 @@ import {
   useRef,
   useCallback,
   useEffect,
-}                          from 'react';
-import SlpFilesProcessor   from './components/SlpFilesProcessor';
-import CodeInput           from './components/CodeInput';
-import ResultsDisplay      from './components/ResultsDisplay';
-import Footer              from './components/Footer';
-import StartConfirmation   from './components/StartConfirmation';
-import Sharer              from './components/Sharer';
-import Replayer            from './components/Replayer';
-import AboutModal          from './components/AboutModal';
-import { Result }          from './lib/types';
-import slippilogo          from './images/slippilogo.svg';
-import yellow_icons        from './images/yellow-icons-1.svg';
-import question_icon       from './images/question.svg';
-import frog                from './images/minifrog.png';
-import {
-  screenshotAndCopy,
-}                          from './lib/utils';
+}                            from 'react';
+import Header                from './components/Header';
+import Content               from './components/Content';
+import Footer                from './components/Footer';
+import Sharer                from './components/Sharer';
+import Replayer              from './components/Replayer';
+import AboutModal            from './components/AboutModal';
+import { screenshotAndCopy } from './lib/utils';
 
 const is_chrome = navigator.userAgent.match(/chrome|chromium|crios/i);
 
 const App = () => {
-  // Basic data
-  const [ results, setResults ] = useState<Array<Result>>([]);
-  const [ codes, setCodes     ] = useState<Array<string>>([]);
-  const [ name, setName       ] = useState<string>('');
-  const [ started, setStarted ] = useState(false);
-  const [ done, setDone       ] = useState(false);
-
+  // Basics
+  const [ codes, setCodes          ] = useState<Array<string>>([]);
+  const [ done, setDone            ] = useState(false);
   const [ open_modal, setOpenModal ] = useState(false);
 
   // Screenshot logic
@@ -54,56 +41,19 @@ const App = () => {
   }, [done, setScreenshotUri, takeScreenshot]);
 
   return (<div className="App">
-    <div className="App-header">
-      <div className="text-2xl flex" style={{gap: "0.5em"}}>
-        <img src={slippilogo} alt="" style={{width: "1.5em"}}/>
-        Melee Wrapped
-        <div style={{cursor: "pointer", position: 'absolute', right: '1em'}} onClick={() => setOpenModal(true)}>
-          <img src={question_icon} alt="" style={{width: "1.5em"}}/>
-        </div>
-      </div>
-    </div>
+    <Header setOpenModal={setOpenModal} />
     <div className="App-body">
       <div className="screenshot-area" ref={main_ref} style={{
-          paddingBottom: screenshot_uri ? '0' : '4em',
-          paddingTop: screenshot_uri ? '0' : '2em',
-        }}>
+        paddingBottom: screenshot_uri ? '0' : '4em',
+        paddingTop: screenshot_uri ? '0' : '2em',
+      }}>
         {screenshot_uri && (<img src={screenshot_uri} alt="summary"/>)}
-        {!screenshot_uri && (<>
-          {!started && (<div className="subtitle">Explore your Melee 2022</div>)}
-          {done && (<div
-            className="flex flex-grow items-center justify-center"
-            style={{ fontSize: '1.7em' }}
-          >
-            {name}'s 2022 Melee Wrap
-            <img src={frog} alt="" style={{width: "2em"}}/>
-          </div>)}
-          <div
-            className="content relative"
-            style={{
-              height: !results.length ? '16em' :
-                      !started ? '18em' :
-                      !done ? 'calc(32em * 16 / 9)' : '26em',
-              width:  done ? '64em' : '32em',
-            }}
-          >
-            <div className='absolute' style={{ right: '-4em', top: '-2em'}}>
-              <img src={yellow_icons} alt=""/>
-            </div>
-            <div className='absolute' style={{ left: '-4em', bottom: '-3em'}}>
-              <img src={yellow_icons} alt="" style={{transform: 'rotate(180deg)'}}/>
-            </div>
-            <div className="flex flex-grow items-center justify-center" style={{
-              overflow: !results.length ? '' : 'hidden',
-              width: '100%',
-            }}>{
-              results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
-              codes.length === 0 ?   (<CodeInput results={results} setCodes={setCodes} setName={setName}/>) :
-              !started ?             (<StartConfirmation setStarted={setStarted} />) :
-                                     (<ResultsDisplay results={results} codes={codes} setDone={setDone} name={name}/>)
-            }</div>
-          </div>
-        </>)}
+        {!screenshot_uri && (<Content
+          done={done}
+          setDone={setDone}
+          codes={codes}
+          setCodes={setCodes}
+        />)}
       </div>
       {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob} codes={codes}/>)}
       {done && (<Replayer setDone={setDone} setScreenshotUri={setScreenshotUri}/>)}

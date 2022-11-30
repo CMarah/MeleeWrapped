@@ -29,6 +29,10 @@ export const toBase64 = (blob: Blob | null) => {
   });
 };
 
+export const getFromGcp = (id: String) =>
+  fetch(`https://us-central1-meleewrapped.cloudfunctions.net/cloud-functions-firestore?id=${encodeURIComponent(id as string)}`)
+    .then(res => res.json());
+
 export const sendToGcp = (data: CleanData | null, codes: Array<string>, name: string) => data &&
   fetch('https://us-central1-meleewrapped.cloudfunctions.net/cloud-functions-firestore', {
     method: 'POST',

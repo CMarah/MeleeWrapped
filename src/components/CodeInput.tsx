@@ -11,8 +11,8 @@ import {
 
 interface CodeInputProps {
   results: Array<Result>;
-  setCodes: React.Dispatch<React.SetStateAction<Array<string>>>;
-  setName: React.Dispatch<React.SetStateAction<string>>;
+  setCodes: (codes: Array<string>) => void;
+  setName: (name: string) => void;
 }
 
 const CodeInput: React.FC<CodeInputProps> = ({

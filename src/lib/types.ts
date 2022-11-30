@@ -18,7 +18,6 @@ export interface Metadata {
     [0]: Player;
     [1]: Player;
   };
-  consoleNick?: string | null;
 }
 
 export interface PlayerType {
