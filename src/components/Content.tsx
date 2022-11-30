@@ -55,7 +55,7 @@ const Content: React.FC<ContentProps> = ({
           width: '100%',
         }}>{
           !data ?    (<DataObtainer setData={setData} codes={codes} setCodes={setCodes} setName={setName}/>) :
-          !started ? (<StartConfirmation setStarted={setStarted} />) :
+          !started ? (<StartConfirmation setStarted={setStarted} name={name}/>) :
                      (<ResultsDisplay data={data} codes={codes} setDone={setDone} name={name}/>)
         }</div>
       </div>
