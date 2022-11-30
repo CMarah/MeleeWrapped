@@ -1,9 +1,10 @@
 import React, {
   useState,
-}                  from 'react';
-import twitterlogo from '../images/twitter.png';
-import copyicon    from '../images/copy.svg';
-import dlicon      from '../images/download.svg';
+}                   from 'react';
+import twitterlogo  from '../images/twitter.png';
+import copyicon     from '../images/copy.svg';
+import dlicon       from '../images/download.svg';
+import AnimatedText from './AnimatedText';
 
 
 const userAgent = navigator.userAgent;
@@ -24,6 +25,7 @@ const Sharer: React.FC<SharerProps> = ({
   codes,
 }) => {
   const [ waiting, setWaiting ] = useState(false);
+  const [ show_copied_message, setShowCopiedMessage ] = useState(false);
 
   const shareOnTwitter = () => {
     takeScreenshot();
@@ -47,7 +49,17 @@ const Sharer: React.FC<SharerProps> = ({
           </a>
         </div>
         {is_chrome && (<div className="flex-1">
-          <img src={copyicon} alt="copy" onClick={takeScreenshot} style={{height: '1.5em', margin: 'auto', cursor: 'pointer'}}/>
+          <img src={copyicon} alt="copy" onClick={() => {
+            takeScreenshot();
+            setShowCopiedMessage(true);
+            setTimeout(() => setShowCopiedMessage(false), 1000);
+          }} style={{height: '1.5em', margin: 'auto', cursor: 'pointer'}}/>
+          <div
+            className="absolute"
+            style={{ marginLeft: '0.5em', fontSize: '0.8em', color: 'white', fontWeight: 'bold' }}
+          >
+            <AnimatedText content={'Copied'} inProp={show_copied_message} />
+          </div>
         </div>)}
         <div className="flex-1">
           <img
