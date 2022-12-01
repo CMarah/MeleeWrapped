@@ -6,6 +6,7 @@ import {
   faGithub,
 }                  from '@fortawesome/free-brands-svg-icons';
 import twitterlogo from '../images/twitter.png';
+import kofilogo    from '../images/kofi.png';
 import omnomnado   from '../images/omnomnado.jpg';
 import slippilogo  from '../images/slippilogo.svg';
 import sandralogo  from '../images/sandra.jpg';
@@ -90,13 +91,16 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
         <div className="flex flex-row items-center" style={{marginBottom: '1em', marginTop: '1em'}}>
           <img style={profiles_style} src={marahlogo} alt="marah"/>
           <div>
-            <div className='flex flex-row'>
+            <div className='flex flex-row' style={{gap: '0.5em'}}>
               Marah &nbsp;
               <a href="https://twitter.com/projectslippi" target="_blank" rel="noreferrer">
                 <img src={twitterlogo} style={{width: '1.5em'}} alt="marah twitter link"/>
               </a>
               <a href="https://github.com/CMarah" target="_blank" rel="noreferrer">
-                <FontAwesomeIcon icon={faGithub} style={{marginRight: '0.5em', cursor: 'pointer'}}/>
+                <FontAwesomeIcon icon={faGithub} style={{cursor: 'pointer'}}/>
+              </a>
+              <a href="https://ko-fi.com/marah" target="_blank" rel="noreferrer">
+                <img src={kofilogo} style={{width: '1.5em'}} alt="marah kofi link"/>
               </a>
             </div>
             <span style={{fontSize: '0.8em'}}>Site's main dev</span>
