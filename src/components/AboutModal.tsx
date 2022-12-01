@@ -79,9 +79,9 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
           This site's obvious inspiration is the yearly Spotify Wrapped, but designed for Melee.
           It's just a fun way of looking back at your year and how you did.<br/>
           When processing the games it will take a few minutes, as it has to go through each
-          interaction of each game. This process is done completely on the client side, so your data
-          is never sent to a server.
+          interaction of each game.
           <br/>
+          If you find any bugs, you cand DM me or post them on GitHub.
           The code is open source, so feel free to contribute!
           <br/>
           <br/>
