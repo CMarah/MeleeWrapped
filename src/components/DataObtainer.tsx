@@ -55,7 +55,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
 
   // Codes found, prepare data
   useEffect(() => {
-    if (results.length > 0 && codes) {
+    if (results.length > 0 && codes.length) {
       const data = getData(results, codes);
       if (data) {
         setData(data);
