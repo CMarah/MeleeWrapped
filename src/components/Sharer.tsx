@@ -38,7 +38,7 @@ const Sharer: React.FC<SharerProps> = ({
     setTimeout(() => {
       setWaiting(false);
       const text = 'Check out my Melee 2022 recap! #SlippiWrapped \n';
-      window.open(twitterUrl(text, wrapped_url), '_blank');
+      window.open(twitterUrl(text, wrapped_url), '_blank', 'popup=1');
     }, 5000);
   };
 
@@ -91,8 +91,8 @@ const Sharer: React.FC<SharerProps> = ({
     </div>)}
     {waiting && (<div style={{marginBottom: '1em'}}>
       {is_chrome ?
-        (<>Results <b>copied to clipboard</b>,<br/> paste them on the twitter tab that will open...</>) :
-        (<>You may want to <b>copy to clipboard</b> the image above,<br/> and paste it on the twitter tab that will open...</>)
+        (<>Results <b>copied to clipboard</b>,<br/> paste them on the twitter popup that will open...</>) :
+        (<>You may want to <b>copy to clipboard</b> the image above,<br/> and paste it on the twitter popup that will open...</>)
       }
     </div>)}
     {waiting && (<div className="circle">
