@@ -1,19 +1,14 @@
 interface ReplayerProps {
-  setDone: (done: boolean) => void;
-  setScreenshotUri: (uri: string) => void;
+  twitter_link: string;
 }
 
 const Replayer: React.FC<ReplayerProps> = ({
-  setDone,
-  setScreenshotUri,
+  twitter_link
 }) => {
 
   return (<div className="flex flex-col items-center" style={{height: '10em', width: '72em'}}>
-    <button className="code-btn"
-      onClick={() => {
-        setDone(false);
-        setScreenshotUri('');
-      }}
+    <a className="code-btn"
+      href={twitter_link}
       style={{
         width: '5em',
         cursor: 'cursor',
@@ -21,7 +16,7 @@ const Replayer: React.FC<ReplayerProps> = ({
       }}
     >
       Replay?
-    </button>
+    </a>
   </div>);
 };
 

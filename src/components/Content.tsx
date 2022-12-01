@@ -26,6 +26,9 @@ const Content: React.FC<ContentProps> = ({
   const [ name, setName       ] = useState<string>('');
   const [ started, setStarted ] = useState(false);
 
+  // Already sent/using existing data
+  const [ already_sent, setAlreadySent ] = useState(false);
+
   return (<>
       {!started && (<div className="subtitle">Explore your Melee 2022</div>)}
       {done && (<div
@@ -54,9 +57,27 @@ const Content: React.FC<ContentProps> = ({
           overflow: 'hidden',
           width: '100%',
         }}>{
-          !data ?    (<DataObtainer setData={setData} codes={codes} setCodes={setCodes} setName={setName}/>) :
-          !started ? (<StartConfirmation setStarted={setStarted} name={name}/>) :
-                     (<ResultsDisplay data={data} codes={codes} setDone={setDone} name={name}/>)
+          !data ?
+            (<DataObtainer
+              setData={setData}
+              codes={codes}
+              setCodes={setCodes}
+              setName={setName}
+              setAlreadySent={setAlreadySent}
+            />)
+            : (!started ?
+                (<StartConfirmation
+                  setStarted={setStarted}
+                  name={name}
+                />) :
+                (<ResultsDisplay
+                  data={data}
+                  codes={codes}
+                  setDone={setDone}
+                  name={name}
+                  already_sent={already_sent}
+                />)
+              )
         }</div>
       </div>
     </>);

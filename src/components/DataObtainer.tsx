@@ -17,21 +17,24 @@ interface DataObtainerProps {
   codes: Array<string>;
   setCodes: (codes: Array<string>) => void;
   setName: (name: string) => void;
+  setAlreadySent: (already_sent: boolean) => void;
 }
+
+const search = window.location.search;
+const params = new URLSearchParams(search);
+const id = params.get('id');
 
 const DataObtainer: React.FC<DataObtainerProps> = ({
   setData,
   codes,
   setCodes,
   setName,
+  setAlreadySent,
 }) => {
   // Basic data
   const [ results, setResults ] = useState<Array<Result>>([]);
 
   // Already existing id/results
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const id = params.get('id');
   const [ loading, setLoading ] = useState<boolean>(false);
   useEffect(() => {
     if (id) {
@@ -44,6 +47,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
             setCodes(codes);
             setData(response.results);
           }
+          setAlreadySent(true);
           setLoading(false);
         })
         .catch(err => {
@@ -51,7 +55,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
           setLoading(false);
         });
     }
-  }, [id, setCodes, setData, setName]);
+  }, [setCodes, setData, setName, setAlreadySent]);
 
   // Codes found, prepare data
   useEffect(() => {

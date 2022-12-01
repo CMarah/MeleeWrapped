@@ -9,7 +9,6 @@ import Header                from './components/Header';
 import Content               from './components/Content';
 import Footer                from './components/Footer';
 import Sharer                from './components/Sharer';
-import Replayer              from './components/Replayer';
 import AboutModal            from './components/AboutModal';
 import { screenshotAndCopy } from './lib/utils';
 
@@ -56,7 +55,6 @@ const App = () => {
         />)}
       </div>
       {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob} codes={codes}/>)}
-      {done && (<Replayer setDone={setDone} setScreenshotUri={setScreenshotUri}/>)}
     </div>
     <Footer/>
     <AboutModal open={open_modal} setOpen={setOpenModal}/>
