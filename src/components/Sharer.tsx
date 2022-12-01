@@ -29,7 +29,7 @@ const Sharer: React.FC<SharerProps> = ({
   const [ show_copied_message,  setShowCopiedMessage  ] = useState(false);
   const [ show_copied_message2, setShowCopiedMessage2 ] = useState(false);
 
-  const wrapped_url = `https://melee-wrapped.marah.dev?id=${btoa(codes.toString())}`;
+  const wrapped_url = `https://slippi-wrapped.marah.dev?id=${btoa(codes.toString())}`;
 
   const shareOnTwitter = () => {
     takeScreenshot();
@@ -37,7 +37,7 @@ const Sharer: React.FC<SharerProps> = ({
     setWaiting(true);
     setTimeout(() => {
       setWaiting(false);
-      const text = 'Check out my Melee 2022 recap! #MeleeWrapped \n';
+      const text = 'Check out my Melee 2022 recap! #SlippiWrapped \n';
       window.open(twitterUrl(text, wrapped_url), '_blank');
     }, 5000);
   };
@@ -51,7 +51,7 @@ const Sharer: React.FC<SharerProps> = ({
       <div>Share your results!</div>
       <div className="flex items-center" style={{width: is_chrome ? '16em' : '12em'}}>
         <div className="flex-1">
-          <a download="melee-wrapped.png" href={URL.createObjectURL(screenshot_blob)}>
+          <a download="slippi-wrapped.png" href={URL.createObjectURL(screenshot_blob)}>
             <img src={dlicon} alt="copy" style={{height: '1.5em', margin: 'auto'}}/>
           </a>
         </div>

@@ -32,7 +32,7 @@ const Content: React.FC<ContentProps> = ({
         className="flex flex-grow items-center justify-center"
         style={{ fontSize: '1.7em' }}
       >
-        {name}'s 2022 Melee Wrap
+        {name}'s 2022 Slippi Wrap
         <img src={frog} alt="" style={{width: "2em"}}/>
       </div>)}
       <div

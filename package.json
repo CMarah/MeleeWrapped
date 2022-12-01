@@ -1,7 +1,7 @@
 {
-  "name": "melee-wrapped",
+  "name": "slippi-wrapped",
   "version": "0.5.0",
-  "homepage": "https://melee-wrapped.marah.dev",
+  "homepage": "https://slippi-wrapped.marah.dev",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",

@@ -32,7 +32,7 @@ const phrases = [
   "Mango is this year's #1",
   "IBDW is this year's #1",
   "Hbox is this year's #1",
-  "#MeleeWrapped",
+  "#SlippiWrapped",
   "#FreeMelee",
 ];
 

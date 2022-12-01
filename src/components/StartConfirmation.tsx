@@ -32,7 +32,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
             }}
           >Watch it</div>
           <div className="code-btn"
-            onClick={() => window.location.href = `https://melee-wrapped.marah.dev`}
+            onClick={() => window.location.href = `https://slippi-wrapped.marah.dev`}
             style={{
               width: '8em',
               cursor: 'cursor',

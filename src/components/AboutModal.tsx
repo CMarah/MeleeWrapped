@@ -134,7 +134,7 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
                 <img src={twitterlogo} style={{width: '1.5em'}} alt="omnomnado twitter link"/>
               </a>
             </div>
-            <span style={{fontSize: '0.8em'}}>Melee Wrapped logo and design help.</span>
+            <span style={{fontSize: '0.8em'}}>Slippi Wrapped logo and design help.</span>
           </div>
         </div>
         <div className="flex flex-row items-center" style={{marginBottom: '1em'}}>
