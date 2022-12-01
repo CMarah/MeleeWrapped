@@ -3,6 +3,7 @@ import React, {
 }                   from 'react';
 import twitterlogo  from '../images/twitter.png';
 import copyicon     from '../images/copy.svg';
+import linkicon     from '../images/link.svg';
 import dlicon       from '../images/download.svg';
 import AnimatedText from './AnimatedText';
 
@@ -25,7 +26,10 @@ const Sharer: React.FC<SharerProps> = ({
   codes,
 }) => {
   const [ waiting, setWaiting ] = useState(false);
-  const [ show_copied_message, setShowCopiedMessage ] = useState(false);
+  const [ show_copied_message,  setShowCopiedMessage  ] = useState(false);
+  const [ show_copied_message2, setShowCopiedMessage2 ] = useState(false);
+
+  const wrapped_url = `https://melee-wrapped.marah.dev?id=${btoa(codes.toString())}`;
 
   const shareOnTwitter = () => {
     takeScreenshot();
@@ -34,15 +38,18 @@ const Sharer: React.FC<SharerProps> = ({
     setTimeout(() => {
       setWaiting(false);
       const text = 'Check out my Melee 2022 recap! #MeleeWrapped \n';
-      const url = `https://melee-wrapped.marah.dev?id=${btoa(codes.toString())}`;
-      window.open(twitterUrl(text, url), '_blank');
+      window.open(twitterUrl(text, wrapped_url), '_blank');
     }, 5000);
+  };
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(wrapped_url);
   };
 
   return (<div className="flex flex-col items-center" style={{width: '72em'}}>
     {!waiting && (<div className="flex flex-col items-center" style={{gap: '0.5em'}}>
       <div>Share your results!</div>
-      <div className="flex items-center" style={{width: '12em'}}>
+      <div className="flex items-center" style={{width: '16em'}}>
         <div className="flex-1">
           <a download="melee-wrapped.png" href={URL.createObjectURL(screenshot_blob)}>
             <img src={dlicon} alt="copy" style={{height: '1.5em', margin: 'auto'}}/>
@@ -61,6 +68,19 @@ const Sharer: React.FC<SharerProps> = ({
             <AnimatedText content={'Copied'} inProp={show_copied_message} />
           </div>
         </div>)}
+        <div className="flex-1" title="Copy link to your own Wrapped">
+          <img src={linkicon} alt="copy" onClick={() => {
+            copyLink();
+            setShowCopiedMessage2(true);
+            setTimeout(() => setShowCopiedMessage2(false), 1000);
+          }} style={{height: '1.5em', margin: 'auto', cursor: 'pointer'}}/>
+          <div
+            className="absolute"
+            style={{ marginLeft: '0.5em', fontSize: '0.8em', color: 'white', fontWeight: 'bold' }}
+          >
+            <AnimatedText content={'Copied'} inProp={show_copied_message2} />
+          </div>
+        </div>
         <div className="flex-1">
           <img
             src={twitterlogo} alt="twitter" style={{height: "2em", cursor: "pointer", margin: 'auto'}}
