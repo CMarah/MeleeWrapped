@@ -31,7 +31,7 @@ const Sharer: React.FC<SharerProps> = ({
   const [ show_copied_message,  setShowCopiedMessage  ] = useState(false);
   const [ show_copied_message2, setShowCopiedMessage2 ] = useState(false);
 
-  const wrapped_url = `https://slippi-wrapped.marah.dev?id=${btoa(codes.toString())}`;
+  const wrapped_url = `https://slippi-wrapped.marah.dev/?id=${btoa(codes.toString())}`;
   const twitter_url = twitterUrl(text, wrapped_url);
 
   const shareOnTwitter = () => {
