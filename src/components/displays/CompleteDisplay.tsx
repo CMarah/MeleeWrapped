@@ -49,10 +49,9 @@ const CharLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
 const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   const { games, winrate, names } = data.nemesis[0];
   const nemesis_name = Object.keys(names)[0];
-     // TODO dont use 'nemesis', maybe 'most played opponent'?
   return (<div className="flex flex-grow flex-col relative justify-center">
     <span>
-      Your nemesis was
+      Your greatest opponent was
       <span style={{color: "var(--accent-yellow)"}}><b> {nemesis_name},</b></span><br/>
       playing
       <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>

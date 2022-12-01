@@ -3,12 +3,12 @@ interface Props {
   name: string;
 }
 
-const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
+// Already existing id/results
+const search = window.location.search;
+const params = new URLSearchParams(search);
+const id = params.get('id');
 
-  // Already existing id/results
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const id = params.get('id');
+const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
 
   if (id) {
     return (

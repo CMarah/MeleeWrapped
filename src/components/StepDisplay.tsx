@@ -5,7 +5,7 @@ interface Props {
   setMainProgress: (progress: number) => void;
 }
 
-const STEP_LENGTH_SECONDS = 2;
+const STEP_LENGTH_SECONDS = 20;
 const PROGRESS_JUMP = 1;
 const NUMBER_STEPS = 6;
 

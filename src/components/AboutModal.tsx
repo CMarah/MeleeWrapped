@@ -23,6 +23,7 @@ interface AboutModalProps {
 const modal_style = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: '500',
   },
   content: {
     top: '50%',
