@@ -9,7 +9,7 @@ interface CompleteDisplayProps {
 };
 
 const PlayTimeLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
-  const { games, playtime, winrate } = data;
+  const { games, playtime, winrate, openings_per_kill, kill_count } = data;
 
   return (<div className="flex flex-grow flex-col relative justify-center">
     <span>
@@ -19,6 +19,13 @@ const PlayTimeLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(playtime/60/60/60)} </b></span>
       hours of Melee!
       <br/>
+    </span>
+    <span>
+      Averaging
+      <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(openings_per_kill * 10)/10} </b></span>
+      Openings per Kill, you had a final toll of
+      <span style={{color: "var(--accent-yellow)"}}><b> {kill_count} </b></span>
+      KOs.
     </span>
     <span>
       Your global winrate was
@@ -39,9 +46,9 @@ const CharLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
       <span style={{color: "var(--accent-yellow)"}}><b> {main_char},</b></span><br/>
       with whom you played
       <span style={{color: "var(--accent-yellow)"}}><b> {main_game_count} </b></span>
-      games and had a
+      games and won
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(main_game_winrate * 1000)/10}% </b></span>
-      winrate.
+      of those.
     </span>
   </div>);
 };
@@ -51,13 +58,13 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   const nemesis_name = Object.keys(names)[0];
   return (<div className="flex flex-grow flex-col relative justify-center">
     <span>
-      Your greatest opponent was
-      <span style={{color: "var(--accent-yellow)"}}><b> {nemesis_name},</b></span><br/>
-      playing
-      <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>
-      matches with them for a
+      <span style={{color: "var(--accent-yellow)"}}><b>{nemesis_name} </b></span>
+      was your greatest opponent,<br/>
+      winning
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(winrate * 1000)/10}% </b></span>
-      winrate.
+      of the
+      <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>
+      matches played with them.
     </span>
   </div>);
 };
@@ -65,7 +72,7 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
 export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) => {
   return (<div
     className="flex flex-col items-center justify-center w-full h-full"
-    style={{fontSize: '1.4em', marginBottom: '2em', marginTop: '2em'}}
+    style={{fontSize: '1.4em', marginBottom: '1.5em', marginTop: '1.5em'}}
   >
     <CornerIcon char_name={data.my_chars[0].name} is_turnip/>
     <PlayTimeLine data={data} />
