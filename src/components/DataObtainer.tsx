@@ -39,21 +39,22 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   useEffect(() => {
     if (id) {
       setLoading(true);
-      const codes = atob(id).split(',');
-      getFromGcp(id)
-        .then(response => {
-          if (response) {
-            setName(response.name);
-            setCodes(codes);
-            setData(response.results);
-          }
-          setAlreadySent(true);
-          setLoading(false);
-        })
-        .catch(err => {
-          console.error(err);
-          setLoading(false);
-        });
+      try {
+        const codes = atob(id).split(',');
+        getFromGcp(id)
+          .then(response => {
+            if (response) {
+              setName(response.name);
+              setCodes(codes);
+              setData(response.results);
+            }
+            setAlreadySent(true);
+            setLoading(false);
+          })
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
     }
   }, [setCodes, setData, setName, setAlreadySent]);
 
