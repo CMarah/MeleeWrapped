@@ -7,6 +7,7 @@ import {
 }                  from '@fortawesome/free-brands-svg-icons';
 import twitterlogo from '../images/twitter.png';
 import kofilogo    from '../images/kofi.png';
+import patreonlogo from '../images/patreon.png';
 import omnomnado   from '../images/omnomnado.jpg';
 import slippilogo  from '../images/slippilogo.svg';
 import sandralogo  from '../images/sandra.jpg';
@@ -117,10 +118,13 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
         <div className="flex flex-row items-center" style={{marginBottom: '1em'}}>
           <img style={profiles_style} src={slippilogo} alt="slippi"/>
           <div>
-            <div className='flex flex-row'>
+            <div className='flex flex-row' style={{gap: '0.5em'}}>
               The Slippi team &nbsp;
               <a href="https://twitter.com/projectslippi" target="_blank" rel="noreferrer">
                 <img src={twitterlogo} style={{width: '1.5em'}} alt="slippi team twitter link"/>
+              </a>
+              <a href="https://www.patreon.com/fizzi36" target="_blank" rel="noreferrer">
+                <img src={patreonlogo} style={{width: '1.5em'}} alt="slippi patreon link"/>
               </a>
             </div>
             <span style={{fontSize: '0.8em'}}>For their invaluable work on Slippi.</span>
