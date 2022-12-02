@@ -14,7 +14,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
     return (
       <div className="flex flex-grow flex-col relative items-center" style={{width: '25em', height: '100%'}}>
         <div style={{
-          margin: '2em 0',
+          marginTop: '2em',
           fontSize: '1.4em',
         }}>
           We found {name}'s Wrap!
@@ -40,6 +40,9 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
             }}
           >Get mine</div>
         </div>
+        <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>
+          You can move backwards or forwards clicking each side of the video
+        </div>
       </div>
     );
   }
@@ -47,7 +50,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
   return (
     <div className="flex flex-grow flex-col relative items-center" style={{width: '25em', height: '100%'}}>
       <div style={{
-        margin: '2em 0',
+        marginTop: '2em',
         fontSize: '1.4em',
       }}>
         Welcome, {name}!
@@ -62,6 +65,9 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
           color: 'var(--accent-yellow)',
         }}
       >Go!</div>
+      <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>
+        You can move backwards or forwards clicking each side of the video
+      </div>
     </div>
   );
 };

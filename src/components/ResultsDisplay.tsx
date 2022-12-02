@@ -1,6 +1,7 @@
 import React, {
   useState,
   useEffect,
+  useCallback,
 }                    from 'react';
 import { CleanData } from '../lib/types';
 import {
@@ -48,6 +49,23 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     }
   }, [main_progress, setDone, data, codes, name, already_sent]);
 
+  const forwardVideo = useCallback(() => {
+    setMainProgress(main_progress => {
+      const step = Math.floor(main_progress / 100);
+      return step*100 + 90;
+    });
+  }, [setMainProgress]);
+  const rewindVideo = useCallback(() => {
+    setMainProgress(main_progress => {
+      const step = Math.floor(main_progress / 100);
+      const relative_progress = main_progress % 100;
+      if (relative_progress < 20) {
+        return (step-1)*100;
+      }
+      return step*100;
+    });
+  }, [setMainProgress]);
+
   // If no data, display error
   if (!data) return (
     <div style={{textAlign: 'center'}}>
@@ -61,7 +79,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     className="flex flex-grow relative"
     style={{ width: '100%', height: '100%' }}
   >
-    {step < NUMBER_STEPS && (<StepDisplay setMainProgress={setMainProgress}/>)}
+    {step < NUMBER_STEPS && (<StepDisplay main_progress={main_progress} setMainProgress={setMainProgress}/>)}
     <div
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}
@@ -75,6 +93,8 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         (step === 5 && <NemesisDisplay data={data} main_progress={main_progress}/>) ||
                       (<CompleteDisplay data={data}/>)
       }
+      <div className="absolute" onClick={rewindVideo} style={{width: "50%", height: "100%", cursor: "pointer"}}></div>
+      <div className="absolute" onClick={forwardVideo} style={{width: "50%", height: "100%", left: '50%', cursor: 'pointer'}}></div>
     </div>
   </div>);
 };

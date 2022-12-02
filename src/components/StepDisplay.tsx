@@ -1,33 +1,28 @@
-import { useEffect, useState } from 'react';
 import useInterval             from '../lib/useInterval';
 
 interface Props {
+  main_progress: number;
   setMainProgress: (progress: number) => void;
 }
 
 const STEP_LENGTH_SECONDS = 20;
-const PROGRESS_JUMP = 1;
+const PROGRESS_JUMP = 5;
 const NUMBER_STEPS = 6;
 
-const StepDisplay: React.FC<Props> = ({ setMainProgress }) => {
-  const [ progress, setProgress ] = useState<number>(0);
+const interval_timer = (STEP_LENGTH_SECONDS * 1000) / 100 * PROGRESS_JUMP;
+
+const StepDisplay: React.FC<Props> = ({ main_progress, setMainProgress }) => {
 
   useInterval(
     () => {
-      if (progress < NUMBER_STEPS*100) {
-        setProgress(progress + PROGRESS_JUMP);
+      if (main_progress < NUMBER_STEPS*100) {
+        setMainProgress(main_progress + PROGRESS_JUMP);
       }
     },
-    STEP_LENGTH_SECONDS * 1000 / 100 * PROGRESS_JUMP,
+    interval_timer,
   );
 
-  useEffect(() => {
-    if (progress%5 === 0) {
-      setMainProgress(progress);
-    }
-  }, [progress, setMainProgress]);
-
-  const bar_width = (progress / (100 * NUMBER_STEPS)) * 100 + "%";
+  const bar_width = (main_progress / (100 * NUMBER_STEPS)) * 100 + "%";
 
   return <div style={{
     position: 'absolute',
@@ -47,7 +42,7 @@ const StepDisplay: React.FC<Props> = ({ setMainProgress }) => {
         opacity: '0.7',
         width: bar_width,
         height: '100%',
-        transition: 'width 0.1s',
+        transition: `width ${interval_timer/1000}s linear`,
       }}></div>
     </div>
   </div>;
