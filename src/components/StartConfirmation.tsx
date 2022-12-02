@@ -41,7 +41,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
           >Get mine</div>
         </div>
         <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>
-          You can move backwards or forwards clicking each side of the video
+          You can <b>move backwards or forwards</b> by clicking each side of the video
         </div>
       </div>
     );
@@ -66,7 +66,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
         }}
       >Go!</div>
       <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>
-        You can move backwards or forwards clicking each side of the video
+        You can <b>move backwards or forwards</b> by clicking each side of the video
       </div>
     </div>
   );

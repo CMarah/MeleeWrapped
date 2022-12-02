@@ -37,7 +37,7 @@ const modal_style = {
     borderRadius: '1em',
     padding: 0,
     fontSize: '1.3em',
-    width: '30em',
+    width: '32em',
   },
 };
 
@@ -79,14 +79,17 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
         color: 'var(--light-1)',
       }}>
         <span style={{fontSize: '0.8em', textJustify: 'inter-word'}}>
-          This site's obvious inspiration is the yearly Spotify Wrapped, but designed for Melee.
+          This site's obvious inspiration is the yearly Spotify Wrapped, but for Melee.
           It's just a fun way of looking back at your year and how you did.<br/>
-          When processing the games it will take a few minutes, as it has to go through each
-          interaction of each game.
+          When processing the games it will take
+          <span style={{color: "var(--accent-yellow)"}}> a few minutes </span>,
+          as it has to go through each interaction of each game. You can
+          <span style={{color: "var(--accent-yellow)"}}> click the video </span>
+          to move forwards or backwards.
+          <br/>
           <br/>
           If you find any bugs, you cand DM me or post them on GitHub.
           The code is open source, so feel free to contribute!
-          <br/>
           <br/>
           This project is not associated with Slippi or the Slippi team.
         </span>
