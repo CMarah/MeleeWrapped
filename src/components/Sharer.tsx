@@ -40,7 +40,7 @@ const Sharer: React.FC<SharerProps> = ({
     setWaiting(true);
     setTimeout(() => {
       setWaiting(false);
-      window.open(twitter_url, '_blank', 'popup=1');
+      window.open(twitter_url, '_blank', 'popup=1,width=650,height=400');
     }, 5000);
   };
 
