@@ -15,7 +15,7 @@ const SlpSelector: React.FC<SlpSelectorProps> = ({
           <path strokeLinecap="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
         </svg>
         <p className="font-semibold mt-2">
-          Upload your <span style={{color: 'var(--accent-yellow)'}}>whole</span> Slippi replays folder
+          Select your <span style={{color: 'var(--accent-yellow)'}}>whole</span> Slippi replays folder
         </p>
       </div>
       <div style={{
@@ -27,8 +27,9 @@ const SlpSelector: React.FC<SlpSelectorProps> = ({
         width: '90%',
         paddingBottom: '0.8em',
       }}>
-        <p style={{marginBottom: '-0.3em'}}>You can usually find it in:</p>
-        <p>{'"C:/Users/<username>/Documents/Slippi"'}</p>
+        <p style={{marginBottom: '-0.3em'}}>You can usually find it at:</p>
+        <p style={{marginBottom: '-0.3em'}}>{'"C:/Users/<username>/Documents/Slippi"'}</p>
+        <p>Select the folder itself, not its files</p>
       </div>
     </div>
     <input

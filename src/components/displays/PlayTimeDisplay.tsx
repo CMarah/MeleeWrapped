@@ -34,7 +34,7 @@ const getTexts = (data: CleanData) => {
       <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>
       games, for a <br/> whopping
       <span style={{color: "var(--accent-yellow)"}}><b> {playtime.toLocaleString()} </b></span>
-      frames. That's <br/> more than
+      frames.<br/>That's more than
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(playtime/60/60/60)} </b></span>
       hours of Melee!
       <br/>

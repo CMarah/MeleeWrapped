@@ -37,7 +37,7 @@ const modal_style = {
     borderRadius: '1em',
     padding: 0,
     fontSize: '1.3em',
-    width: '32em',
+    width: '36em',
   },
 };
 
@@ -83,15 +83,14 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
           It's just a fun way of looking back at your year and how you did.<br/>
           When processing the games it will take
           <span style={{color: "var(--accent-yellow)"}}> a few minutes </span>,
-          as it has to go through each interaction of each game. You can
-          <span style={{color: "var(--accent-yellow)"}}> click the video </span>
-          to move forwards or backwards.
+          as it has to go through every interaction of each game. This is done on your PC,
+          <span style={{color: "var(--accent-yellow)"}}> no replays will be uploaded anywhere.</span>
           <br/>
           <br/>
           If you find any bugs, you cand DM me or post them on GitHub.
           The code is open source, so feel free to contribute!
           <br/>
-          This project is not associated with Slippi or the Slippi team.
+          This project is not associated with Slippi or its developers.
         </span>
         <div className="flex flex-row items-center" style={{marginBottom: '1em', marginTop: '1em'}}>
           <img style={profiles_style} src={marahlogo} alt="marah"/>

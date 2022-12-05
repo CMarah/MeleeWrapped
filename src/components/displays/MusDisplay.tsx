@@ -25,18 +25,16 @@ export const MusDisplay: React.FC<Props> = ({ data, main_progress }) => {
       >
         <div style={{marginBottom: '6.5em'}}></div>
         <AnimatedText content={"And who did you fight?"} inProp={partial_progress >= 5} />
-        <AnimatedText content={<span>
-            Here are your 2022's
-            most common matchups:
-          </span>}
+        <AnimatedText
+          content={<span>Here are your 2022's most common matchups:</span>}
           inProp={partial_progress >= 15}
         />
         <div style={{marginBottom: '2.5em'}}></div>
         <div style={{ height: 'calc(100% - 9emm)' }}>
           <BarChart data={data.op_chars.slice(0, num_chars)}/>
         </div>
+        <CornerIcon char_name={data.op_chars[0].name}/>
       </div>
     </CSSTransition>
-    <CornerIcon char_name={data.op_chars[0].name}/>
   </>);
 };

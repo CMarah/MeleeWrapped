@@ -38,8 +38,12 @@ export const CharsDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <div style={{ height: 'calc(100% - 9emm)' }}>
           <BarChart data={data.my_chars.slice(0, num_chars)}/>
         </div>
+        {num_chars <= 2 && (<AnimatedText
+          content={"You know, it's ok to play other characters too."}
+          inProp={partial_progress >= 50}
+        />)}
+        <CornerIcon char_name={data.my_chars[0].name}/>
       </div>
     </CSSTransition>
-    <CornerIcon char_name={data.my_chars[0].name}/>
   </>);
 };

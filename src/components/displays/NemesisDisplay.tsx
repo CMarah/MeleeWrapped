@@ -38,6 +38,10 @@ export const NemesisDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <div style={{ height: 'calc(100% - 9emm)' }}>
           <BarChart data={formatted_data}/>
         </div>
+        {data.nemesis.length <= 2 && (<AnimatedText
+          content={<span>I'm sure they won't get jelaous<br/>if you play other people.</span>}
+          inProp={partial_progress >= 50}
+        />)}
         <CornerIcon char_name={''}/>
       </div>
     </CSSTransition>
