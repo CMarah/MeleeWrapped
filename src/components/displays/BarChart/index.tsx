@@ -85,7 +85,7 @@ const BarChart: React.FC<Props> = ({ data }) => {
     games: 0, winrate: 0, opacity: 0,
   });
   const enterTransition = (d: Feature, i: number) => ({
-    games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000, delay: 1200*(i+3) },
+    games: [d.games], winrate: [d.winrate], opacity: [1], timing: { duration: 1000, delay: 1200*(i) },
   });
   const leaveTransition = () => ({
     opacity: [0], timing: { duration: 1000 },

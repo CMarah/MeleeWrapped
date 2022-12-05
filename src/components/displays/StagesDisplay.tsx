@@ -24,7 +24,7 @@ export const StagesDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <AnimatedText content={"And what about stages?"} inProp={partial_progress >= 5} />
         <AnimatedText content={"This is how you did on each one:"} inProp={partial_progress >= 15} />
         <div style={{marginBottom: '2.5em'}}></div>
-        <BarChart data={data.stages}/>
+        {partial_progress >= 25 && (<BarChart data={data.stages}/>)}
         <CornerIcon char_name={data.stages[0].name}/>
       </div>
     </CSSTransition>

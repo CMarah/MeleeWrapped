@@ -30,7 +30,7 @@ export const MusDisplay: React.FC<Props> = ({ data, main_progress }) => {
           inProp={partial_progress >= 15}
         />
         <div style={{marginBottom: '2.5em'}}></div>
-        <BarChart data={data.op_chars.slice(0, num_chars)}/>
+        {partial_progress >= 25 && (<BarChart data={data.op_chars.slice(0, num_chars)}/>)}
         <CornerIcon char_name={data.op_chars[0].name}/>
       </div>
     </CSSTransition>

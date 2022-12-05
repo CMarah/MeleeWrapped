@@ -25,7 +25,8 @@ export const CharsDisplay: React.FC<Props> = ({ data, main_progress }) => {
       >
         <div style={{marginBottom: '6.5em'}}></div>
         <AnimatedText content={"Who did you play this year?"} inProp={partial_progress >= 5} />
-        <AnimatedText content={num_chars > 1 ? (<span>
+        <AnimatedText
+          content={num_chars > 1 ? (<span>
             These were your
             <span style={{color: "var(--accent-yellow)"}}><b> top {num_chars} </b></span>
             most picked characters:
@@ -35,7 +36,7 @@ export const CharsDisplay: React.FC<Props> = ({ data, main_progress }) => {
           inProp={partial_progress >= 15}
         />
         <div style={{marginBottom: '2.5em'}}></div>
-        <BarChart data={data.my_chars.slice(0, num_chars)}/>
+        {partial_progress >= 25 && (<BarChart data={data.my_chars.slice(0, num_chars)}/>)}
         {num_chars <= 2 && (<AnimatedText
           content={"You know, it's ok to play other characters too."}
           inProp={partial_progress >= 50}
