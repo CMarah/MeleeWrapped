@@ -58,12 +58,12 @@ const Sharer: React.FC<SharerProps> = ({
       {!waiting && (<div className="flex flex-col items-center" style={{gap: '0.5em'}}>
         <div>Share your results!</div>
         <div className="flex items-center" style={{width: is_chrome ? '16em' : '12em'}}>
-          <div className="flex-1">
+          <div className="flex-1" title="Download wrap image">
             <a download="slippi-wrapped.png" href={URL.createObjectURL(screenshot_blob)}>
               <img src={dlicon} alt="copy" style={{height: '1.5em', margin: 'auto'}}/>
             </a>
           </div>
-          {is_chrome && (<div className="flex-1">
+          {is_chrome && (<div className="flex-1" title="Copy wrap image">
             <img src={copyicon} alt="copy" onClick={() => {
               takeScreenshot();
               setShowCopiedMessage(true);

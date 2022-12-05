@@ -42,6 +42,16 @@
   background: var(--accent-green);
 }
 
+.question-button {
+  opacity: 0.8;
+  cursor: pointer;
+  position: absolute;
+  right: 1em;
+}
+.question-button:hover {
+  opacity: 1;
+}
+
 .App-body {
   height: calc(100% - 4em - 4em);
   display: flex;

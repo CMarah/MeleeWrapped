@@ -5,12 +5,21 @@ interface HeaderProps {
   setOpenModal: (done: boolean) => void;
 }
 
+const profiles_style = {
+  borderRadius: '50%',
+  backgroundColor: '#adffe1',
+  width: '2.4em',
+  height: '2.4em',
+  border: 'solid',
+  borderWidth: '0.1em',
+};
+
 const Header = ({ setOpenModal }: HeaderProps) => (
   <div className="App-header">
     <div className="text-2xl flex items-center" style={{gap: "0.5em"}}>
-      <img src={frog} alt="" style={{width: "2em"}}/>
+      <img style={profiles_style} src={frog} alt="marah"/>
       Slippi Wrapped
-      <div style={{cursor: "pointer", position: 'absolute', right: '1em'}} onClick={() => setOpenModal(true)}>
+      <div className="question-button" onClick={() => setOpenModal(true)}>
         <img src={question_icon} alt="" style={{width: "1.5em"}}/>
       </div>
     </div>
