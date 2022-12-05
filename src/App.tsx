@@ -24,14 +24,14 @@ const App = () => {
   const main_ref = useRef<HTMLDivElement>(null);
   const [ screenshot_blob, setScreenshotBlob ] = useState<Blob>(new Blob());
   const [ screenshot_uri, setScreenshotUri   ] = useState<string>('');
-  const takeScreenshot = useCallback((dont_copy: boolean) => {
+  const takeScreenshot = useCallback(() => {
     if (!main_ref.current) return null;
-    return screenshotAndCopy(main_ref.current, !!is_chrome && !dont_copy)
+    return screenshotAndCopy(main_ref.current, !!is_chrome)
   }, [main_ref]);
   useEffect(() => {
     // When done, set screenshot after 1 sec
     if (done) setTimeout(async () => {
-      const blob = await takeScreenshot(true);
+      const blob = await takeScreenshot();
       if (blob) {
         setScreenshotBlob(blob || new Blob());
         setScreenshotUri(URL.createObjectURL(blob));

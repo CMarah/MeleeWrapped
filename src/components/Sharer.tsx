@@ -40,10 +40,9 @@ const Sharer: React.FC<SharerProps> = ({
   const twitter_url = twitterUrl(text, wrapped_url);
 
   const shareOnTwitter = () => {
-    takeScreenshot();
-    window.open(twitter_url, '_blank', 'popup=1,width=650,height=400,top=100');
-    // Start 5 secs timeout displaying message
+    // Start 7 secs timeout displaying message
     setWaiting(true);
+    window.open(twitter_url, '_blank', 'popup=1,width=650,height=400,top=100');
     setTimeout(() => {
       setWaiting(false);
     }, 7000);
@@ -89,17 +88,17 @@ const Sharer: React.FC<SharerProps> = ({
               <AnimatedText content={'Copied'} inProp={show_copied_message2} />
             </div>
           </div>
-          <div className="flex-1" style={{height: '1.5em'}}>
-            <FontAwesomeIcon
-              icon={faTwitter} style={{marginLeft: '0.5em', cursor: 'pointer', height: '1.5em'}}
-              onClick={shareOnTwitter}
-            />
+          <div
+            className="flex-1" style={{height: '1.5em'}}
+            onClick={shareOnTwitter}
+          >
+            <FontAwesomeIcon icon={faTwitter} style={{marginLeft: '0.5em', cursor: 'pointer', height: '1.5em'}}/>
           </div>
         </div>
       </div>)}
       {waiting && (<div style={{marginBottom: '1em'}}>
         {is_chrome ?
-          (<>Results <b>copied to clipboard</b>,<br/> paste them on the twitter popup that opened...</>) :
+          (<>Results should have been <b>copied to clipboard</b>,<br/> paste them on the twitter popup that opened...</>) :
           (<>You may want to <b>copy to clipboard</b> the image above,<br/> and paste it on the twitter popup that opened...</>)
         }
       </div>)}
