@@ -35,9 +35,7 @@ export const CharsDisplay: React.FC<Props> = ({ data, main_progress }) => {
           inProp={partial_progress >= 15}
         />
         <div style={{marginBottom: '2.5em'}}></div>
-        <div style={{ height: 'calc(100% - 9emm)' }}>
-          <BarChart data={data.my_chars.slice(0, num_chars)}/>
-        </div>
+        <BarChart data={data.my_chars.slice(0, num_chars)}/>
         {num_chars <= 2 && (<AnimatedText
           content={"You know, it's ok to play other characters too."}
           inProp={partial_progress >= 50}

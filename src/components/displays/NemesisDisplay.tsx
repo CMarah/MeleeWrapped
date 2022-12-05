@@ -35,9 +35,7 @@ export const NemesisDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <AnimatedText content={"You are only half of every match"} inProp={partial_progress >= 5} />
         <AnimatedText content={"These were your most played opponents in 2022:"} inProp={partial_progress >= 15} />
         <div style={{marginBottom: '2.5em'}}></div>
-        <div style={{ height: 'calc(100% - 9emm)' }}>
-          <BarChart data={formatted_data}/>
-        </div>
+        <BarChart data={formatted_data}/>
         {data.nemesis.length <= 2 && (<AnimatedText
           content={<span>I'm sure they won't get jelaous<br/>if you play other people.</span>}
           inProp={partial_progress >= 50}
