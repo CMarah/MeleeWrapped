@@ -36,11 +36,11 @@ const Sharer: React.FC<SharerProps> = ({
 
   const shareOnTwitter = () => {
     takeScreenshot();
-    // Start 5 secs timeout to open twitter, displaying message
+    window.open(twitter_url, '_blank', 'popup=1,width=650,height=400,top=100');
+    // Start 5 secs timeout displaying message
     setWaiting(true);
     setTimeout(() => {
       setWaiting(false);
-      window.open(twitter_url, '_blank', 'popup=1,width=650,height=400');
     }, 5000);
   };
 
@@ -94,8 +94,8 @@ const Sharer: React.FC<SharerProps> = ({
       </div>)}
       {waiting && (<div style={{marginBottom: '1em'}}>
         {is_chrome ?
-          (<>Results <b>copied to clipboard</b>,<br/> paste them on the twitter popup that will open...</>) :
-          (<>You may want to <b>copy to clipboard</b> the image above,<br/> and paste it on the twitter tab that will open...</>)
+          (<>Results <b>copied to clipboard</b>,<br/> paste them on the twitter popup that opened...</>) :
+          (<>You may want to <b>copy to clipboard</b> the image above,<br/> and paste it on the twitter popup that opened...</>)
         }
       </div>)}
       {waiting && (<div className="circle">
