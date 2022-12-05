@@ -166,7 +166,7 @@
   height: 100%;
   width: 100%;
   background: white;
-  animation: circle-overlay-anim 5s forwards;
+  animation: circle-overlay-anim 7s forwards;
   transform-origin: 0 0;
 }
 

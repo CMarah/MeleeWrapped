@@ -1,12 +1,17 @@
 import React, {
   useState,
 }                   from 'react';
-import twitterlogo  from '../images/twitter.png';
 import copyicon     from '../images/copy.svg';
 import linkicon     from '../images/link.svg';
 import dlicon       from '../images/download.svg';
 import AnimatedText from './AnimatedText';
 import Replayer     from './Replayer';
+import {
+  FontAwesomeIcon,
+}                   from '@fortawesome/react-fontawesome';
+import {
+  faTwitter,
+}                   from '@fortawesome/free-brands-svg-icons';
 
 
 const userAgent = navigator.userAgent;
@@ -41,7 +46,7 @@ const Sharer: React.FC<SharerProps> = ({
     setWaiting(true);
     setTimeout(() => {
       setWaiting(false);
-    }, 5000);
+    }, 7000);
   };
 
   const copyLink = () => {
@@ -84,9 +89,9 @@ const Sharer: React.FC<SharerProps> = ({
               <AnimatedText content={'Copied'} inProp={show_copied_message2} />
             </div>
           </div>
-          <div className="flex-1">
-            <img
-              src={twitterlogo} alt="twitter" style={{height: "2em", cursor: "pointer", margin: 'auto'}}
+          <div className="flex-1" style={{height: '1.5em'}}>
+            <FontAwesomeIcon
+              icon={faTwitter} style={{marginLeft: '0.5em', cursor: 'pointer', height: '1.5em'}}
               onClick={shareOnTwitter}
             />
           </div>

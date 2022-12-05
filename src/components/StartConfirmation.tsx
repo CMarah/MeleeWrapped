@@ -62,7 +62,9 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
         style={{
           width: '5em',
           cursor: 'cursor',
-          color: 'var(--accent-yellow)',
+          background: 'var(--accent-yellow)',
+          color: 'var(--dark-1)',
+          fontWeight: 700,
         }}
       >Go!</div>
       <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>

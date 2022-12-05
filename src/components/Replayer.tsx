@@ -12,7 +12,8 @@ const Replayer: React.FC<ReplayerProps> = ({
       style={{
         width: '5em',
         cursor: 'cursor',
-        color: 'var(--accent-yellow)',
+        background: 'var(--accent-yellow)',
+        color: 'var(--dark-1)',
       }}
     >
       Replay?
