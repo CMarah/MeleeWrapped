@@ -11,6 +11,14 @@ import {
   PlayerNames,
 }                                from './types';
 
+const hasOneOfTheCodes = (codes: Array<string>) => (result: Result) => {
+  const { metadata } = result;
+  const player_0_code = metadata.players[0].names.code;
+  const player_1_code = metadata.players[1].names.code;
+  console.log(player_0_code, player_1_code, codes);
+  return codes.includes(player_0_code) || codes.includes(player_1_code);
+};
+
 const getWinner = (result: Result) => {
   const { stats } = result;
   const player_0_deaths = stats.stocks.filter(
@@ -157,17 +165,18 @@ const sortNames = (nemesis: Nemesis[]) => nemesis.map((nem) => ({
 
 export const getData = (valid_results: Array<Result>, codes: Array<string>): (CleanData | null) => {
   if (valid_results.length === 0) return null;
+  const clean_results = valid_results.filter(hasOneOfTheCodes(codes));
 
-  const match_info = valid_results.map(getMatchInfo(codes));
-  const data = synthetizeData(match_info, valid_results.length);
+  const match_info = clean_results.map(getMatchInfo(codes));
+  const data = synthetizeData(match_info, clean_results.length);
 
   const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars']
     .map(getRelevantData(data));
-  const winrate = data.wins/valid_results.length;
+  const winrate = data.wins/clean_results.length;
 
   const res = {
     playtime: data.playtime,
-    games: valid_results.length,
+    games: clean_results.length,
     apm: data.apm,
     damage_per_opening: data.damage_per_opening,
     openings_per_kill: data.openings_per_kill,
