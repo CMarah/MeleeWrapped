@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.080273bd.css",
-    "main.js": "/static/js/main.e6b6af91.js",
+    "main.js": "/static/js/main.e9b405ca.js",
     "static/js/520.491e9ca9.chunk.js": "/static/js/520.491e9ca9.chunk.js",
     "static/js/59.b739e26c.chunk.js": "/static/js/59.b739e26c.chunk.js",
     "static/js/268.f75ac3ac.chunk.js": "/static/js/268.f75ac3ac.chunk.js",
@@ -16,6 +16,7 @@
     "static/media/dreamland.png": "/static/media/dreamland.d8d0212c214936226b20.png",
     "static/media/fod.png": "/static/media/fod.8edafc2691975cd48189.png",
     "static/media/fd.png": "/static/media/fd.76bb1358cdf6e8f0fe74.png",
+    "static/media/peach.png": "/static/media/peach.7b927204ec6779ea890e.png",
     "static/media/bowser.png": "/static/media/bowser.c2f0864f7f21330c7379.png",
     "static/media/ics.png": "/static/media/ics.1b27653f4adbade1ce5d.png",
     "static/media/fox.png": "/static/media/fox.57cda01add11b1788841.png",
@@ -25,7 +26,6 @@
     "static/media/roy.png": "/static/media/roy.5dd12a3ac7e92f312820.png",
     "static/media/bf.png": "/static/media/bf.fb9e3e973f00f474cb6c.png",
     "static/media/zelda.png": "/static/media/zelda.e27d61b65c90e5745ce7.png",
-    "static/media/peach.png": "/static/media/peach.7b927204ec6779ea890e.png",
     "static/media/dk.png": "/static/media/dk.59e1744aeae9211500fc.png",
     "static/media/doc.png": "/static/media/doc.0a5f9da895ed983e2079.png",
     "static/media/luigi.png": "/static/media/luigi.5d0b3b3384f7bb44199e.png",
@@ -59,7 +59,7 @@
     "static/media/download.svg": "/static/media/download.542783e71e27e64ecf30a9e34a3dc41f.svg",
     "static/media/yellow-icons-1.svg": "/static/media/yellow-icons-1.66c791d8c35d7435c3d03486dafb970d.svg",
     "main.080273bd.css.map": "/static/css/main.080273bd.css.map",
-    "main.e6b6af91.js.map": "/static/js/main.e6b6af91.js.map",
+    "main.e9b405ca.js.map": "/static/js/main.e9b405ca.js.map",
     "520.491e9ca9.chunk.js.map": "/static/js/520.491e9ca9.chunk.js.map",
     "59.b739e26c.chunk.js.map": "/static/js/59.b739e26c.chunk.js.map",
     "268.f75ac3ac.chunk.js.map": "/static/js/268.f75ac3ac.chunk.js.map",
@@ -74,6 +74,6 @@
   },
   "entrypoints": [
     "static/css/main.080273bd.css",
-    "static/js/main.e6b6af91.js"
+    "static/js/main.e9b405ca.js"
   ]
 }
