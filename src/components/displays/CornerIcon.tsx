@@ -24,6 +24,7 @@ import pichu        from '../../images/characters/pichu.png';
 import pikachu      from '../../images/characters/pikachu.png';
 import samus        from '../../images/characters/samus.png';
 import yoshi        from '../../images/characters/yoshi.png';
+import ness         from '../../images/characters/ness.png';
 import fd           from '../../images/stages/fd.png';
 import fod          from '../../images/stages/fod.png';
 import dreamland    from '../../images/stages/dreamland.png';
@@ -55,6 +56,7 @@ import pichu_t      from '../../images/turnips/pichu.png';
 import pikachu_t    from '../../images/turnips/pikachu.png';
 import samus_t      from '../../images/turnips/samus.png';
 import yoshi_t      from '../../images/turnips/yoshi.png';
+import ness_t       from '../../images/turnips/ness.png';
 
 interface Props {
   char_name: string;
@@ -89,6 +91,7 @@ export const CornerIcon: React.FC<Props> = ({ char_name, place_left, is_turnip }
     "Pikachu": pikachu,
     "Samus": samus,
     "Yoshi": yoshi,
+    "Ness": ness,
     "DREAMLAND": dreamland,
     "FINAL_DESTINATION": fd,
     "FOUNTAIN_OF_DREAMS": fod,
@@ -121,6 +124,7 @@ export const CornerIcon: React.FC<Props> = ({ char_name, place_left, is_turnip }
     "Pikachu": pikachu_t,
     "Samus": samus_t,
     "Yoshi": yoshi_t,
+    "Ness": ness_t,
   }[char_name]) || slippilogo;
   const conditional_style = place_left ? { left: "-5em", bottom: "-4em", width: "16em" } :
     is_turnip ? { right: "0", top: "-1em" } :
