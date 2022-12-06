@@ -39,15 +39,20 @@ const processGame = file => {
   const result = reader.readAsArrayBuffer(file);
   const game = new SlippiGame(new Uint8Array(result));
 
-  const metadata = game.getMetadata();
-  if (invalidMetadata(metadata)) return null;
-  const stats = game.getStats();
-  if (invalidStats(stats)) return null;
+  try {
+    const metadata = game.getMetadata();
+    if (invalidMetadata(metadata)) return null;
+    const stats = game.getStats();
+    if (invalidStats(stats)) return null;
 
-  return {
-    metadata,
-    stats,
-  };
+    return {
+      metadata,
+      stats,
+    };
+  } catch (e) {
+    console.log('SLIPPI-JS ERROR:', e);
+    return null;
+  }
 };
 
 self.onmessage = async ({ data }) => {
