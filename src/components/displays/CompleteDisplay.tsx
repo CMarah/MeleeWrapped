@@ -60,11 +60,11 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
     <span>
       <span style={{color: "var(--accent-yellow)"}}><b>{nemesis_name} </b></span>
       was your greatest opponent,<br/>
-      winning
+      beating them
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(winrate * 1000)/10}% </b></span>
       of the
       <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>
-      matches played with them.
+      matches played.
     </span>
   </div>);
 };
