@@ -4,6 +4,7 @@ declare var FileReaderSync: any;
 declare var self: any;
 
 const invalidMetadata = metadata => {
+  if (!metadata || !metadata.lastFrame) return true;
   if (metadata.lastFrame < 60*40) return true;
   if (!metadata.startAt.startsWith('2022')) return true;
   if (Object.keys(metadata.players).length !== 2) return true;
