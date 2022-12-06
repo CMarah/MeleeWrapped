@@ -38,6 +38,7 @@ const modal_style = {
     padding: 0,
     fontSize: '1.3em',
     width: '36em',
+    maxHeight: '90%',
   },
 };
 
