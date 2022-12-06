@@ -77,6 +77,7 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
         padding: '1em',
         background: 'var(--dark-1)',
         color: 'var(--light-1)',
+        maxHeight: '80vh',
       }}>
         <span style={{fontSize: '0.8em', textJustify: 'inter-word'}}>
           This site's obvious inspiration is the yearly Spotify Wrapped, but for Melee.
