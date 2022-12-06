@@ -36,10 +36,10 @@ const invalidStats = ({ settings, stocks, inputs }) => {
 
 const reader = new FileReaderSync();
 const processGame = file => {
-  const result = reader.readAsArrayBuffer(file);
-  const game = new SlippiGame(new Uint8Array(result));
-
   try {
+    const result = reader.readAsArrayBuffer(file);
+    const game = new SlippiGame(new Uint8Array(result));
+
     const metadata = game.getMetadata();
     if (invalidMetadata(metadata)) return null;
     const stats = game.getStats();
