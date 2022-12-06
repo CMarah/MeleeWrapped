@@ -27,9 +27,9 @@ const SlpSelector: React.FC<SlpSelectorProps> = ({
         width: '90%',
         paddingBottom: '0.8em',
       }}>
-        <p style={{marginBottom: '-0.3em'}}>You can usually find it at:</p>
-        <p style={{marginBottom: '-0.3em'}}>{'"C:/Users/<username>/Documents/Slippi"'}</p>
-        <p>Select the folder itself, not its files</p>
+        <p>You can usually find it at: {'"C:/Users/<username>/Documents/Slippi"'}</p>
+        <p>Select the folder itself, not its contents</p>
+        <p>And don't worry, <b>no files will be uploaded</b> to any server</p>
       </div>
     </div>
     <input

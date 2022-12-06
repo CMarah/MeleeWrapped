@@ -41,8 +41,7 @@ const Content: React.FC<ContentProps> = ({
       <div
         className="content relative"
         style={{
-          height: !data ? '16em' :
-                  !started ? '18em' :
+          height: !started ? '18em' :
                   !done ? 'calc(32em * 16 / 9)' : '26em',
           width:  done ? '64em' : '32em',
         }}
