@@ -55,7 +55,8 @@ const CharLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
 
 const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   const { games, winrate, names } = data.nemesis[0];
-  const nemesis_name = Object.keys(names)[0];
+  const nemesis_name = Object.entries(names)
+      .sort((a, b) => b[1] - a[1])[0][0];
   return (<div className="flex flex-grow flex-col relative justify-center">
     <span>
       <span style={{color: "var(--accent-yellow)"}}><b>{nemesis_name} </b></span>
