@@ -58,7 +58,7 @@ const Bar: React.FC<BarProps> = ({ bar_data, max_games, state }) => {
   const width2 = winrate * 100;
 
   const full_height = 2 * (BAR_HEIGHT + BAR_PADDING);
-  const bar_text = TRANSLATIONS[bar_data?.name] || bar_data.name; 
+  const bar_text = TRANSLATIONS[bar_data?.name] || bar_data.name || "";
   const text_size =
     bar_text.length > 14 ? "0.8em" :
     bar_text.length > 10 ? "0.9em" :

@@ -15,7 +15,6 @@ const hasOneOfTheCodes = (codes: Array<string>) => (result: Result) => {
   const { metadata } = result;
   const player_0_code = metadata.players[0].names.code;
   const player_1_code = metadata.players[1].names.code;
-  console.log(player_0_code, player_1_code, codes);
   return codes.includes(player_0_code) || codes.includes(player_1_code);
 };
 
