@@ -13,9 +13,9 @@ const invalidMetadata = metadata => {
   if (!metadata.players[1]?.names?.netplay) return true;
   if (!metadata.players[1]?.names?.code)    return true;
   const char_p0 = Object.keys(metadata.players[0].characters)[0];
-  if (char_p0 > 25) return true;
+  if (char_p0 > 26) return true;
   const char_p1 = Object.keys(metadata.players[1].characters)[0];
-  if (char_p1 > 25) return true;
+  if (char_p1 > 26) return true;
   return false;
 };
 
