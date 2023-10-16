@@ -34,7 +34,7 @@ const getTexts = (data: CleanData) => {
   return [
     `Let's see some details.`,
     (<span>
-      Throughout 2022, you <br/> averaged
+      Throughout 2023, you <br/> averaged
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(apm)} </b></span>
       actions per minute.
       <br/>

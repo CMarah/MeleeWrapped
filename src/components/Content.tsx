@@ -30,12 +30,12 @@ const Content: React.FC<ContentProps> = ({
   const [ already_sent, setAlreadySent ] = useState(false);
 
   return (<>
-      {!started && (<div className="subtitle">Explore your Melee 2022</div>)}
+      {!started && (<div className="subtitle">Explore your Melee 2023</div>)}
       {done && (<div
         className="flex flex-grow items-center justify-center"
         style={{ fontSize: '1.7em' }}
       >
-        {name}'s 2022 Slippi Wrap
+        {name}'s 2023 Slippi Wrap
         <img src={frog} alt="" style={{width: "2em"}}/>
       </div>)}
       <div

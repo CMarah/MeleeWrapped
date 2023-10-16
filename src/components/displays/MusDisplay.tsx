@@ -26,7 +26,7 @@ export const MusDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <div style={{marginBottom: '6.5em'}}></div>
         <AnimatedText content={"And who did you fight?"} inProp={partial_progress >= 5} />
         <AnimatedText
-          content={<span>Here are your 2022's most common matchups:</span>}
+          content={<span>Here are your 2023's most common matchups:</span>}
           inProp={partial_progress >= 15}
         />
         <div style={{marginBottom: '2.5em'}}></div>

@@ -26,7 +26,7 @@ const WINRATE_MESSAGES = [
 const getTexts = (data: CleanData) => {
   const { playtime, games, winrate } = data;
   return [
-    `2022 was one of the greatest years for Melee`,
+    `2023 was one of the greatest years for Melee`,
     "and even though you know about the pros' stats...",
     "do you know yours?",
     (<span>
