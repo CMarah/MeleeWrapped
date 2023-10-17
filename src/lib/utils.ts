@@ -29,6 +29,10 @@ export const toBase64 = (blob: Blob | null) => {
   });
 };
 
+export const get2022Results = (id: String) =>
+  fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(id as string)}`)
+    .then(res => res.json());
+
 export const getFromGcp = (id: String) =>
   fetch(`https://us-central1-meleewrapped.cloudfunctions.net/cloud-functions-firestore?id=${encodeURIComponent(id as string)}`)
     .then(res => res.json());

@@ -12,7 +12,7 @@
   --dark-2: #261C3C;
   --light-1: #ffffff;
   --light-2: #A09AAC;
-  --accent-green: #74C5A8;
+  --accent-green: #44A963; /* --accent-green: #74C5A8; prev color */
   --accent-yellow: #F2C641;
   --accent-red: #F25252;
 }
@@ -40,6 +40,17 @@
   font-weight: 600;
   color: white;
   background: var(--accent-green);
+}
+
+
+.mute-button {
+  opacity: 0.8;
+  cursor: pointer;
+  position: absolute;
+  right: 3em;
+}
+.mute-button:hover {
+  opacity: 1;
 }
 
 .question-button {

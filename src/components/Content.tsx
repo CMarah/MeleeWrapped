@@ -1,18 +1,19 @@
 import {
   useState,
-}                          from 'react';
-import DataObtainer        from './DataObtainer';
-import ResultsDisplay      from './ResultsDisplay';
-import StartConfirmation   from './StartConfirmation';
-import { CleanData }       from '../lib/types';
-import yellow_icons        from '../images/yellow-icons-1.svg';
-import frog                from '../images/minifrog.png';
+}                        from 'react';
+import DataObtainer      from './DataObtainer';
+import ResultsDisplay    from './ResultsDisplay';
+import StartConfirmation from './StartConfirmation';
+import { CleanData }     from '../lib/types';
+import yellow_icons      from '../images/yellow-icons-1.svg';
+import frog              from '../images/minifrog.png';
 
 interface ContentProps {
   done: boolean;
   setDone: (done: boolean) => void;
   codes: Array<string>;
   setCodes: (codes: Array<string>) => void;
+  muted: boolean;
 }
 
 const Content: React.FC<ContentProps> = ({
@@ -20,6 +21,7 @@ const Content: React.FC<ContentProps> = ({
   setDone,
   codes,
   setCodes,
+  muted,
 }) => {
   // Basic data
   const [ data, setData       ] = useState<CleanData>();
@@ -75,6 +77,7 @@ const Content: React.FC<ContentProps> = ({
                   setDone={setDone}
                   name={name}
                   already_sent={already_sent}
+                  muted={muted}
                 />)
               )
         }</div>

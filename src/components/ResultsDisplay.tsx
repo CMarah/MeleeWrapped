@@ -8,6 +8,7 @@ import {
   sendToGcp,
 }                    from '../lib/utils';
 import StepDisplay   from './StepDisplay';
+import MusicPlayer   from './MusicPlayer';
 import {
   PlayTimeDisplay,
   DetailsDisplay,
@@ -25,6 +26,7 @@ interface ResultsDisplayProps {
   setDone: (done: boolean) => void;
   name: string;
   already_sent: boolean;
+  muted: boolean;
 }
 
 const NUMBER_STEPS = 6;
@@ -35,6 +37,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   setDone,
   name,
   already_sent,
+  muted,
 }) => {
   const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
@@ -96,6 +99,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       <div className="absolute" onClick={rewindVideo} style={{width: "50%", height: "100%", cursor: "pointer"}}></div>
       <div className="absolute" onClick={forwardVideo} style={{width: "50%", height: "100%", left: '50%', cursor: 'pointer'}}></div>
     </div>
+    <MusicPlayer step={step} muted={muted}/>
   </div>);
 };
 export default ResultsDisplay;

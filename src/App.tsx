@@ -19,6 +19,7 @@ const App = () => {
   const [ codes, setCodes          ] = useState<Array<string>>([]);
   const [ done, setDone            ] = useState(false);
   const [ open_modal, setOpenModal ] = useState(false);
+  const [ muted, setMuted          ] = useState(false);
 
   // Screenshot logic
   const main_ref = useRef<HTMLDivElement>(null);
@@ -26,7 +27,7 @@ const App = () => {
   const [ screenshot_uri, setScreenshotUri   ] = useState<string>('');
   const takeScreenshot = useCallback(() => {
     if (!main_ref.current) return null;
-    return screenshotAndCopy(main_ref.current, !!is_chrome)
+    return screenshotAndCopy(main_ref.current, !!is_chrome);
   }, [main_ref]);
   useEffect(() => {
     // When done, set screenshot after 1 sec
@@ -40,7 +41,7 @@ const App = () => {
   }, [done, setScreenshotUri, takeScreenshot]);
 
   return (<div className="App">
-    <Header setOpenModal={setOpenModal} />
+    <Header setOpenModal={setOpenModal} muted={muted} setMuted={setMuted} />
     <div className="App-body">
       <div className="screenshot-area" ref={main_ref} style={{
         paddingBottom: screenshot_uri ? '0' : '4em',
@@ -52,6 +53,7 @@ const App = () => {
           setDone={setDone}
           codes={codes}
           setCodes={setCodes}
+          muted={muted}
         />)}
       </div>
       {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob} codes={codes}/>)}
