@@ -8,12 +8,16 @@ import {
   Result,
   CleanData,
 }                        from '../lib/types';
-import { getFromGcp }    from '../lib/utils';
+import {
+  getFromGcp,
+  get2022Results,
+}                        from '../lib/utils';
 import { getData }       from '../lib/results';
 import frog_gif          from '../images/frolee_wrapped.gif';
 
 interface DataObtainerProps {
   setData: (data: CleanData) => void;
+  setPrevYearData: (data: CleanData) => void;
   codes: Array<string>;
   setCodes: (codes: Array<string>) => void;
   setName: (name: string) => void;
@@ -26,6 +30,7 @@ const id = params.get('id');
 
 const DataObtainer: React.FC<DataObtainerProps> = ({
   setData,
+  setPrevYearData,
   codes,
   setCodes,
   setName,
@@ -39,24 +44,23 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   useEffect(() => {
     if (id) {
       setLoading(true);
-      try {
+      const fetchData = async () => {
         const codes = atob(id).split(',');
-        getFromGcp(id)
-          .then(response => {
-            if (response) {
-              setName(response.name);
-              setCodes(codes);
-              setData(response.results);
-            }
-            setAlreadySent(true);
-            setLoading(false);
-          })
-      } catch (err) {
+        const response_2023 = await getFromGcp(id);
+        const response_2022 = await get2022Results(id);
+        setName(response_2023.name);
+        setCodes(codes);
+        setData(response_2023.results);
+        setPrevYearData(response_2022);
+        setAlreadySent(true);
+        setLoading(false);
+      };
+      fetchData().catch(err => {
         console.error(err);
         setLoading(false);
-      }
+      });
     }
-  }, [setCodes, setData, setName, setAlreadySent]);
+  }, [setCodes, setData, setPrevYearData, setName, setAlreadySent]);
 
   // Codes found, prepare data
   useEffect(() => {
@@ -67,6 +71,18 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
       }
     }
   }, [results, codes, setData]);
+
+  // Download prev year's data
+  useEffect(() => {
+    if (codes && codes.length) {
+      const id_from_codes = btoa(codes.toString());
+      get2022Results(id_from_codes).then(data => {
+        if (data && data.results) {
+          setPrevYearData(data.results);
+        }
+      });
+    }
+  }, [codes, setPrevYearData]);
 
   if (loading) {
     return (<div className="flex flex-grow flex-col relative items-center" style={{width: '25em', height: '100%'}}>
@@ -81,9 +97,9 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   }
 
   // TODO hacer primer calculo del codigo aqui, para evitar frame de espera
-  return (<>{
-    results.length === 0 ? (<SlpFilesProcessor setFullResults={setResults}/>) :
-      (<CodeInput results={results} setCodes={setCodes} setName={setName}/>)
+  return (<>{results.length === 0 ?
+    (<SlpFilesProcessor setFullResults={setResults}/>) :
+    (<CodeInput results={results} setCodes={setCodes} setName={setName}/>)
   }</>);
 };
 export default DataObtainer;

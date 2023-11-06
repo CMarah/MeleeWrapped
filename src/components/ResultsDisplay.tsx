@@ -22,6 +22,7 @@ import sadcat        from '../images/sad.jpg';
 
 interface ResultsDisplayProps {
   data: CleanData,
+  prev_year_data: CleanData | null,
   codes: Array<string>;
   setDone: (done: boolean) => void;
   name: string;

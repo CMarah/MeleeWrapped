@@ -24,9 +24,10 @@ const Content: React.FC<ContentProps> = ({
   muted,
 }) => {
   // Basic data
-  const [ data, setData       ] = useState<CleanData>();
-  const [ name, setName       ] = useState<string>('');
-  const [ started, setStarted ] = useState(false);
+  const [ data, setData                   ] = useState<CleanData>();
+  const [ prev_year_data, setPrevYearData ] = useState<CleanData>();
+  const [ name, setName                   ] = useState<string>('');
+  const [ started, setStarted             ] = useState(false);
 
   // Already sent/using existing data
   const [ already_sent, setAlreadySent ] = useState(false);
@@ -61,6 +62,7 @@ const Content: React.FC<ContentProps> = ({
           !data ?
             (<DataObtainer
               setData={setData}
+              setPrevYearData={setPrevYearData}
               codes={codes}
               setCodes={setCodes}
               setName={setName}
@@ -73,6 +75,7 @@ const Content: React.FC<ContentProps> = ({
                 />) :
                 (<ResultsDisplay
                   data={data}
+                  prev_year_data={prev_year_data || null}
                   codes={codes}
                   setDone={setDone}
                   name={name}
