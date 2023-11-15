@@ -6,6 +6,7 @@ import CornerIcon        from './CornerIcon';
 
 interface Props {
   data: CleanData;
+  prev_year_data: CleanData | null;
   main_progress: number;
 };
 

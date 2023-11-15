@@ -34,12 +34,14 @@ interface MusicPlayerProps {
   muted: boolean;
 }
 
+// We may want to fade music out
+
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ step, muted }) => {
 
   useEffect(() => {
     if (step in song_changes) {
       if (song) song.pause();
-      song = new Audio(song_changes[step]);
+      song.src = song_changes[step];
       song.loop = true;
       if (song) song.play();
     }

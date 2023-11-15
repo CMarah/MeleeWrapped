@@ -6,7 +6,6 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 
 
 # TODO
-- Add music
 - Better renders (twitter)
 - Better animations / redesign (Marta)
 - Compare to prev year:
@@ -22,3 +21,5 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 - Transition ideas:
   - Each char on a shyguy (yoshis)
 - Fetch slippi.gg profile?
+
+- 

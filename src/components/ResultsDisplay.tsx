@@ -34,13 +34,14 @@ const NUMBER_STEPS = 6;
 
 const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   data,
+  prev_year_data,
   codes,
   setDone,
   name,
   already_sent,
   muted,
 }) => {
-  const [ main_progress, setMainProgress ] = useState<number>(0);
+  const [ main_progress, setMainProgress ] = useState<number>(190);
   const step = Math.floor(main_progress / 100);
 
   // Mark ending & send to GCP
@@ -63,7 +64,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     setMainProgress(main_progress => {
       const step = Math.floor(main_progress / 100);
       const relative_progress = main_progress % 100;
-      if (relative_progress < 20) {
+      if (relative_progress < 20 && step > 0) {
         return (step-1)*100;
       }
       return step*100;
@@ -83,18 +84,18 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     className="flex flex-grow relative"
     style={{ width: '100%', height: '100%' }}
   >
-    {step < NUMBER_STEPS && (<StepDisplay main_progress={main_progress} setMainProgress={setMainProgress}/>)}
+    {false && step < NUMBER_STEPS && (<StepDisplay main_progress={main_progress} setMainProgress={setMainProgress}/>)}
     <div
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}
     >
       {
-        (step === 0 && <PlayTimeDisplay data={data} main_progress={main_progress}/>) ||
-        (step === 1 && <DetailsDisplay data={data} main_progress={main_progress}/>) ||
-        (step === 2 && <CharsDisplay data={data} main_progress={main_progress}/>) ||
-        (step === 3 && <MusDisplay data={data} main_progress={main_progress}/>) ||
-        (step === 4 && <StagesDisplay data={data} main_progress={main_progress}/>) ||
-        (step === 5 && <NemesisDisplay data={data} main_progress={main_progress}/>) ||
+        (step === 0 && <PlayTimeDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 1 && <DetailsDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 2 && <CharsDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 3 && <MusDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 4 && <StagesDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 5 && <NemesisDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
                       (<CompleteDisplay data={data}/>)
       }
       <div className="absolute" onClick={rewindVideo} style={{width: "50%", height: "100%", cursor: "pointer"}}></div>
