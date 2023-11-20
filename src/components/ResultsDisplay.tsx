@@ -41,7 +41,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   already_sent,
   muted,
 }) => {
-  const [ main_progress, setMainProgress ] = useState<number>(190);
+  const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
 
   // Mark ending & send to GCP
@@ -84,7 +84,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     className="flex flex-grow relative"
     style={{ width: '100%', height: '100%' }}
   >
-    {false && step < NUMBER_STEPS && (<StepDisplay main_progress={main_progress} setMainProgress={setMainProgress}/>)}
+    {step < NUMBER_STEPS && (<StepDisplay main_progress={main_progress} setMainProgress={setMainProgress}/>)}
     <div
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}

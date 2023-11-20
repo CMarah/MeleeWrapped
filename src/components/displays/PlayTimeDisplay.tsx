@@ -34,7 +34,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
     return [
       `2023 was another great year for Melee,`,
       "but how did you do these past 12 months?",
-      games_diff < 0 ? (
+      games_diff > 0 ? (
         <span>
           You played a whopping <span style={{color: "var(--accent-yellow)"}}><b> {games} </b></span>
           games, <br/> <span style={{color: "var(--accent-yellow)"}}><b> {games_diff} </b></span>
