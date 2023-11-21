@@ -64,73 +64,51 @@ interface Props {
   is_turnip?: boolean;
 }
 
+const STAGES_CHARS = {
+  "DK": dk, "Young Link": yl, "Dr. Mario": doc, "Fox": fox, "Mr. G&W": gaw, "Ice Climbers": ics, "Roy": roy,
+  "Link": link, "Falco": falco, "Mario": mario, "Sheik": sheik, "Zelda": zelda, "Cpt. Falcon": falcon,
+  "Marth": marth, "Luigi": luigi, "Bowser": bowser, "Ganondorf": ganon, "Jigglypuff": jigglypuff,
+  "Kirby": kirby, "Mewtwo": mewtwo, "Peach": peach, "Pichu": pichu, "Pikachu": pikachu, "Samus": samus,
+  "Yoshi": yoshi, "Ness": ness, "DREAMLAND": dreamland, "FINAL_DESTINATION": fd, "FOUNTAIN_OF_DREAMS": fod,
+  "YOSHIS_STORY": yoshis, "BATTLEFIELD": bf, "POKEMON_STADIUM": pokemon,
+};
+
+const TURNIPS = {
+  "DK": dk_t, "Young Link": yl_t, "Dr. Mario": doc_t, "Fox": fox_t, "Mr. G&W": gaw_t, "Ice Climbers": ics_t, "Roy": roy_t,
+  "Link": link_t, "Falco": falco_t, "Mario": mario_t, "Sheik": sheik_t, "Zelda": zelda_t, "Cpt. Falcon": falcon_t, "Marth": marth_t,
+  "Luigi": luigi_t, "Bowser": bowser_t, "Ganondorf": ganon_t, "Jigglypuff": jigglypuff_t, "Kirby": kirby_t, "Mewtwo": mewtwo_t,
+  "Peach": peach_t, "Pichu": pichu_t, "Pikachu": pikachu_t, "Samus": samus_t, "Yoshi": yoshi_t, "Ness": ness_t,
+};
+
+const CUSTOM_STYLES = {
+  "Fox": { left: "-3em", bottom: "-1em", width: "18em" },
+  "Falco": { left: "-3em", bottom: "-3em", width: "18em" },
+  "Marth": { left: "-3em", bottom: "-2em", width: "18em" },
+  "Sheik": { left: "-5em", bottom: "-7em", width: "24em" },
+  "Ice Climbers": { left: "-3em", bottom: "-4em", width: "18em" },
+  "Cpt. Falcon": { left: "-3em", bottom: "0", width: "18em" },
+  "Luigi": { left: "-3em", bottom: "-2em", width: "18em" },
+  "Ganondorf": { left: "-1em", bottom: "-3em", width: "20em" },
+  "Jigglypuff": { left: "-4em", bottom: "-5em", width: "20em" },
+  "Peach": { left: "-3em", bottom: "0", width: "16em" },
+  "Pikachu": { left: "-3em", bottom: "-4em", width: "20em" },
+  "Samus": { left: "-7em", bottom: "-1em", width: "20em" },
+  "Yoshi": { left: "-4em", bottom: "-2em", width: "20em" },
+};
+
 export const CornerIcon: React.FC<Props> = ({ char_name, place_left, is_turnip }) => {
-  const source_to_use = (!is_turnip ? {
-    "DK": dk,
-    "Young Link": yl,
-    "Dr. Mario": doc,
-    "Fox": fox,
-    "Mr. G&W": gaw,
-    "Ice Climbers": ics,
-    "Roy": roy,
-    "Link": link,
-    "Falco": falco,
-    "Mario": mario,
-    "Sheik": sheik,
-    "Zelda": zelda,
-    "Cpt. Falcon": falcon,
-    "Marth": marth,
-    "Luigi": luigi,
-    "Bowser": bowser,
-    "Ganondorf": ganon,
-    "Jigglypuff": jigglypuff,
-    "Kirby": kirby,
-    "Mewtwo": mewtwo,
-    "Peach": peach,
-    "Pichu": pichu,
-    "Pikachu": pikachu,
-    "Samus": samus,
-    "Yoshi": yoshi,
-    "Ness": ness,
-    "DREAMLAND": dreamland,
-    "FINAL_DESTINATION": fd,
-    "FOUNTAIN_OF_DREAMS": fod,
-    "YOSHIS_STORY": yoshis,
-    "BATTLEFIELD": bf,
-    "POKEMON_STADIUM": pokemon,
-  }[char_name] : {
-    "DK": dk_t,
-    "Young Link": yl_t,
-    "Dr. Mario": doc_t,
-    "Fox": fox_t,
-    "Mr. G&W": gaw_t,
-    "Ice Climbers": ics_t,
-    "Roy": roy_t,
-    "Link": link_t,
-    "Falco": falco_t,
-    "Mario": mario_t,
-    "Sheik": sheik_t,
-    "Zelda": zelda_t,
-    "Cpt. Falcon": falcon_t,
-    "Marth": marth_t,
-    "Luigi": luigi_t,
-    "Bowser": bowser_t,
-    "Ganondorf": ganon_t,
-    "Jigglypuff": jigglypuff_t,
-    "Kirby": kirby_t,
-    "Mewtwo": mewtwo_t,
-    "Peach": peach_t,
-    "Pichu": pichu_t,
-    "Pikachu": pikachu_t,
-    "Samus": samus_t,
-    "Yoshi": yoshi_t,
-    "Ness": ness_t,
-  }[char_name]) || slippilogo;
-  const conditional_style = place_left ? { left: "-5em", bottom: "-4em", width: "16em" } :
+  const source_to_use = is_turnip ?
+    (TURNIPS as { [key: string]: any })[char_name] :
+    (STAGES_CHARS as { [key: string]: any })[char_name];
+
+  const conditional_style = (CUSTOM_STYLES as { [key: string]: any })[char_name] || (
+    place_left ? { left: "-5em", bottom: "-4em", width: "16em" } :
     is_turnip ? { right: "0", top: "-1em" } :
-    { right: "-3em", bottom: "-5em" };
+    { right: "-3em", bottom: "-5em" }
+  );
+
   return (
-    <img src={source_to_use} alt="" style={{
+    <img src={source_to_use || slippilogo} alt="" style={{
       width: is_turnip ? "4em" : "20em",
       opacity: "0.5",
       position: "absolute",

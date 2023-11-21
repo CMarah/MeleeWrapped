@@ -42,7 +42,7 @@ export const CharsDisplay: React.FC<Props> = ({ data, main_progress }) => {
           content={"You know, it's ok to play other characters too."}
           inProp={partial_progress >= 50}
         />)}
-        <CornerIcon char_name={data.my_chars[0].name}/>
+        <CornerIcon char_name={data.my_chars[0].name} place_left/>
       </div>
     </CSSTransition>
   </>);
