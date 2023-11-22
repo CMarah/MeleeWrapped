@@ -20,7 +20,6 @@ const phrases = [
   "HRC typo is the GOAT",
   "Stop rolling from the corner",
   "My dog ate the 3000$ controller",
-  "Turnips are cheap today",
   "Gotta work on those chaingrabs",
   "Gotta work on those wavedashes",
   "Stop nairing the crouched Samus",

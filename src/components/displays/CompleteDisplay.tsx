@@ -75,9 +75,8 @@ export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) =>
     className="flex flex-col items-center justify-center w-full h-full"
     style={{fontSize: '1.4em', marginBottom: '1.5em', marginTop: '1.5em'}}
   >
-    <CornerIcon char_name={data.my_chars[0].name} is_turnip/>
     <PlayTimeLine data={data} />
     <CharLine data={data} />
     <NemesisLine data={data} />
-    <CornerIcon char_name={data.my_chars[0].name} place_left/>
+    <CornerIcon char_name={data.my_chars[0].name} place_left scale_down/>
   </div>);

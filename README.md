@@ -5,7 +5,6 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 
 # TODO
 - Better animations / redesign (Marta)
-- Add Opera compatibility
 - Check .slp changes (winner)
 - Ranked stuff (?)
 - Fetch slippi.gg profile?

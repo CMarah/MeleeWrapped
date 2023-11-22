@@ -10,7 +10,6 @@ import kofilogo    from '../images/kofi.png';
 import patreonlogo from '../images/patreon.png';
 import omnomnado   from '../images/omnomnado.jpg';
 import slippilogo  from '../images/slippilogo.svg';
-import sandralogo  from '../images/sandra.jpg';
 import marahlogo   from '../images/marahlogo.jpg';
 import mpslogo     from '../images/mps.jpg';
 
@@ -143,18 +142,6 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
               </a>
             </div>
             <span style={{fontSize: '0.8em'}}>Slippi Wrapped logo and design help.</span>
-          </div>
-        </div>
-        <div className="flex flex-row items-center" style={{marginBottom: '1em'}}>
-          <img style={profiles_style} src={sandralogo} alt="SandrewBkmn"/>
-          <div>
-            <div className='flex flex-row'>
-              Sandrew Bkmn &nbsp;
-              <a href="https://twitter.com/SandrewBkmn" target="_blank" rel="noreferrer">
-                <img src={twitterlogo} style={{width: '1.5em'}} alt="sandrew twitter link"/>
-              </a>
-            </div>
-            <span style={{fontSize: '0.8em'}}>Character turnip icons.</span>
           </div>
         </div>
         <div className="flex flex-row items-center" style={{marginBottom: '1em'}}>
