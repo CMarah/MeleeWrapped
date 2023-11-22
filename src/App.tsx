@@ -10,6 +10,7 @@ import Content               from './components/Content';
 import Footer                from './components/Footer';
 import Sharer                from './components/Sharer';
 import AboutModal            from './components/AboutModal';
+import MusicPlayer           from './components/MusicPlayer';
 import { screenshotAndCopy } from './lib/utils';
 
 const is_chrome = navigator.userAgent.match(/chrome|chromium|crios/i);
@@ -48,6 +49,7 @@ const App = () => {
         paddingTop: screenshot_uri ? '0' : '2em',
       }}>
         {screenshot_uri && (<img src={screenshot_uri} alt="summary"/>)}
+        {done && (<MusicPlayer step={6} muted={muted}/>)}
         {!screenshot_uri && (<Content
           done={done}
           setDone={setDone}

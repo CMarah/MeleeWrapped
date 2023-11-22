@@ -2,7 +2,7 @@ import {
   useEffect,
 } from 'react';
 
-const corneria   = require('../music/corneria.mp3');
+// const corneria   = require('../music/corneria.mp3');
 const allstar    = require('../music/allstar.mp3');
 // const earthbound = require('../music/earthbound.mp3');
 const mother     = require('../music/mother.mp3');
@@ -10,7 +10,7 @@ const mother2    = require('../music/mother2.mp3');
 const saria      = require('../music/saria.mp3');
 const targets    = require('../music/targets.mp3');
 const trophy     = require('../music/trophy.mp3');
-const yoshis     = require('../music/yoshis.mp3');
+// const yoshis     = require('../music/yoshis.mp3');
 
 type SongToStep = {
   [key: number]: string;
@@ -23,11 +23,9 @@ const song_changes: SongToStep = {
   4: saria,
   5: targets,
   6: trophy,
-  7: yoshis,
-  8: corneria,
 };
 let song: HTMLAudioElement = new Audio(allstar);
-song.volume = 0.4;
+song.volume = 0.3;
 
 interface MusicPlayerProps {
   step: number;
@@ -39,6 +37,7 @@ interface MusicPlayerProps {
 const MusicPlayer: React.FC<MusicPlayerProps> = ({ step, muted }) => {
 
   useEffect(() => {
+    // Change music
     if (step in song_changes) {
       if (song) song.pause();
       song.src = song_changes[step];
@@ -46,9 +45,18 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ step, muted }) => {
       if (song) song.play();
     }
   }, [step]);
+
   useEffect(() => {
-    if (song) song.volume = muted ? 0 : 0.4;
+    // Mute/unmute music
+    if (song) song.volume = muted ? 0 : 0.3;
   }, [muted]);
+
+  useEffect(() => {
+    // Turn off music when unmounting
+    return () => {
+      if (song) song.pause();
+    }
+  }, []);
 
   return (<div></div>);
 };

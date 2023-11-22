@@ -9,3 +9,4 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 - Check .slp changes (winner)
 - Ranked stuff (?)
 - Fetch slippi.gg profile?
+- Fix cloud function errors

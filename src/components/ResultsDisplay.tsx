@@ -85,6 +85,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     style={{ width: '100%', height: '100%' }}
   >
     {step < NUMBER_STEPS && (<StepDisplay main_progress={main_progress} setMainProgress={setMainProgress}/>)}
+    {step < NUMBER_STEPS && (<MusicPlayer step={step} muted={muted}/>)}
     <div
       className="flex flex-col flex-grow"
       style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}
@@ -101,7 +102,6 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       <div className="absolute" onClick={rewindVideo} style={{width: "50%", height: "100%", cursor: "pointer"}}></div>
       <div className="absolute" onClick={forwardVideo} style={{width: "50%", height: "100%", left: '50%', cursor: 'pointer'}}></div>
     </div>
-    <MusicPlayer step={step} muted={muted}/>
   </div>);
 };
 export default ResultsDisplay;

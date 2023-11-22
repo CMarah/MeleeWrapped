@@ -70,8 +70,8 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   </div>);
 };
 
-export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) => {
-  return (<div
+export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) =>
+  (<div
     className="flex flex-col items-center justify-center w-full h-full"
     style={{fontSize: '1.4em', marginBottom: '1.5em', marginTop: '1.5em'}}
   >
@@ -81,4 +81,3 @@ export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) => {
     <NemesisLine data={data} />
     <CornerIcon char_name={data.my_chars[0].name} place_left/>
   </div>);
-};
