@@ -48,9 +48,9 @@ const App = () => {
         paddingBottom: screenshot_uri ? '0' : '4em',
         paddingTop: screenshot_uri ? '0' : '2em',
       }}>
-        {screenshot_uri && (<img src={screenshot_uri} alt="summary"/>)}
+        {false && (<img src={screenshot_uri} alt="summary"/>)}
         {done && (<MusicPlayer step={6} muted={muted}/>)}
-        {!screenshot_uri && (<Content
+        {!false && (<Content
           done={done}
           setDone={setDone}
           codes={codes}

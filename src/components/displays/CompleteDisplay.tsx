@@ -1,11 +1,13 @@
 import { CleanData } from '../../lib/types';
 import CornerIcon    from './CornerIcon';
+import LeagueIcon    from './LeagueIcon';
 
 interface CompleteDisplayLineProps {
   data: CleanData;
 };
 interface CompleteDisplayProps {
   data: CleanData;
+  slippigg_elo: number | null;
 };
 
 const PlayTimeLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
@@ -70,7 +72,7 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
   </div>);
 };
 
-export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) =>
+export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data, slippigg_elo }) =>
   (<div
     className="flex flex-col items-center justify-center w-full h-full"
     style={{fontSize: '1.4em', marginBottom: '1.5em', marginTop: '1.5em'}}
@@ -79,4 +81,5 @@ export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data }) =>
     <CharLine data={data} />
     <NemesisLine data={data} />
     <CornerIcon char_name={data.my_chars[0].name} place_left scale_down/>
+    <LeagueIcon slippigg_elo={slippigg_elo} />
   </div>);

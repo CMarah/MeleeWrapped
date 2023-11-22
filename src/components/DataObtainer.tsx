@@ -11,6 +11,7 @@ import {
 import {
   getFromGcp,
   get2022Results,
+  getSlippiggElo,
 }                        from '../lib/utils';
 import { getData }       from '../lib/results';
 import frog_gif          from '../images/frolee_wrapped.gif';
@@ -18,6 +19,7 @@ import frog_gif          from '../images/frolee_wrapped.gif';
 interface DataObtainerProps {
   setData: (data: CleanData) => void;
   setPrevYearData: (data: CleanData) => void;
+  setSlippiggElo: (elo: number) => void;
   codes: Array<string>;
   setCodes: (codes: Array<string>) => void;
   setName: (name: string) => void;
@@ -31,6 +33,7 @@ const id = params.get('id');
 const DataObtainer: React.FC<DataObtainerProps> = ({
   setData,
   setPrevYearData,
+  setSlippiggElo,
   codes,
   setCodes,
   setName,
@@ -48,10 +51,12 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
         const codes = atob(id).split(',');
         const response_2023 = await getFromGcp(id);
         const response_2022 = await get2022Results(id);
+        const slippigg_data = await getSlippiggElo(codes.toString());
         setName(response_2023.name);
         setCodes(codes);
         setData(response_2023.results);
         setPrevYearData(response_2022);
+        setSlippiggElo(slippigg_data);
         setAlreadySent(true);
         setLoading(false);
       };
@@ -60,7 +65,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
         setLoading(false);
       });
     }
-  }, [setCodes, setData, setPrevYearData, setName, setAlreadySent]);
+  }, [setCodes, setData, setPrevYearData, setName, setAlreadySent, setSlippiggElo]);
 
   // Codes found, prepare data
   useEffect(() => {
@@ -72,7 +77,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
     }
   }, [results, codes, setData]);
 
-  // Download prev year's data
+  // Download prev year's data & slippigg elo
   useEffect(() => {
     if (codes && codes.length) {
       const id_from_codes = btoa(codes.toString());
@@ -81,8 +86,11 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
           setPrevYearData(data.results);
         }
       });
+      getSlippiggElo(codes.toString()).then(elo => {
+        setSlippiggElo(elo);
+      });
     }
-  }, [codes, setPrevYearData]);
+  }, [codes, setPrevYearData, setSlippiggElo]);
 
   if (loading) {
     return (<div className="flex flex-grow flex-col relative items-center" style={{width: '25em', height: '100%'}}>

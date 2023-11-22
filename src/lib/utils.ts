@@ -29,6 +29,39 @@ export const toBase64 = (blob: Blob | null) => {
   });
 };
 
+export const getSlippiggElo = async (code: String) => {
+  try {
+    const data = await fetch("https://gql-gateway-dot-slippi.uc.r.appspot.com/graphql", {
+      "headers": {
+        "accept": "*/*",
+        "accept-language": "en,es-ES;q=0.9,es;q=0.8",
+        "apollographql-client-name": "slippi-web",
+        "content-type": "application/json",
+        "sec-ch-ua": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "cross-site"
+      },
+      "referrer": "https://slippi.gg/",
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "body": '{"operationName":"AccountManagementPageQuery","variables":{"cc":"' + code +
+        '","uid":"' + code +
+        '"},"query":"fragment profileFields on NetplayProfile {\\n  id\\n  ratingOrdinal\\n  ratingUpdateCount\\n  wins\\n  losses\\n  characters {\\n    id\\n    character\\n    gameCount\\n   }\\n  }\\n\\nfragment userProfilePage on User {\\n  fbUid\\n  displayName\\n  connectCode {\\n    code\\n    }\\n  status\\n  rankedNetplayProfile {\\n    ...profileFields\\n  }\\n  netplayProfiles {\\n    ...profileFields\\n    season {\\n      id\\n      startedAt\\n      endedAt\\n      name\\n      status\\n      }\\n    }\\n  }\\n\\nquery AccountManagementPageQuery($cc: String!, $uid: String!) {\\n  getUser(fbUid: $uid) {\\n    ...userProfilePage\\n   }\\n  getConnectCode(code: $cc) {\\n    user {\\n      ...userProfilePage\\n      }\\n    }\\n}\\n"}',
+      "method": "POST",
+      "mode": "cors",
+      "credentials": "omit"
+    })
+      .then(r => r.json())
+      .then(r => r.data.getConnectCode.user.netplayProfiles);
+    return data.reduce((max_elo: number, profile: any) =>
+      profile.ratingOrdinal > max_elo ? profile.ratingOrdinal : max_elo
+    , 0);
+  } catch (e) {
+    console.error('SLIPPI ERROR:', e);
+    return 0;
+  }
+};
+
 export const get2022Results = (id: String) =>
   fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(id as string)}`)
     .then(res => res.json());

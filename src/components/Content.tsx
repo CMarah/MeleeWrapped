@@ -26,6 +26,7 @@ const Content: React.FC<ContentProps> = ({
   // Basic data
   const [ data, setData                   ] = useState<CleanData>();
   const [ prev_year_data, setPrevYearData ] = useState<CleanData>();
+  const [ slippigg_elo, setSlippiggElo    ] = useState<number>();
   const [ name, setName                   ] = useState<string>('');
   const [ started, setStarted             ] = useState(false);
 
@@ -63,6 +64,7 @@ const Content: React.FC<ContentProps> = ({
             (<DataObtainer
               setData={setData}
               setPrevYearData={setPrevYearData}
+              setSlippiggElo={setSlippiggElo}
               codes={codes}
               setCodes={setCodes}
               setName={setName}
@@ -76,6 +78,7 @@ const Content: React.FC<ContentProps> = ({
                 (<ResultsDisplay
                   data={data}
                   prev_year_data={prev_year_data || null}
+                  slippigg_elo={slippigg_elo || null}
                   codes={codes}
                   setDone={setDone}
                   name={name}

@@ -63,7 +63,7 @@ const CUSTOM_STYLES = {
   "Yoshi": { left: "-4em", bottom: "-2em", width: "20em" },
 };
 
-export const CornerIcon: React.FC<Props> = ({ char_name, place_left, scale_down }) => {
+const CornerIcon: React.FC<Props> = ({ char_name, place_left, scale_down }) => {
   const source_to_use = (STAGES_CHARS as { [key: string]: any })[char_name];
 
   const conditional_style = (CUSTOM_STYLES as { [key: string]: any })[char_name] || (

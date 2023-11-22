@@ -23,6 +23,7 @@ import sadcat        from '../images/sad.jpg';
 interface ResultsDisplayProps {
   data: CleanData,
   prev_year_data: CleanData | null,
+  slippigg_elo: number | null,
   codes: Array<string>;
   setDone: (done: boolean) => void;
   name: string;
@@ -35,6 +36,7 @@ const NUMBER_STEPS = 6;
 const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   data,
   prev_year_data,
+  slippigg_elo,
   codes,
   setDone,
   name,
@@ -97,7 +99,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
         (step === 3 && <MusDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
         (step === 4 && <StagesDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
         (step === 5 && <NemesisDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
-                      (<CompleteDisplay data={data}/>)
+                      (<CompleteDisplay data={data} slippigg_elo={slippigg_elo}/>)
       }
       <div className="absolute" onClick={rewindVideo} style={{width: "50%", height: "100%", cursor: "pointer"}}></div>
       <div className="absolute" onClick={forwardVideo} style={{width: "50%", height: "100%", left: '50%', cursor: 'pointer'}}></div>
