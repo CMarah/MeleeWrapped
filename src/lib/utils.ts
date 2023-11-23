@@ -54,11 +54,11 @@ export const getSlippiggElo = async (code: String) => {
       .then(r => r.json())
       .then(r => r.data.getConnectCode.user.netplayProfiles);
     return data.reduce((max_elo: number, profile: any) =>
-      profile.ratingOrdinal > max_elo ? profile.ratingOrdinal : max_elo
+      (profile.ratingUpdateCount && profile.ratingOrdinal > max_elo) ? profile.ratingOrdinal : max_elo
     , 0);
   } catch (e) {
     console.error('SLIPPI ERROR:', e);
-    return 0;
+    return null;
   }
 };
 

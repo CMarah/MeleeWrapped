@@ -6,6 +6,3 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 # TODO
 - Better animations / redesign (Marta)
 - Check .slp changes (winner)
-- Ranked stuff (?)
-- Fetch slippi.gg profile?
-- Fix cloud function errors

@@ -81,5 +81,5 @@ export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data, slippigg
     <CharLine data={data} />
     <NemesisLine data={data} />
     <CornerIcon char_name={data.my_chars[0].name} place_left scale_down/>
-    <LeagueIcon slippigg_elo={slippigg_elo} />
+    {slippigg_elo !== null && (<LeagueIcon slippigg_elo={slippigg_elo} />)}
   </div>);
