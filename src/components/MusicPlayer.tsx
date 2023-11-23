@@ -25,7 +25,7 @@ const song_changes: SongToStep = {
   6: trophy,
 };
 let song: HTMLAudioElement = new Audio(allstar);
-song.volume = 0.3;
+song.volume = 0.25;
 
 interface MusicPlayerProps {
   step: number;
@@ -48,7 +48,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ step, muted }) => {
 
   useEffect(() => {
     // Mute/unmute music
-    if (song) song.volume = muted ? 0 : 0.3;
+    if (song) song.volume = muted ? 0 : 0.25;
   }, [muted]);
 
   useEffect(() => {
