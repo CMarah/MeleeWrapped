@@ -23,7 +23,7 @@ interface SharerProps {
   codes: Array<string>;
 }
 
-const text = 'Check out my Melee 2022 recap! #SlippiWrapped \n';
+const text = 'Check out my Melee 2023 recap! #SlippiWrapped \n';
 const twitterUrl = (text: string, url: string) =>
   `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
 
