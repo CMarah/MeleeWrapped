@@ -1,4 +1,5 @@
 import './App.css';
+import background            from './images/background.gif';
 import {
   useState,
   useRef,

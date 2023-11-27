@@ -90,7 +90,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     {step < NUMBER_STEPS && (<MusicPlayer step={step} muted={muted}/>)}
     <div
       className="flex flex-col flex-grow"
-      style={{ width: '100%', height: '100%', backgroundColor: '#433365' }}
+      style={{ width: '100%', height: '100%', backgroundColor: 'var(--dark-2)' }}
     >
       {
         (step === 0 && <PlayTimeDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||

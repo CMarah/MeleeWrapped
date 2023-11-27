@@ -61,6 +61,7 @@ const CUSTOM_STYLES = {
   "Pikachu": { left: "-3em", bottom: "-4em", width: "20em" },
   "Samus": { left: "-7em", bottom: "-1em", width: "20em" },
   "Yoshi": { left: "-4em", bottom: "-2em", width: "20em" },
+  "BATTLEFIELD": { right: "-3em", bottom: "-2em", width: "20em" },
 };
 
 const CornerIcon: React.FC<Props> = ({ char_name, place_left, scale_down }) => {
