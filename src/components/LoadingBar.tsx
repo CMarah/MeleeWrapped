@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import frog_gif from '../images/frolee_wrapped.gif';
+import frog_gif from '../images/frolee_2023.gif';
 
 interface LoadingBarProps {
   num_files: number,
@@ -58,7 +58,7 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
 
   return (<>
     <div className="w-full flex justify-center" style={{position: "absolute"}}>
-      <img src={frog_gif} alt="" style={{width: "6em"}}/>
+      <img src={frog_gif} alt="" style={{width: "12em"}}/>
     </div>
     <div className="w-full h-6 bg-gray-200 rounded-full" style={{
       marginTop: '7em',

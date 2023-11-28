@@ -43,7 +43,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   already_sent,
   muted,
 }) => {
-  const [ main_progress, setMainProgress ] = useState<number>(0);
+  const [ main_progress, setMainProgress ] = useState<number>(580);
   const step = Math.floor(main_progress / 100);
 
   // Mark ending & send to GCP

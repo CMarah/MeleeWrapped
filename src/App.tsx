@@ -25,6 +25,7 @@ const App = () => {
 
   // Screenshot logic
   const main_ref = useRef<HTMLDivElement>(null);
+  const [ scr_background, setScrBackground ] = useState<string>('transparent');
   const [ screenshot_blob, setScreenshotBlob ] = useState<Blob>(new Blob());
   const [ screenshot_uri, setScreenshotUri   ] = useState<string>('');
   const takeScreenshot = useCallback(() => {
@@ -34,6 +35,7 @@ const App = () => {
   useEffect(() => {
     // When done, set screenshot after 1 sec
     if (done) setTimeout(async () => {
+      setScrBackground('var(--dark-1)');
       const blob = await takeScreenshot();
       if (blob) {
         setScreenshotBlob(blob || new Blob());
@@ -42,16 +44,20 @@ const App = () => {
     }, 1000);
   }, [done, setScreenshotUri, takeScreenshot]);
 
-  return (<div className="App">
+  return (<div className="App" style={{
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+  }}>
     <Header setOpenModal={setOpenModal} muted={muted} setMuted={setMuted} />
     <div className="App-body">
       <div className="screenshot-area" ref={main_ref} style={{
         paddingBottom: screenshot_uri ? '0' : '4em',
         paddingTop: screenshot_uri ? '0' : '2em',
+        backgroundColor: scr_background,
       }}>
-        {false && (<img src={screenshot_uri} alt="summary"/>)}
+        {screenshot_uri && (<img src={screenshot_uri} alt="summary"/>)}
         {done && (<MusicPlayer step={6} muted={muted}/>)}
-        {!false && (<Content
+        {!screenshot_uri && (<Content
           done={done}
           setDone={setDone}
           codes={codes}

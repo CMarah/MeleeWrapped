@@ -10,12 +10,9 @@ interface HeaderProps {
 }
 
 const profiles_style = {
-  borderRadius: '50%',
-  backgroundColor: '#adffe1',
-  width: '2.4em',
-  height: '2.4em',
-  border: 'solid',
-  borderWidth: '0.1em',
+  width: '1.5em',
+  height: '3.4em',
+  'object-fit': 'cover',
 };
 
 const Header = ({ setOpenModal, muted, setMuted }: HeaderProps) => (

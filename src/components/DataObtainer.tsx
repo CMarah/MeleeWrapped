@@ -14,7 +14,7 @@ import {
   getSlippiggElo,
 }                        from '../lib/utils';
 import { getData }       from '../lib/results';
-import frog_gif          from '../images/frolee_wrapped.gif';
+import frog_gif          from '../images/frolee_2023.gif';
 
 interface DataObtainerProps {
   setData: (data: CleanData) => void;
