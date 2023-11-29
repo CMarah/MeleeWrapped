@@ -38,6 +38,11 @@
   color: white;
 }
 
+.done-header {
+  font-family: 'Mitr', sans-serif;
+  font-weight: 600;
+}
+
 
 .mute-button {
   opacity: 0.8;

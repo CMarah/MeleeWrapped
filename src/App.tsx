@@ -25,7 +25,6 @@ const App = () => {
 
   // Screenshot logic
   const main_ref = useRef<HTMLDivElement>(null);
-  const [ scr_background, setScrBackground ] = useState<string>('transparent');
   const [ screenshot_blob, setScreenshotBlob ] = useState<Blob>(new Blob());
   const [ screenshot_uri, setScreenshotUri   ] = useState<string>('');
   const takeScreenshot = useCallback(() => {
@@ -35,7 +34,6 @@ const App = () => {
   useEffect(() => {
     // When done, set screenshot after 1 sec
     if (done) setTimeout(async () => {
-      setScrBackground('var(--dark-1)');
       const blob = await takeScreenshot();
       if (blob) {
         setScreenshotBlob(blob || new Blob());
@@ -53,7 +51,6 @@ const App = () => {
       <div className="screenshot-area" ref={main_ref} style={{
         paddingBottom: screenshot_uri ? '0' : '4em',
         paddingTop: screenshot_uri ? '0' : '2em',
-        backgroundColor: scr_background,
       }}>
         {screenshot_uri && (<img src={screenshot_uri} alt="summary"/>)}
         {done && (<MusicPlayer step={6} muted={muted}/>)}

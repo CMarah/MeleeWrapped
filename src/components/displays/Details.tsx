@@ -36,7 +36,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
     return [
       `Let's see some details.`,
       (<span>
-        Throughout 2023, you <br/> averaged
+        Throughout 2023, you averaged <br/>
         <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(apm)} </b></span>
         actions per minute
         {apm > (prev_year_data.apm + 4) && `, ${Math.floor(apm - prev_year_data.apm)} more than last year.`}.
@@ -78,7 +78,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
   return [
     `Let's see some details.`,
     (<span>
-      Throughout 2023, you <br/> averaged
+      Throughout 2023, you averaged <br/>
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(apm)} </b></span>
       actions per minute.
       <br/>

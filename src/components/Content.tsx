@@ -35,18 +35,11 @@ const Content: React.FC<ContentProps> = ({
 
   return (<>
       {!started && (<div className="subtitle">Explore your Melee 2023</div>)}
-      {done && (<div
-        className="flex flex-grow items-center justify-center"
-        style={{ fontSize: '1.7em' }}
-      >
-        {name}'s 2023 Slippi Wrap
-        <img src={frog} alt="" style={{width: "2em"}}/>
-      </div>)}
       <div
         className="content relative"
         style={{
           height: !started ? '18em' :
-                  !done ? 'calc(32em * 16 / 9)' : '26em',
+                  !done ? 'calc(32em * 16 / 9)' : '32em',
           width:  done ? '64em' : '32em',
         }}
       >
@@ -59,34 +52,44 @@ const Content: React.FC<ContentProps> = ({
         <div className="flex flex-grow items-center justify-center" style={{
           overflow: 'hidden',
           width: '100%',
-        }}>{
-          !data ?
-            (<DataObtainer
-              setData={setData}
-              setPrevYearData={setPrevYearData}
-              setSlippiggElo={setSlippiggElo}
-              codes={codes}
-              setCodes={setCodes}
-              setName={setName}
-              setAlreadySent={setAlreadySent}
-            />)
-            : (!started ?
-                (<StartConfirmation
-                  setStarted={setStarted}
-                  name={name}
-                />) :
-                (<ResultsDisplay
-                  data={data}
-                  prev_year_data={prev_year_data || null}
-                  slippigg_elo={slippigg_elo || null}
-                  codes={codes}
-                  setDone={setDone}
-                  name={name}
-                  already_sent={already_sent}
-                  muted={muted}
-                />)
-              )
-        }</div>
+          flexDirection: 'column',
+        }}>
+          {done && (<div
+            className="flex flex-grow items-center justify-center done-header"
+            style={{ fontSize: '1.7em', background: 'var(--dark-2)', width: '100%' }}
+          >
+            {name}'s 2023 Slippi Wrap
+            <img src={frog} alt="" style={{width: "3em", objectFit: 'cover', height: '4em'}}/>
+          </div>)}
+          {
+            !data ?
+              (<DataObtainer
+                setData={setData}
+                setPrevYearData={setPrevYearData}
+                setSlippiggElo={setSlippiggElo}
+                codes={codes}
+                setCodes={setCodes}
+                setName={setName}
+                setAlreadySent={setAlreadySent}
+              />)
+              : (!started ?
+                  (<StartConfirmation
+                    setStarted={setStarted}
+                    name={name}
+                  />) :
+                  (<ResultsDisplay
+                    data={data}
+                    prev_year_data={prev_year_data || null}
+                    slippigg_elo={slippigg_elo || null}
+                    codes={codes}
+                    setDone={setDone}
+                    name={name}
+                    already_sent={already_sent}
+                    muted={muted}
+                  />)
+                )
+          }
+        </div>
       </div>
     </>);
 };

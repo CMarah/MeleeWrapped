@@ -75,7 +75,7 @@ const NemesisLine: React.FC<CompleteDisplayLineProps> = ({ data }) => {
 export const CompleteDisplay: React.FC<CompleteDisplayProps> = ({ data, slippigg_elo }) =>
   (<div
     className="flex flex-col items-center justify-center w-full h-full"
-    style={{fontSize: '1.4em', marginBottom: '1.5em', marginTop: '1.5em'}}
+    style={{fontSize: '1.4em', marginBottom: '1.5em'}}
   >
     <PlayTimeLine data={data} />
     <CharLine data={data} />
