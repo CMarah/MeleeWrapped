@@ -57,14 +57,27 @@ export const getSlippiggElo = async (code: String) => {
       (profile.ratingUpdateCount && profile.ratingOrdinal > max_elo) ? profile.ratingOrdinal : max_elo
     , 0);
   } catch (e) {
-    console.error('SLIPPI ERROR:', e);
     return null;
   }
 };
 
-export const get2022Results = (id: String) =>
-  fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(id as string)}`)
-    .then(res => res.json());
+export const get2022Results = async (id: String, codes: Array<String>) => {
+  try {
+    const prev_year_results = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(id as string)}`)
+      .then(res => res.json());
+    if (!prev_year_results?.error) return prev_year_results;
+    if (codes.length !== 2) return null;
+    const ids = codes.map(code => btoa(code.toString()));
+    const pyr_1 = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(ids[0] as string)}`)
+      .then(res => res.json());
+    if (!pyr_1?.error) return pyr_1;
+    const pyr_2 = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(ids[1] as string)}`)
+      .then(res => res.json());
+    return pyr_2?.error ? null : pyr_2;
+  } catch (e) {
+    return null;
+  }
+};
 
 export const getFromGcp = (id: String) =>
   fetch(`https://us-central1-meleewrapped.cloudfunctions.net/set-2023-player-data?id=${encodeURIComponent(id as string)}`)
