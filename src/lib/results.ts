@@ -172,6 +172,7 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
   const [ nemesis, stages, my_chars, op_chars ] = ['nemesis', 'stages', 'my_chars', 'op_chars']
     .map(getRelevantData(data));
   const winrate = data.wins/clean_results.length;
+  const unique_opponents = new Set(match_info.map(({ opponent_name }) => opponent_name.code)).size;
 
   const res = {
     playtime: data.playtime,
@@ -186,6 +187,7 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
     stages,
     my_chars,
     op_chars,
+    unique_opponents,
   };
   console.log('data', res);
   return res;
