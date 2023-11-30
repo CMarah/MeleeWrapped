@@ -100,7 +100,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
       }}>
         Loading...
       </div>
-      <img src={frog_gif} alt="" style={{width: "6em"}}/>
+      <img src={frog_gif} alt="" style={{width: "12em"}}/>
     </div>);
   }
 

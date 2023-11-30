@@ -1,3 +1,6 @@
+import botonreplayh from '../images/botones/replay_boton.gif';
+import botonreplay  from '../images/botones/replay_boton_hover.gif';
+
 interface ReplayerProps {
   twitter_link: string;
 }
@@ -7,17 +10,16 @@ const Replayer: React.FC<ReplayerProps> = ({
 }) => {
 
   return (<div className="flex flex-col items-center" style={{height: '10em', width: '72em'}}>
-    <a className="code-btn"
-      href={twitter_link}
+    <div className="code-btn image-btn"
+      onClick={() => window.open(twitter_link, '_blank')}
       style={{
-        width: '5em',
-        cursor: 'cursor',
-        background: 'var(--accent-yellow)',
-        color: 'var(--dark-1)',
+        width: '7.11em',
+        height: '2em',
+        backgroundImage: `url(${botonreplay})`,
       }}
-    >
-      Replay?
-    </a>
+      onMouseOver={e => e.currentTarget.style.backgroundImage = `url(${botonreplay})`}
+      onMouseOut={e => e.currentTarget.style.backgroundImage = `url(${botonreplayh})`}
+    ></div>
   </div>);
 };
 

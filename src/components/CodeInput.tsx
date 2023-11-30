@@ -80,6 +80,8 @@ const CodeInput: React.FC<CodeInputProps> = ({
         cursor: selected_codes.length ? 'cursor' : '',
         opacity: selected_codes.length ? '1' : '0.6',
       }}
+      onMouseOver={e => selected_codes.length && (e.currentTarget.style.border = '1px solid var(--accent-yellow)')}
+      onMouseOut={e => e.currentTarget.style.border = 'none'}
     >Done</div>
   </div>);
 };

@@ -58,16 +58,16 @@ const Sharer: React.FC<SharerProps> = ({
         <div>Share your results!</div>
         <div className="flex items-center" style={{width: is_chrome ? '16em' : '12em'}}>
           <div className="flex-1" title="Download wrap image">
-            <a download="slippi-wrapped.png" href={URL.createObjectURL(screenshot_blob)}>
+            <a className="sharer-btn" download="slippi-wrapped.png" href={URL.createObjectURL(screenshot_blob)}>
               <img src={dlicon} alt="copy" style={{height: '1.5em', margin: 'auto'}}/>
             </a>
           </div>
           {is_chrome && (<div className="flex-1" title="Copy wrap image">
-            <img src={copyicon} alt="copy" onClick={() => {
+            <img src={copyicon} alt="copy" className="sharer-btn" onClick={() => {
               takeScreenshot();
               setShowCopiedMessage(true);
               setTimeout(() => setShowCopiedMessage(false), 1000);
-            }} style={{height: '1.5em', margin: 'auto', cursor: 'pointer'}}/>
+            }} style={{height: '1.5em', margin: 'auto'}}/>
             <div
               className="absolute"
               style={{ marginLeft: '0.5em', fontSize: '0.8em', color: 'white', fontWeight: 'bold' }}
@@ -76,11 +76,11 @@ const Sharer: React.FC<SharerProps> = ({
             </div>
           </div>)}
           <div className="flex-1" title="Copy link to your own Wrapped">
-            <img src={linkicon} alt="copy" onClick={() => {
+            <img src={linkicon} alt="copy" className="sharer-btn" onClick={() => {
               copyLink();
               setShowCopiedMessage2(true);
               setTimeout(() => setShowCopiedMessage2(false), 1000);
-            }} style={{height: '1.5em', margin: 'auto', cursor: 'pointer'}}/>
+            }} style={{height: '1.5em', margin: 'auto'}}/>
             <div
               className="absolute"
               style={{ marginLeft: '0.5em', fontSize: '0.8em', color: 'white', fontWeight: 'bold' }}
@@ -89,10 +89,11 @@ const Sharer: React.FC<SharerProps> = ({
             </div>
           </div>
           <div
-            className="flex-1" style={{height: '1.5em'}}
+            title="Tweet it!"
+            className="flex-1 sharer-btn" style={{height: '1.5em'}}
             onClick={shareOnTwitter}
           >
-            <FontAwesomeIcon icon={faTwitter} style={{marginLeft: '0.5em', cursor: 'pointer', height: '1.5em'}}/>
+            <FontAwesomeIcon icon={faTwitter} style={{marginLeft: '0.5em', height: '1.5em'}}/>
           </div>
         </div>
       </div>)}

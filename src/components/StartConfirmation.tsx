@@ -1,3 +1,10 @@
+import botongo       from '../images/botones/go_boton.gif';
+import botongoh      from '../images/botones/go_boton_hover.gif';
+import botonwatch    from '../images/botones/watchit_boton.gif';
+import botonwatchh   from '../images/botones/watchit_boton_hover.gif';
+import botongetmine  from '../images/botones/getmine_boton.gif';
+import botongetmineh from '../images/botones/getmine_boton_hover.gif';
+
 interface Props {
   setStarted: (started: boolean) => void;
   name: string;
@@ -23,22 +30,26 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
           className="flex flex-grow items-center justify-center"
           style={{ gap: '2em' }}
         >
-          <div className="code-btn"
+          <div className="code-btn image-btn"
             onClick={() => setStarted(true)}
             style={{
               width: '8em',
-              cursor: 'cursor',
-              color: 'var(--accent-yellow)',
+              height: '2em',
+              backgroundImage: `url(${botonwatch})`,
             }}
-          >Watch it</div>
-          <div className="code-btn"
+            onMouseOver={e => e.currentTarget.style.backgroundImage = `url(${botonwatchh})`}
+            onMouseOut={e => e.currentTarget.style.backgroundImage = `url(${botonwatch})`}
+          ></div>
+          <div className="code-btn image-btn"
             onClick={() => window.location.href = `https://slippi-wrapped.marah.dev`}
             style={{
               width: '8em',
-              cursor: 'cursor',
-              color: 'var(--accent-yellow)',
+              height: '2em',
+              backgroundImage: `url(${botongetmine})`,
             }}
-          >Get mine</div>
+            onMouseOver={e => e.currentTarget.style.backgroundImage = `url(${botongetmineh})`}
+            onMouseOut={e => e.currentTarget.style.backgroundImage = `url(${botongetmine})`}
+          ></div>
         </div>
         <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>
           You can <b>rewind or fastforward</b> by clicking each side of the video
@@ -57,17 +68,16 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
         <br/>
         Ready to start?
       </div>
-      <div className="code-btn"
+      <div className="code-btn image-btn"
         onClick={() => setStarted(true)}
         style={{
-          width: '5em',
-          cursor: 'cursor',
-          background: 'var(--accent-yellow)',
-          color: 'var(--dark-1)',
-          fontWeight: 700,
-          textShadow: '0px 0px 0px var(--dark-1)',
+          backgroundImage: `url(${botongo})`,
+          width: '5.24em',
+          height: '3em',
         }}
-      >Go!</div>
+        onMouseOver={e => e.currentTarget.style.backgroundImage = `url(${botongoh})`}
+        onMouseOut={e => e.currentTarget.style.backgroundImage = `url(${botongo})`}
+      ></div>
       <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>
         You can <b>rewind or fastforward</b> by clicking each side of the video
       </div>
