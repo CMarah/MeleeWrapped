@@ -4,7 +4,6 @@ import {
 
 const allstar    = require('../music/allstar.mp3');
 const mother2    = require('../music/mother2.mp3');
-// const saria      = require('../music/saria.mp3');
 const yoshis     = require('../music/yoshis.mp3');
 const targets    = require('../music/targets.mp3');
 const trophy     = require('../music/trophy.mp3');
