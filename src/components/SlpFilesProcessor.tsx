@@ -58,7 +58,7 @@ const SlpFilesProcessor: React.FC<SlpFilesProcessorProps> = ({
     }
   }, [results, slp_files, setFullResults]);
 
-  return (<div className="flex flex-grow relative" style={{width: '25em', height: '100%'}}>
+  return (<div className="flex flex-grow relative" style={{width: '100%', height: '100%'}}>
     {slp_files.length === 0 ?
       (<SlpSelector setSlpFiles={setSlpFiles}/>) :
       (<LoadingBar num_files={slp_files.length} num_results={results.length}/>)

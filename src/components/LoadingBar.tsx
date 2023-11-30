@@ -38,13 +38,19 @@ const phrases = [
   "#FuckNintendo",
   "Eggdog pls sponsor me",
   "Pokimane pls bring back Melee next EVO",
+  "You missed 7,310 ledgedashes this year",
+  {
+    url: "https://www.kickstarter.com/projects/danfornace/rivals-2",
+    msg: "You should back Rivals of Aether 2!",
+  },
+  "Another missed L-cancel..."
 ];
 
 const LoadingBar: React.FC<LoadingBarProps> = ({
   num_files,
   num_results,
 }) => {
-  const [message, setMessage] = useState('This may take a few minutes.');
+  const [message, setMessage] = useState<any>('This may take a few minutes.');
 
   const progress = Math.floor(num_results/num_files*100);
 
@@ -74,8 +80,14 @@ const LoadingBar: React.FC<LoadingBarProps> = ({
       }}>
         {progress + '%'}
       </div>
-      <div style={{marginTop: '1.5em', fontSize: '1em'}}>
-        {message}
+      <div style={{marginTop: '1.5em', fontSize: '1em', fontWeight: 'bold'}}>
+        {!message.url ? message :
+          (<a href={message.url} target="_blank" rel="noreferrer"
+            style={{color: 'var(--accent-red)', textDecoration: 'underline'}}
+          >
+            {message.msg}
+          </a>)
+        }
       </div>
     </div>
   </>);

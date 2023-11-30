@@ -4,6 +4,5 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 
 
 # TODO
-- Better animations / redesign (Marta)
 - Check .slp changes (winner)
-- Test multiple codes
+- L-cancels fallados? (no lo tengo creo)
