@@ -2,15 +2,12 @@ import {
   useEffect,
 } from 'react';
 
-// const corneria   = require('../music/corneria.mp3');
 const allstar    = require('../music/allstar.mp3');
-// const earthbound = require('../music/earthbound.mp3');
-const mother     = require('../music/mother.mp3');
 const mother2    = require('../music/mother2.mp3');
-const saria      = require('../music/saria.mp3');
+// const saria      = require('../music/saria.mp3');
+const yoshis     = require('../music/yoshis.mp3');
 const targets    = require('../music/targets.mp3');
 const trophy     = require('../music/trophy.mp3');
-// const yoshis     = require('../music/yoshis.mp3');
 
 type SongToStep = {
   [key: number]: string;
@@ -18,9 +15,8 @@ type SongToStep = {
 
 const song_changes: SongToStep = {
   0: allstar,
-  2: mother,
-  3: mother2,
-  4: saria,
+  1: mother2,
+  3: yoshis,
   5: targets,
   6: trophy,
 };

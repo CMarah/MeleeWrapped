@@ -6,3 +6,5 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 # TODO
 - Check .slp changes (winner)
 - L-cancels fallados? (no lo tengo creo)
+- Most played month
+- Number opponents

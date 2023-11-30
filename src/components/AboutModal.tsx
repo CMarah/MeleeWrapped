@@ -153,7 +153,6 @@ const AboutModal = ({ open, setOpen }: AboutModalProps) => {
                 <img src={twitterlogo} style={{width: '1.5em'}} alt="mps twitter link"/>
               </a>
             </div>
-            <span style={{fontSize: '0.8em'}}>For being cool.</span>
           </div>
         </div>
       </div>
