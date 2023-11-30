@@ -65,6 +65,7 @@ const StartConfirmation: React.FC<Props> = ({ setStarted, name }) => {
           background: 'var(--accent-yellow)',
           color: 'var(--dark-1)',
           fontWeight: 700,
+          textShadow: '0px 0px 0px var(--dark-1)',
         }}
       >Go!</div>
       <div style={{fontSize: '0.8em', marginTop: '1.5em'}}>

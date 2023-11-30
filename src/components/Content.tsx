@@ -7,6 +7,7 @@ import StartConfirmation from './StartConfirmation';
 import { CleanData }     from '../lib/types';
 import yellow_icons      from '../images/yellow-icons-1.svg';
 import frog              from '../images/minifrog.png';
+import vidbg             from '../images/vidbg.jpeg';
 
 interface ContentProps {
   done: boolean;
@@ -53,10 +54,12 @@ const Content: React.FC<ContentProps> = ({
           overflow: 'hidden',
           width: '100%',
           flexDirection: 'column',
+          backgroundImage: `url(${vidbg})`,
+          backgroundSize: 'cover',
         }}>
           {done && (<div
             className="flex flex-grow items-center justify-center done-header"
-            style={{ fontSize: '1.7em', background: 'var(--dark-2)', width: '100%' }}
+            style={{ fontSize: '1.7em', width: '100%' }}
           >
             {name}'s 2023 Slippi Wrap
             <img src={frog} alt="" style={{width: "3em", objectFit: 'cover', height: '4em'}}/>

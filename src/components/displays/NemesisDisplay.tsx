@@ -40,7 +40,7 @@ export const NemesisDisplay: React.FC<Props> = ({ data, main_progress }) => {
         } inProp={partial_progress >= 5}/>
         <AnimatedText content={
           data.unique_opponents > 5 ?
-            "But these ones stand out:" :
+            "But these ones stood out:" :
             "These were your most played opponents in 2023:"
         } inProp={partial_progress >= 15} />
         <div style={{marginBottom: '2.5em'}}></div>

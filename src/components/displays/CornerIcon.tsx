@@ -1,4 +1,4 @@
-import slippilogo   from '../../images/slippilogo.svg';
+import slippilogo   from '../../images/slippilogopink.svg';
 import dk           from '../../images/characters/dk.png';
 import yl           from '../../images/characters/yl.png';
 import doc          from '../../images/characters/doc.png';
@@ -75,7 +75,7 @@ const CornerIcon: React.FC<Props> = ({ char_name, place_left, scale_down }) => {
   return (
     <img src={source_to_use || slippilogo} alt="" style={{
       width: "20em",
-      opacity: "0.5",
+      opacity: "0.6",
       position: "absolute",
       bottom: "-5em",
       fontSize: scale_down ? "0.8em" : "1em",

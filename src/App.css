@@ -13,11 +13,14 @@
   --accent-green: #3a38f5;
   --accent-yellow: #F2C641;
   --accent-red: #F25252;
+  --accent-pink: #ff73e5;
 }
 
 .App {
   text-align: center;
   font-family: 'Maven Pro', sans-serif;
+  text-shadow: 3px 2px 2px var(--dark-1);
+  font-weight: bold;
 
   color: var(--light-1);
   background: var(--dark-1);
