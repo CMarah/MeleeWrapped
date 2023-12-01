@@ -13,6 +13,7 @@ import Sharer                from './components/Sharer';
 import AboutModal            from './components/AboutModal';
 import MusicPlayer           from './components/MusicPlayer';
 import { screenshotAndCopy } from './lib/utils';
+import yellow_icons          from './images/yellow-icons-1.svg';
 
 const is_chrome = navigator.userAgent.match(/chrome|chromium|crios/i);
 
@@ -52,6 +53,14 @@ const App = () => {
         paddingBottom: screenshot_uri ? '0' : '4em',
         paddingTop: screenshot_uri ? '0' : '2em',
       }}>
+        {screenshot_uri && (<>
+          <div className='absolute' style={{ right: '-4em', top: '2em'}}>
+            <img src={yellow_icons} alt=""/>
+          </div>
+          <div className='absolute' style={{ left: '-4em', bottom: '1em'}}>
+            <img src={yellow_icons} alt="" style={{transform: 'rotate(180deg)'}}/>
+          </div>
+        </>)}
         {screenshot_uri && (<img src={screenshot_uri} alt="summary"/>)}
         {done && (<MusicPlayer step={6} muted={muted}/>)}
         {!screenshot_uri && (<Content
