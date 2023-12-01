@@ -43,7 +43,8 @@ const phrases = [
     url: "https://www.kickstarter.com/projects/danfornace/rivals-2",
     msg: "You should back Rivals of Aether 2!",
   },
-  "Another missed L-cancel..."
+  "Another missed L-cancel...",
+  "Thanks for everything GG Melee <3",
 ];
 
 const LoadingBar: React.FC<LoadingBarProps> = ({
