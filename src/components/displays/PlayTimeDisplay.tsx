@@ -32,7 +32,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
     const games_diff = games - prev_games;
     const winrate_diff = winrate - prev_winrate;
     return [
-      `2023 was another great year for Melee,`,
+      `2024 was another great year for Melee,`,
       "but how did you do these past 12 months?",
       games_diff > 0 ? (
         <span>
@@ -84,7 +84,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
     ];
   }
   return [
-    `2023 was another great year for Melee,`,
+    `2024 was another great year for Melee,`,
     "but how did you do these past 12 months?",
     (<span>
       You played a total of

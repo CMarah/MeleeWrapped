@@ -35,13 +35,13 @@ export const NemesisDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <div style={{marginBottom: '6.5em'}}></div>
         <AnimatedText content={
           data.unique_opponents > 5 ?
-          (<span>In 2023, you played <span style={{color: "var(--accent-yellow)"}}><b>{data.unique_opponents}</b></span> different players</span>) :
+          (<span>In 2024, you played <span style={{color: "var(--accent-yellow)"}}><b>{data.unique_opponents}</b></span> different players</span>) :
           (<span>You are only half of every match</span>)
         } inProp={partial_progress >= 5}/>
         <AnimatedText content={
           data.unique_opponents > 5 ?
             "But these ones stood out:" :
-            "These were your most played opponents in 2023:"
+            "These were your most played opponents in 2024:"
         } inProp={partial_progress >= 15} />
         <div style={{marginBottom: '2.5em'}}></div>
         {partial_progress >= 25 && (<BarChart data={formatted_data}/>)}

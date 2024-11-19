@@ -50,14 +50,14 @@ const App = () => {
     <Header setOpenModal={setOpenModal} muted={muted} setMuted={setMuted} />
     <div className="App-body">
       <div className="screenshot-area" ref={main_ref} style={{
-        paddingBottom: screenshot_uri ? '0' : '4em',
-        paddingTop: screenshot_uri ? '0' : '2em',
+        paddingBottom: screenshot_uri ? '0' : '0',
+        paddingTop: screenshot_uri ? '0' : '0',
       }}>
         {screenshot_uri && (<>
-          <div className='absolute' style={{ right: '-4em', top: '2em'}}>
+          <div className='absolute' style={{ right: '-4em', top: '-3em'}}>
             <img src={yellow_icons} alt=""/>
           </div>
-          <div className='absolute' style={{ left: '-4em', bottom: '1em'}}>
+          <div className='absolute' style={{ left: '-4em', bottom: '-3em'}}>
             <img src={yellow_icons} alt="" style={{transform: 'rotate(180deg)'}}/>
           </div>
         </>)}

@@ -35,7 +35,7 @@ const Content: React.FC<ContentProps> = ({
   const [ already_sent, setAlreadySent ] = useState(false);
 
   return (<>
-      {!started && (<div className="subtitle">Explore your Melee 2023</div>)}
+      {!started && (<div className="subtitle">Explore your Melee 2024</div>)}
       <div
         className="content relative"
         style={{
@@ -61,7 +61,7 @@ const Content: React.FC<ContentProps> = ({
             className="flex flex-grow items-center justify-center done-header"
             style={{ fontSize: '1.7em', width: '100%' }}
           >
-            {name}'s 2023 Slippi Wrap
+            {name}'s 2024 Slippi Wrap
             <img src={frog} alt="" style={{width: "3em", objectFit: 'cover', height: '4em'}}/>
           </div>)}
           {

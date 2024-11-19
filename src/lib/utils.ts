@@ -80,11 +80,11 @@ export const get2022Results = async (id: String, codes: Array<String>) => {
 };
 
 export const getFromGcp = (id: String) =>
-  fetch(`https://us-central1-meleewrapped.cloudfunctions.net/set-2023-player-data?id=${encodeURIComponent(id as string)}`)
+  fetch(`https://us-central1-meleewrapped.cloudfunctions.net/set-2024-player-data?id=${encodeURIComponent(id as string)}`)
     .then(res => res.json());
 
 export const sendToGcp = (data: CleanData | null, codes: Array<string>, name: string) => data &&
-  fetch('https://us-central1-meleewrapped.cloudfunctions.net/set-2023-player-data', {
+  fetch('https://us-central1-meleewrapped.cloudfunctions.net/set-2024-player-data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
