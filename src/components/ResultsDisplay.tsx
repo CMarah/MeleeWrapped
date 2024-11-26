@@ -51,7 +51,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     if (main_progress === 100*NUMBER_STEPS) {
       setDone(true);
       if (!already_sent) {
-        sendToGcp(data, codes, name);
+        sendToGcp(data, codes, name, '2024');
       }
     }
   }, [main_progress, setDone, data, codes, name, already_sent]);

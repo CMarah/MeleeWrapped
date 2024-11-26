@@ -9,8 +9,7 @@ import {
   CleanData,
 }                        from '../lib/types';
 import {
-  getFromGcp,
-  get2022Results,
+  getYearResults,
   getSlippiggElo,
 }                        from '../lib/utils';
 import { getData }       from '../lib/results';
@@ -49,8 +48,8 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
       setLoading(true);
       const fetchData = async () => {
         const codes = atob(id).split(',');
-        const response_2023 = await getFromGcp(id);
-        const response_2022 = await get2022Results(id, codes);
+        const response_2023 = await getYearResults(id, codes, '2023');
+        const response_2022 = await getYearResults(id, codes, '2022');
         const slippigg_data = await getSlippiggElo(codes.toString());
         setName(response_2023.name);
         setCodes(codes);
@@ -81,7 +80,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   useEffect(() => {
     if (codes && codes.length) {
       const id_from_codes = btoa(codes.toString());
-      get2022Results(id_from_codes, codes).then(data => {
+      getYearResults(id_from_codes, codes, '2022').then(data => {
         if (data && data.results) {
           setPrevYearData(data.results);
         }
