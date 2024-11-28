@@ -10,4 +10,3 @@ Character renders gotten [here](https://www.reddit.com/r/smashbros/comments/4khe
 - Most played month
 - Add some emojis to twitter share
 - Bluesky share?
-- Compare to 2023 results, not 2022

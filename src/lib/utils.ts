@@ -61,35 +61,17 @@ export const getSlippiggElo = async (code: String) => {
   }
 };
 
-export const get2022Results = async (id: String, codes: Array<String>) => {
-  try {
-    const prev_year_results = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(id as string)}`)
-      .then(res => res.json());
-    if (!prev_year_results?.error) return prev_year_results;
-    if (codes.length < 2) return null;
-    const ids = codes.map(code => btoa(code.toString()));
-    const pyr_1 = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(ids[0] as string)}`)
-      .then(res => res.json());
-    if (!pyr_1?.error) return pyr_1;
-    const pyr_2 = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-2022-player-data?id=${encodeURIComponent(ids[1] as string)}`)
-      .then(res => res.json());
-    return pyr_2?.error ? null : pyr_2;
-  } catch (e) {
-    return null;
-  }
-};
-
 export const getYearResults = async (id: String, codes: Array<String>, year: String) => {
   try {
-    const prev_year_results = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-year-player-data?id=${encodeURIComponent(id as string)}&year=${year}`)
+    const prev_year_results = await fetch(`https://us-central1-meleewrapped.cloudfunctions.net/get-player-data?id=${encodeURIComponent(id as string)}&year=${year}`)
       .then(res => res.json());
     if (!prev_year_results?.error) return prev_year_results;
     if (codes.length < 2) return null;
     const ids = codes.map(code => btoa(code.toString()));
-    const pyr_1 = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-year-player-data?id=${encodeURIComponent(ids[0] as string)}&year=${year}`)
+    const pyr_1 = await fetch(`https://us-central1-meleewrapped.cloudfunctions.net/get-player-data?id=${encodeURIComponent(ids[0] as string)}&year=${year}`)
       .then(res => res.json());
     if (!pyr_1?.error) return pyr_1;
-    const pyr_2 = await fetch(`https://us-east1-meleewrapped.cloudfunctions.net/get-year-player-data?id=${encodeURIComponent(ids[1] as string)}&year=${year}`)
+    const pyr_2 = await fetch(`https://us-central1-meleewrapped.cloudfunctions.net/get-player-data?id=${encodeURIComponent(ids[1] as string)}&year=${year}`)
       .then(res => res.json());
     return pyr_2?.error ? null : pyr_2;
   } catch (e) {
@@ -98,7 +80,7 @@ export const getYearResults = async (id: String, codes: Array<String>, year: Str
 };
 
 export const sendToGcp = (data: CleanData | null, codes: Array<string>, name: string, year: string) => data &&
-  fetch(`https://us-central1-meleewrapped.cloudfunctions.net/set-year-player-data?year=${year}`, {
+  fetch(`https://us-central1-meleewrapped.cloudfunctions.net/set-player-data?year=${year}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

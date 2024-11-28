@@ -56,7 +56,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
           <br/>
           <br/>
           <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(playtime_diff/prev_playtime * 1000)/10}% </b></span>
-          more than in 2022, great job 🐸
+          more than in 2023, great job 🐸
         </span>
       ) : (
         <span>
@@ -78,7 +78,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
       (<span>
         {winrate_diff > 0.05 && (<><span>That's a
           <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(winrate_diff * 1000)/10}% </b></span>
-        improvement over 2022.</span><br/></>)}
+        improvement over 2023.</span><br/></>)}
         <span>{WINRATE_MESSAGES[Math.floor(winrate * 10)]}</span>
       </span>),
     ];

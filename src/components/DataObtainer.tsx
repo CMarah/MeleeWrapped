@@ -48,13 +48,13 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
       setLoading(true);
       const fetchData = async () => {
         const codes = atob(id).split(',');
+        const response_2024 = await getYearResults(id, codes, '2024');
         const response_2023 = await getYearResults(id, codes, '2023');
-        const response_2022 = await getYearResults(id, codes, '2022');
         const slippigg_data = await getSlippiggElo(codes.toString());
-        setName(response_2023.name);
+        setName(response_2024.name);
         setCodes(codes);
-        setData(response_2023.results);
-        setPrevYearData(response_2022);
+        setData(response_2024.results);
+        setPrevYearData(response_2023);
         setSlippiggElo(slippigg_data);
         setAlreadySent(true);
         setLoading(false);
@@ -80,7 +80,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   useEffect(() => {
     if (codes && codes.length) {
       const id_from_codes = btoa(codes.toString());
-      getYearResults(id_from_codes, codes, '2022').then(data => {
+      getYearResults(id_from_codes, codes, '2023').then(data => {
         if (data && data.results) {
           setPrevYearData(data.results);
         }
