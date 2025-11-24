@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import frog_gif from '../images/frolee_2023.gif';
+import frog_gif from '../images/frolee.gif';
 
 interface LoadingBarProps {
   num_files: number,
@@ -27,9 +27,7 @@ const phrases = [
   "Stop nairing the crouched Samus",
   "Go to your locals",
   "Support your local TOs",
-  "Fête 2024 is gonna be lit",
   "Zain is this year's #1",
-  "Mango is this year's #1",
   "IBDW is this year's #1",
   "Hbox is this year's #1",
   "Amsa is this year's #1",

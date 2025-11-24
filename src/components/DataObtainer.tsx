@@ -13,7 +13,7 @@ import {
   getSlippiggElo,
 }                        from '../lib/utils';
 import { getData }       from '../lib/results';
-import frog_gif          from '../images/frolee_2023.gif';
+import frog_gif          from '../images/frolee.gif';
 
 interface DataObtainerProps {
   setData: (data: CleanData) => void;
@@ -24,6 +24,13 @@ interface DataObtainerProps {
   setName: (name: string) => void;
   setAlreadySent: (already_sent: boolean) => void;
 }
+
+const current_year = (() => {
+  const now = new Date();
+  if (now.getMonth() === 11) return now.getFullYear();
+  return now.getFullYear() - 1;
+})();
+console.log('Current year set to', current_year);
 
 const search = window.location.search;
 const params = new URLSearchParams(search);
@@ -48,13 +55,13 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
       setLoading(true);
       const fetchData = async () => {
         const codes = atob(id).split(',');
-        const response_2024 = await getYearResults(id, codes, '2024');
-        const response_2023 = await getYearResults(id, codes, '2023');
+        const response_this_year = await getYearResults(id, codes, current_year.toString());
+        const response_prev_year = await getYearResults(id, codes, (current_year - 1).toString());
         const slippigg_data = await getSlippiggElo(codes.toString());
-        setName(response_2024.name);
+        setName(response_this_year.name);
         setCodes(codes);
-        setData(response_2024.results);
-        setPrevYearData(response_2023);
+        setData(response_this_year.results);
+        setPrevYearData(response_prev_year);
         setSlippiggElo(slippigg_data);
         setAlreadySent(true);
         setLoading(false);
@@ -80,7 +87,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   useEffect(() => {
     if (codes && codes.length) {
       const id_from_codes = btoa(codes.toString());
-      getYearResults(id_from_codes, codes, '2023').then(data => {
+      getYearResults(id_from_codes, codes, (current_year - 1).toString()).then(data => {
         if (data && data.results) {
           setPrevYearData(data.results);
         }
