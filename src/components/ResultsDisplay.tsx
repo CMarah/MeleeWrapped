@@ -29,6 +29,7 @@ interface ResultsDisplayProps {
   name: string;
   already_sent: boolean;
   muted: boolean;
+  current_year: number;
 }
 
 const NUMBER_STEPS = 6;
@@ -42,6 +43,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
   name,
   already_sent,
   muted,
+  current_year,
 }) => {
   const [ main_progress, setMainProgress ] = useState<number>(0);
   const step = Math.floor(main_progress / 100);
@@ -51,10 +53,10 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
     if (main_progress === 100*NUMBER_STEPS) {
       setDone(true);
       if (!already_sent) {
-        sendToGcp(data, codes, name, '2024');
+        sendToGcp(data, codes, name, current_year.toString());
       }
     }
-  }, [main_progress, setDone, data, codes, name, already_sent]);
+  }, [main_progress, setDone, data, codes, name, already_sent, current_year]);
 
   const forwardVideo = useCallback(() => {
     setMainProgress(main_progress => {
@@ -93,12 +95,12 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({
       style={{ width: '100%', height: '100%' }}
     >
       {
-        (step === 0 && <PlayTimeDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
-        (step === 1 && <DetailsDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 0 && <PlayTimeDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress} current_year={current_year}/>) ||
+        (step === 1 && <DetailsDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress} current_year={current_year}/>) ||
         (step === 2 && <CharsDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
-        (step === 3 && <MusDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 3 && <MusDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress} current_year={current_year}/>) ||
         (step === 4 && <StagesDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
-        (step === 5 && <NemesisDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress}/>) ||
+        (step === 5 && <NemesisDisplay data={data} prev_year_data={prev_year_data} main_progress={main_progress} current_year={current_year}/>) ||
                       (<CompleteDisplay data={data} slippigg_elo={slippigg_elo}/>)
       }
       <div className="absolute" onClick={rewindVideo} style={{width: "50%", height: "100%", cursor: "pointer"}}></div>

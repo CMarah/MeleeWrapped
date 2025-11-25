@@ -17,6 +17,12 @@ import yellow_icons          from './images/yellow-icons-1.svg';
 
 const is_chrome = navigator.userAgent.match(/chrome|chromium|crios/i);
 
+const current_year = (() => {
+  const now = new Date();
+  if (now.getMonth() === 11) return now.getFullYear();
+  return now.getFullYear() - 1;
+})() + 1;
+
 const App = () => {
   // Basics
   const [ codes, setCodes          ] = useState<Array<string>>([]);
@@ -69,9 +75,10 @@ const App = () => {
           codes={codes}
           setCodes={setCodes}
           muted={muted}
+          current_year={current_year}
         />)}
       </div>
-      {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob} codes={codes}/>)}
+      {done && (<Sharer takeScreenshot={takeScreenshot} screenshot_blob={screenshot_blob} codes={codes} current_year={current_year}/>)}
     </div>
     <Footer/>
     <AboutModal open={open_modal} setOpen={setOpenModal}/>

@@ -15,6 +15,7 @@ interface ContentProps {
   codes: Array<string>;
   setCodes: (codes: Array<string>) => void;
   muted: boolean;
+  current_year: number;
 }
 
 const Content: React.FC<ContentProps> = ({
@@ -23,6 +24,7 @@ const Content: React.FC<ContentProps> = ({
   codes,
   setCodes,
   muted,
+  current_year,
 }) => {
   // Basic data
   const [ data, setData                   ] = useState<CleanData>();
@@ -35,7 +37,7 @@ const Content: React.FC<ContentProps> = ({
   const [ already_sent, setAlreadySent ] = useState(false);
 
   return (<>
-      {!started && (<div className="subtitle">Explore your Melee 2024</div>)}
+      {!started && (<div className="subtitle">Explore your Melee {current_year}</div>)}
       <div
         className="content relative"
         style={{
@@ -61,7 +63,7 @@ const Content: React.FC<ContentProps> = ({
             className="flex flex-grow items-center justify-center done-header"
             style={{ fontSize: '1.7em', width: '100%' }}
           >
-            {name}'s 2024 Slippi Wrap
+            {name}'s {current_year} Slippi Wrap
             <img src={frog} alt="" style={{width: "3em", objectFit: 'cover', height: '4em'}}/>
           </div>)}
           {
@@ -74,6 +76,7 @@ const Content: React.FC<ContentProps> = ({
                 setCodes={setCodes}
                 setName={setName}
                 setAlreadySent={setAlreadySent}
+                current_year={current_year}
               />)
               : (!started ?
                   (<StartConfirmation
@@ -89,6 +92,7 @@ const Content: React.FC<ContentProps> = ({
                     name={name}
                     already_sent={already_sent}
                     muted={muted}
+                    current_year={current_year}
                   />)
                 )
           }

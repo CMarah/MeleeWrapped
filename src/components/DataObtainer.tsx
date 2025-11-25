@@ -23,14 +23,8 @@ interface DataObtainerProps {
   setCodes: (codes: Array<string>) => void;
   setName: (name: string) => void;
   setAlreadySent: (already_sent: boolean) => void;
+  current_year: number;
 }
-
-const current_year = (() => {
-  const now = new Date();
-  if (now.getMonth() === 11) return now.getFullYear();
-  return now.getFullYear() - 1;
-})();
-console.log('Current year set to', current_year);
 
 const search = window.location.search;
 const params = new URLSearchParams(search);
@@ -44,6 +38,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
   setCodes,
   setName,
   setAlreadySent,
+  current_year,
 }) => {
   // Basic data
   const [ results, setResults ] = useState<Array<Result>>([]);
@@ -71,7 +66,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
         setLoading(false);
       });
     }
-  }, [setCodes, setData, setPrevYearData, setName, setAlreadySent, setSlippiggElo]);
+  }, [setCodes, setData, setPrevYearData, setName, setAlreadySent, setSlippiggElo, current_year]);
 
   // Codes found, prepare data
   useEffect(() => {
@@ -96,7 +91,7 @@ const DataObtainer: React.FC<DataObtainerProps> = ({
         setSlippiggElo(elo);
       });
     }
-  }, [codes, setPrevYearData, setSlippiggElo]);
+  }, [codes, setPrevYearData, setSlippiggElo, current_year]);
 
   if (loading) {
     return (<div className="flex flex-grow flex-col relative items-center" style={{width: '25em', height: '100%'}}>

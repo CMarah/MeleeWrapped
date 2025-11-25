@@ -8,9 +8,10 @@ interface Props {
   data: CleanData;
   prev_year_data: CleanData | null;
   main_progress: number;
+  current_year: number;
 };
 
-export const MusDisplay: React.FC<Props> = ({ data, main_progress }) => {
+export const MusDisplay: React.FC<Props> = ({ data, main_progress, current_year }) => {
   const partial_progress = main_progress % 100;
   const num_chars = Math.min(data.op_chars.length, 5);
 

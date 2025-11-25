@@ -21,9 +21,10 @@ interface SharerProps {
   screenshot_blob: Blob;
   takeScreenshot: any;
   codes: Array<string>;
+  current_year: number;
 }
 
-const text = 'Check out my Melee 2024 recap! #SlippiWrapped \n';
+const text = (current_year: number) => `Check out my Melee ${current_year} recap! #SlippiWrapped \n`;
 const twitterUrl = (text: string, url: string) =>
   `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
 
@@ -31,13 +32,14 @@ const Sharer: React.FC<SharerProps> = ({
   screenshot_blob,
   takeScreenshot,
   codes,
+  current_year,
 }) => {
   const [ waiting, setWaiting ] = useState(false);
   const [ show_copied_message,  setShowCopiedMessage  ] = useState(false);
   const [ show_copied_message2, setShowCopiedMessage2 ] = useState(false);
 
   const wrapped_url = `https://slippi-wrapped.marah.dev/?id=${btoa(codes.toString())}`;
-  const twitter_url = twitterUrl(text, wrapped_url);
+  const twitter_url = twitterUrl(text(current_year), wrapped_url);
 
   const shareOnTwitter = () => {
     // Start 7 secs timeout displaying message

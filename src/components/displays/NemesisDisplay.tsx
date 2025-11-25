@@ -8,9 +8,10 @@ interface Props {
   data: CleanData;
   prev_year_data: CleanData | null;
   main_progress: number;
+  current_year: number;
 };
 
-export const NemesisDisplay: React.FC<Props> = ({ data, main_progress }) => {
+export const NemesisDisplay: React.FC<Props> = ({ data, main_progress, current_year }) => {
   const partial_progress = main_progress % 100;
 
   const formatted_data = data.nemesis.map((nemesis) => {
@@ -35,13 +36,13 @@ export const NemesisDisplay: React.FC<Props> = ({ data, main_progress }) => {
         <div style={{marginBottom: '6.5em'}}></div>
         <AnimatedText content={
           data.unique_opponents > 5 ?
-          (<span>In 2024, you played <span style={{color: "var(--accent-yellow)"}}><b>{data.unique_opponents}</b></span> different players</span>) :
+          (<span>In {current_year}, you played <span style={{color: "var(--accent-yellow)"}}><b>{data.unique_opponents}</b></span> different players</span>) :
           (<span>You are only half of every match</span>)
         } inProp={partial_progress >= 5}/>
         <AnimatedText content={
           data.unique_opponents > 5 ?
             "But these ones stood out:" :
-            "These were your most played opponents in 2024:"
+            `These were your most played opponents in ${current_year}:`
         } inProp={partial_progress >= 15} />
         <div style={{marginBottom: '2.5em'}}></div>
         {partial_progress >= 25 && (<BarChart data={formatted_data}/>)}

@@ -8,6 +8,7 @@ interface Props {
   data: CleanData;
   prev_year_data: CleanData | null;
   main_progress: number;
+  current_year: number;
 };
 
 const WINRATE_MESSAGES = [
@@ -24,7 +25,7 @@ const WINRATE_MESSAGES = [
   "You're a god! 👑",
 ];
 
-const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
+const getTexts = (data: CleanData, prev_year_data: CleanData | null, current_year: number) => {
   const { playtime, games, winrate } = data;
   if (prev_year_data && prev_year_data.playtime && prev_year_data.games) {
     const { playtime: prev_playtime, games: prev_games, winrate: prev_winrate } = prev_year_data;
@@ -32,7 +33,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
     const games_diff = games - prev_games;
     const winrate_diff = winrate - prev_winrate;
     return [
-      `2024 was another great year for Melee,`,
+      `${current_year} was another great year for Melee,`,
       "but how did you do these past 12 months?",
       games_diff > 0 ? (
         <span>
@@ -56,7 +57,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
           <br/>
           <br/>
           <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(playtime_diff/prev_playtime * 1000)/10}% </b></span>
-          more than in 2023, great job 🐸
+          more than in {current_year - 1}, great job 🐸
         </span>
       ) : (
         <span>
@@ -78,13 +79,13 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
       (<span>
         {winrate_diff > 0.05 && (<><span>That's a
           <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(winrate_diff * 1000)/10}% </b></span>
-        improvement over 2023.</span><br/></>)}
+        improvement over {current_year - 1}.</span><br/></>)}
         <span>{WINRATE_MESSAGES[Math.floor(winrate * 10)]}</span>
       </span>),
     ];
   }
   return [
-    `2024 was another great year for Melee,`,
+    `${current_year} was another great year for Melee,`,
     "but how did you do these past 12 months?",
     (<span>
       You played a total of
@@ -107,10 +108,10 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
   ];
 };
 
-export const PlayTimeDisplay: React.FC<Props> = ({ data, prev_year_data, main_progress }) => {
+export const PlayTimeDisplay: React.FC<Props> = ({ data, prev_year_data, main_progress, current_year }) => {
   const partial_progress = main_progress % 100;
 
-  const texts = useMemo(() => getTexts(data, prev_year_data), [data, prev_year_data]);
+  const texts = useMemo(() => getTexts(data, prev_year_data, current_year), [data, prev_year_data, current_year]);
 
   return (<>
     <CSSTransition

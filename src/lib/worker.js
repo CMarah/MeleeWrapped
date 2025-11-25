@@ -6,7 +6,7 @@ declare var self: any;
 const invalidMetadata = metadata => {
   if (!metadata || !metadata.lastFrame) return true;
   if (metadata.lastFrame < 60*40) return true;
-  if (!metadata.startAt.startsWith('2024')) return true;
+  if (!metadata.startAt.startsWith('2025')) return true;
   if (Object.keys(metadata.players).length !== 2) return true;
   if (!metadata.players[0]?.names?.netplay) return true;
   if (!metadata.players[0]?.names?.code)    return true;
@@ -20,7 +20,7 @@ const invalidMetadata = metadata => {
 };
 
 const VALID_STAGE_IDs = [2, 3, 8, 28, 31, 32];
-const invalidStats = ({ settings, stocks, inputs }) => {
+const invalidStats = ({ stocks, inputs }, settings) => {
   if (settings.is_teams) return true;
   if (!VALID_STAGE_IDs.includes(settings.stageId)) return true;
   if (![2, 8].includes(settings.gameMode)) return true;
@@ -31,9 +31,9 @@ const invalidStats = ({ settings, stocks, inputs }) => {
   if (p0_deaths <= 2 && p1_deaths <= 2) return true;
 
   // Check if when quitting out, both players where grounded
-  const player_0_airborne = inputs[0].airborne;
-  const player_1_airborne = inputs[1].airborne;
-  if (!player_0_airborne && !player_1_airborne) return true;
+  /* const player_0_airborne = inputs[0].airborne; */
+  /* const player_1_airborne = inputs[1].airborne; */
+  /* if (!player_0_airborne && !player_1_airborne) return true; */
 
   return false;
 };
@@ -45,9 +45,13 @@ const processGame = file => {
     const game = new SlippiGame(new Uint8Array(result));
 
     const metadata = game.getMetadata();
+    console.log('G', game, metadata, invalidMetadata(metadata));
     if (invalidMetadata(metadata)) return null;
     const stats = game.getStats();
-    if (invalidStats(stats)) return null;
+    const settings = game.getSettings();
+    stats.settings = settings;
+    console.log('S', stats, settings);
+    if (invalidStats(stats, settings)) return null;
 
     return {
       metadata,

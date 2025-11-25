@@ -8,6 +8,7 @@ interface Props {
   data: CleanData;
   prev_year_data: CleanData | null;
   main_progress: number;
+  current_year: number;
 };
 
 const APM_MESSAGES = [
@@ -24,7 +25,7 @@ const APM_MESSAGES = [
   "Is that even possible? 🚀",
 ];
 
-const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
+const getTexts = (data: CleanData, prev_year_data: CleanData | null, current_year: number) => {
   const {
     apm,
     damage_per_opening,
@@ -36,7 +37,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
     return [
       `Let's see some details.`,
       (<span>
-        Throughout 2024, you averaged <br/>
+        Throughout {current_year}, you averaged <br/>
         <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(apm)} </b></span>
         actions per minute
         {apm > (prev_year_data.apm + 4) && `, ${Math.floor(apm - prev_year_data.apm)} more than last year.`}.
@@ -78,7 +79,7 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
   return [
     `Let's see some details.`,
     (<span>
-      Throughout 2024, you averaged <br/>
+      Throughout {current_year}, you averaged <br/>
       <span style={{color: "var(--accent-yellow)"}}><b> {Math.floor(apm)} </b></span>
       actions per minute.
       <br/>
@@ -111,10 +112,10 @@ const getTexts = (data: CleanData, prev_year_data: CleanData | null) => {
   ];
 };
 
-export const DetailsDisplay: React.FC<Props> = ({ data, prev_year_data, main_progress }) => {
+export const DetailsDisplay: React.FC<Props> = ({ data, prev_year_data, main_progress, current_year }) => {
   const partial_progress = main_progress % 100;
 
-  const texts = useMemo(() => getTexts(data, prev_year_data), [data, prev_year_data]);
+  const texts = useMemo(() => getTexts(data, prev_year_data, current_year), [data, prev_year_data, current_year]);
 
   return (<>
     <CSSTransition
