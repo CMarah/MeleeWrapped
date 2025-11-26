@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGithub,
   faTwitter,
-}                          from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-brands-svg-icons';
 
-const urlGithub: string = "https://github.com/CMarah/MeleeWrapped";
-const urlTwitter: string = "https://twitter.com/CarlosMarah";
+const github_url: string = "https://github.com/CMarah/MeleeWrapped";
+const twitter_url: string = "https://twitter.com/CarlosMarah";
 
 const auxClickHandler = (url: string) => (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-  if(event.button === 1){
+  if (event.button === 1) {
     window.open(url, "_blank")
   }
 };
@@ -20,16 +20,16 @@ const clickHandler = (url: string) => {
 const Footer = () => (
   <div className="App-footer">
     <div>Find me at</div>
-    <div style={{gap: '1em', fontSize: '1.4em'}}>
+    <div style={{ gap: '1em', fontSize: '1.4em' }}>
       <FontAwesomeIcon
-        icon={faGithub} style={{marginRight: '0.5em', cursor: 'pointer'}}
-        onClick={() => clickHandler(urlGithub)}
-        onAuxClick={auxClickHandler(urlGithub)}
+        icon={faGithub} style={{ marginRight: '0.5em', cursor: 'pointer' }}
+        onClick={() => clickHandler(github_url)}
+        onAuxClick={auxClickHandler(github_url)}
       />
       <FontAwesomeIcon
-        icon={faTwitter} style={{marginLeft: '0.5em', cursor: 'pointer'}}
-        onClick={() => clickHandler(urlTwitter)}
-        onAuxClick={auxClickHandler(urlTwitter)}
+        icon={faTwitter} style={{ marginLeft: '0.5em', cursor: 'pointer' }}
+        onClick={() => clickHandler(twitter_url)}
+        onAuxClick={auxClickHandler(twitter_url)}
       />
     </div>
   </div>
