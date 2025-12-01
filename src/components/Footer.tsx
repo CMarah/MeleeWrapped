@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGithub,
   faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
+}                          from '@fortawesome/free-brands-svg-icons';
 
 const github_url: string = "https://github.com/CMarah/MeleeWrapped";
 const twitter_url: string = "https://twitter.com/CarlosMarah";

@@ -21,7 +21,7 @@ const current_year = (() => {
   const now = new Date();
   if (now.getMonth() === 11) return now.getFullYear();
   return now.getFullYear() - 1;
-})() + 1;
+})();
 
 const App = () => {
   // Basics
