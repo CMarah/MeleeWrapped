@@ -42,7 +42,10 @@ const getWinner = (result: Result) => {
   // if (player_0_pausing) return 1;
   // if (player_1_pausing) return 0;
 
-  return stats.last_combo.playerIndex === 0 ? 0 : 1;
+  if (stats.last_combo) {
+    return stats.last_combo.playerIndex === 0 ? 0 : 1;
+  }
+  return 0;
 };
 
 const getChar = (metadata: Metadata, index: 0 | 1): number =>
@@ -189,6 +192,6 @@ export const getData = (valid_results: Array<Result>, codes: Array<string>): (Cl
     op_chars,
     unique_opponents,
   };
-  console.log('data', res);
+  console.log('Data', res);
   return res;
 };
