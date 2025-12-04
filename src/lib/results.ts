@@ -37,10 +37,10 @@ const getWinner = (result: Result) => {
   if (player_0_airborne && !player_1_airborne) return 1;
   if (player_1_airborne && !player_0_airborne) return 0;
 
-  const player_0_pausing = stats.inputs[0].pressing_start;
-  const player_1_pausing = stats.inputs[1].pressing_start;
-  if (player_0_pausing) return 1;
-  if (player_1_pausing) return 0;
+  // const player_0_pausing = stats.inputs[0].pressing_start;
+  // const player_1_pausing = stats.inputs[1].pressing_start;
+  // if (player_0_pausing) return 1;
+  // if (player_1_pausing) return 0;
 
   return stats.last_combo.playerIndex === 0 ? 0 : 1;
 };

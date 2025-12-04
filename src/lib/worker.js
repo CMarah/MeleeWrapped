@@ -31,9 +31,9 @@ const invalidStats = ({ stocks, inputs }, settings) => {
   if (p0_deaths <= 2 && p1_deaths <= 2) return true;
 
   // Check if when quitting out, both players where grounded
-  /* const player_0_airborne = inputs[0].airborne; */
-  /* const player_1_airborne = inputs[1].airborne; */
-  /* if (!player_0_airborne && !player_1_airborne) return true; */
+  const player_0_airborne = inputs[0].airborne;
+  const player_1_airborne = inputs[1].airborne;
+  if (!player_0_airborne && !player_1_airborne) return true;
 
   return false;
 };
@@ -45,12 +45,16 @@ const processGame = file => {
     const game = new SlippiGame(new Uint8Array(result));
 
     const metadata = game.getMetadata();
-    console.log('G', game, metadata, invalidMetadata(metadata));
     if (invalidMetadata(metadata)) return null;
-    const stats = game.getStats();
     const settings = game.getSettings();
+    const stats = game.getStats();
+    const lf = game.getLatestFrame();
+    stats.inputs = [ // We add this here for retrocompability, we should do this in marahslp
+      { airborne: lf?.players?.[0]?.post?.isAirborne || false },
+      { airborne: lf?.players?.[1]?.post?.isAirborne || false },
+    ];
     stats.settings = settings;
-    console.log('S', stats, settings);
+    game.input = {};
     if (invalidStats(stats, settings)) return null;
 
     return {
