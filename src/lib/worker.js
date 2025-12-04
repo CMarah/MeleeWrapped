@@ -54,7 +54,10 @@ const processGame = file => {
       { airborne: lf?.players?.[1]?.post?.isAirborne || false },
     ];
     stats.settings = settings;
+    stats.last_combo = stats.combos.at(-1);
+    stats.combos = [];
     game.input = {};
+    console.log('Processed game:', { metadata, settings, stats });
     if (invalidStats(stats, settings)) return null;
 
     return {
